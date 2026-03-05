@@ -1,0 +1,19 @@
+/* Underline animasi */
+.navbar-nav a::after,
+.home-section-title h3::after {
+    content: "";
+    display: block;
+    width: 100%;
+    border-bottom: 0.1rem solid #BC430D;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.navbar-nav a:hover::after,
+.navbar-nav .active::after,
+.home-section-title h3:hover::after {
+    transform: scaleX(0.5);
+}
