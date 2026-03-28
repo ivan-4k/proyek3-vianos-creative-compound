@@ -7,8 +7,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>{{ $title }}</title>
-  <link rel="icon" type="image/x-icon" href="logo.ico">
+  <meta name="theme-color" content="#BC430D">
+  <title>@yield('title', config('app.name', 'Seven Coffee'))</title>
+  <link rel="icon" type="image/x-icon" href="/logo.ico">
 
   <!-- Scripts -->
   @vite(['resources/css/app.css', 'resources/js/app.js'])

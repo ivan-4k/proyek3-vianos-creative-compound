@@ -3,10 +3,18 @@
 
 @import "auth.css";
 @import "navigation.css";
+@import "hero-section.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
 
 .font-primary {
     font-family: "Playfair Display", sans-serif;

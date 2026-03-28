@@ -4,13 +4,13 @@
 @endphp
 
 <nav id="main-navbar"
-  class="w-full fixed top-0 z-50 font-medium font-secondary {{ $theme === 'light' ? 'page-light' : 'bg-transparent text-white' }} transition-colors duration-300"
+  class="w-full fixed top-0 z-50 font-medium font-secondary {{ $theme === 'light' ? 'page-light' : 'bg-transparent text-white' }} transition-colors duration-300 sm:px-6 md:px-8 lg:px-12 xl:px-[8%]"
   x-data="{ isOpen: false }">
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-between py-3">
       <!-- Logo -->
       <a class="flex items-center" href="{{ url('/home') }}#">
-        <img id="navbar-logo" src="{{ asset('images/logo.png') }}" alt="Logo" class="h-10 mr-2">
+        <img id="navbar-logo" src="{{ asset('images/default/logo.png') }}" alt="Logo" class="h-10 mr-2">
       </a>
 
       <!-- Mobile menu button -->
@@ -29,17 +29,18 @@
         x-show="isOpen || window.innerWidth >= 1024" x-transition>
 
         <!-- Menu Tengah + Search -->
-        <ul class="flex flex-col lg:flex-row lg:items-center space-y-2 lg:space-y-0 lg:space-x-6 font-secondary navbar-nav">
+        <ul
+          class="flex flex-col lg:flex-row lg:items-center space-y-2 lg:space-y-0 lg:space-x-6 font-secondary navbar-nav">
           <li>
-            <a class="block py-2 lg:py-0 hover:text-[#BC430D] transition {{ request()->is('home') ? 'text-[#BC430D] font-semibold' : '' }}"
+            <a class="block py-2 lg:py-0 hover:text-[#BC430D] transition {{ request()->is('home') ? 'active text-[#BC430D] font-semibold' : '' }}"
               href="{{ url('/home') }}#">Beranda</a>
           </li>
           <li>
-            <a class="block py-2 lg:py-0 hover:text-[#BC430D] transition {{ request()->is('menu*') ? 'text-[#BC430D] font-semibold' : '' }}"
+            <a class="block py-2 lg:py-0 hover:text-[#BC430D] transition {{ request()->is('menu*') ? 'active text-[#BC430D] font-semibold' : '' }}"
               href="{{ url('/menu') }}">Menu</a>
           </li>
           <li>
-            <a class="block py-2 lg:py-0 hover:text-[#BC430D] transition {{ request()->is('tentang') ? 'text-[#BC430D] font-semibold' : '' }}"
+            <a class="block py-2 lg:py-0 hover:text-[#BC430D] transition {{ request()->is('tentang') ? 'active text-[#BC430D] font-semibold' : '' }}"
               href="{{ url('/') }}#tentang">Tentang Kami</a>
           </li>
 
@@ -61,10 +62,12 @@
         <!-- Icons kanan -->
         <div class="flex items-center space-x-4 mt-4 lg:mt-0 lg:ml-auto">
           <!-- cart Icon -->
-          @livewire('navbar-cart')
+          {{-- @livewire('navbar-cart') --}}
+          <i class="fa-solid fa-cart-shopping text-xl text-white hover:text-[#BC430D] transition"></i>
 
           <!-- notification Icon -->
-          @livewire('navbar-notification')
+          {{-- @livewire('navbar-notification') --}}
+          <i class="fa-solid fa-bell text-xl text-white hover:text-[#BC430D] transition"></i>
 
           <!-- User dropdown untuk SUDAH VERIFIKASI -->
           @auth

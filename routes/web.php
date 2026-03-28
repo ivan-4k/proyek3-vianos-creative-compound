@@ -26,8 +26,8 @@ Route::middleware(['auth'])->get('/home', function () {
 
   return $user->role === 'admin'
     ? redirect()->route('admin.dashboard')
-    : view('home');
-})->name('home');
+    : view('user.home');
+})->name('user.home');
 
 
 // === ROUTE USER ===

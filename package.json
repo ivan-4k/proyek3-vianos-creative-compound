@@ -20,6 +20,8 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^6.7.2",
-        "flowbite": "^4.0.1"
+        "flowbite": "^4.0.1",
+        "aos": "^2.3.4",
+        "swiper": "^12.1.2"
     }
 }
