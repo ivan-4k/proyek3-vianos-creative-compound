@@ -102,4 +102,8 @@
       </div>
     </div>
   </section>
+
+  @push('scripts')
+    @vite('resources/js/pages/auth.js')
+  @endpush
 </x-guest-layout>

@@ -18,14 +18,16 @@
 
         <!-- Heading with Playfair Display -->
         <h2
-          class="relative text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-6xl text-gray-900 font-primary font-bold tracking-tight leading-tight inline-block sm:inline-block mx-auto sm:mx-0" data-aos="fade-right">
+          class="relative text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-6xl text-gray-900 font-primary font-bold tracking-tight leading-tight inline-block sm:inline-block mx-auto sm:mx-0"
+          data-aos="fade-right">
           Hubungi kami <br class="hidden sm:block">hari ini
           <span
             class="absolute bottom-0 left-1/2 sm:left-0 transform -translate-x-1/2 sm:transform-none w-0 h-0.5 bg-[#BC430D] transition-all duration-300 ease-out group-hover:w-1/2 sm:group-hover:w-1/2"></span>
         </h2>
 
         <!-- Description with Inter font -->
-        <p class="text-gray-600 text-base sm:text-lg max-w-md mx-auto lg:mx-0 leading-relaxed font-secondary" data-aos="fade-right">
+        <p class="text-gray-600 text-base sm:text-lg max-w-md mx-auto lg:mx-0 leading-relaxed font-secondary"
+          data-aos="fade-right">
           Kami siap membantu Anda. Hubungi tim kami untuk pertanyaan lebih lanjut, konsultasi gratis, atau informasi
           produk.
         </p>
@@ -43,12 +45,15 @@
         </div>
 
         <!-- Image Card -->
-        <div class="group rounded-2xl overflow-hidden shadow-xl max-w-md mx-auto lg:mx-0 mt-4 sm:mt-6 bg-gray-100" data-aos="fade-up">
+        <div class="group rounded-2xl overflow-hidden shadow-xl max-w-md mx-auto lg:mx-0 mt-4 sm:mt-6 bg-gray-100"
+          data-aos="fade-up">
           <div class="overflow-hidden">
-            <img
-              src="{{ asset('images/default/Latte.jpg') }}"
-              alt="Fresh brewed coffee experience"
-              class="w-full h-56 sm:h-64 md:h-72 lg:h-80 object-cover transition-transform duration-700 ease-out group-hover:scale-105" loading="lazy" decoding="async">
+            <picture>
+              <source srcset="{{ asset('images/default/Latte.webp') }}" type="image/webp">
+              <img src="{{ asset('images/default/Latte.jpg') }}" alt="Fresh brewed coffee experience"
+                class="w-full h-56 sm:h-64 md:h-72 lg:h-80 object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                loading="lazy" decoding="async" aria-hidden="true">
+            </picture>
           </div>
           <div
             class="bg-white/90 backdrop-blur-sm py-2 text-center text-xs text-gray-500 border-t border-gray-100 font-secondary">
@@ -125,7 +130,8 @@
             <div>
               <label for="message"
                 class="text-white text-sm sm:text-base font-medium mb-1.5 flex items-center gap-1 font-secondary">
-                <i class="fas fa-comment-dots text-orange-300 text-xs"></i> Pesan <span class="text-orange-300">*</span>
+                <i class="fas fa-comment-dots text-orange-300 text-xs"></i> Pesan <span
+                  class="text-orange-300">*</span>
               </label>
               <textarea id="message" name="message" rows="4" autocomplete="off"
                 class="w-full rounded-2xl px-5 py-3 text-gray-800 bg-white border border-transparent focus:border-orange-300 focus:ring-2 focus:ring-orange-400 placeholder-gray-500 focus:outline-none transition-all text-sm sm:text-base resize-y shadow-sm font-secondary"

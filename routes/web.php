@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\GoogleController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Web\User\MenuController;
 
 // === ROUTE COMPANY PROFILE ===
 // Route::get('/', [ProductController::class, 'index'])->name('home');
@@ -32,9 +33,12 @@ Route::middleware(['auth'])->get('/home', function () {
 
 // === ROUTE USER ===
 Route::middleware('auth')->group(function () {
+  // PROFILE ROUTES
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+  Route::get('/menu', [MenuController::class, 'index']);
 });
 
 

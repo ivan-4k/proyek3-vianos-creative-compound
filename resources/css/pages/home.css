@@ -1,0 +1,238 @@
+/* Overlay untuk hero */
+.hero-overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+}
+
+/* Button dengan border animasi */
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.flowbite-border-animation {
+    position: relative;
+    display: inline-block;
+}
+
+.flowbite-border-animation::after,
+.flowbite-border-animation::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    padding: 3px;
+    border-radius: 0.5rem;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.flowbite-border-animation::before {
+    filter: blur(0.8rem);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.flowbite-border-animation:hover::after,
+.flowbite-border-animation:hover::before {
+    opacity: 1;
+    background-image: conic-gradient(
+        from var(--angle),
+        #bc430d,
+        #6f4e37,
+        #c4a484,
+        #8b4513,
+        #d2691e,
+        #bc430d
+    );
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
+}
+
+/** STYLE CSS FILE gallery-section.blade.php */
+.desktop-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+    min-height: 600px;
+}
+
+.area-1 {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.area-2 {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.area-3 {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+.area-4 {
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+.area-5 {
+    grid-area: 1 / 3 / 3 / 5;
+}
+
+.desktop-grid-item {
+    width: 100%;
+    height: 100%;
+}
+
+.desktop-grid-item figure,
+.desktop-grid-item a {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.desktop-grid-item img {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    height: calc(100% - 40px);
+    object-fit: cover;
+}
+
+@media (max-width: 1023px) {
+    .desktop-grid {
+        display: none;
+    }
+}
+.pswp__img {
+    border-radius: 8px;
+}
+
+/** STYLE CSS FILE product-slider.blade.php */
+/* Container Swiper */
+.swiper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Wrapper dan Slide */
+.swiper-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    box-sizing: content-box;
+}
+
+.swiper-slide {
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Navigasi Buttons dengan Font Awesome - Tampil di semua device */
+.swiper-nav-btn {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    background: white;
+    border: 2px solid #bc430d;
+    border-radius: 50%;
+    color: #bc430d;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.swiper-nav-btn:hover {
+    background: #bc430d;
+    color: white;
+    border-color: #bc430d;
+    box-shadow: 0 6px 16px rgba(188, 67, 13, 0.3);
+}
+
+.swiper-nav-prev {
+    left: 10px;
+}
+
+.swiper-nav-next {
+    right: 10px;
+}
+
+/* Responsive: posisi tombol di tablet/desktop */
+@media (min-width: 640px) {
+    .swiper-nav-prev {
+        left: 20px;
+    }
+
+    .swiper-nav-next {
+        right: 20px;
+    }
+}
+
+/* Sembunyikan tombol default Swiper */
+.swiper-button-prev,
+.swiper-button-next {
+    display: none !important;
+}
+
+/* Pagination */
+.swiper-pagination {
+    position: relative !important;
+    bottom: 0 !important;
+    margin-top: 20px !important;
+    display: block !important;
+    text-align: center !important;
+}
+
+.swiper-pagination-bullet {
+    width: 8px !important;
+    height: 8px !important;
+    background: #fce96a !important;
+    opacity: 0.5 !important;
+    transition: all 0.3s ease !important;
+    border-radius: 50% !important;
+    margin: 0 4px !important;
+    display: inline-block !important;
+}
+
+.swiper-pagination-bullet-active {
+    background: #faca15 !important;
+    opacity: 1 !important;
+    width: 1.5rem !important;
+    border-radius: 1rem !important;
+}
+
+/* Utility untuk line-clamp */
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

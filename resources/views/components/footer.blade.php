@@ -29,7 +29,7 @@
             </h3>
             <ul class="space-y-2 font-secondary">
               <li>
-                <a href="#"
+                <a href="{{ url('/home') }}#"
                   class="text-white/70 hover:text-amber-300 transition-all duration-300 flex items-center justify-center sm:justify-start gap-2 group">
                   <i
                     class="fas fa-chevron-right text-xs text-amber-400 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1"></i>
@@ -37,7 +37,7 @@
                 </a>
               </li>
               <li>
-                <a href="#"
+                <a href="{{ url('/menu') }}#"
                   class="text-white/70 hover:text-amber-300 transition-all duration-300 flex items-center justify-center sm:justify-start gap-2 group">
                   <i
                     class="fas fa-chevron-right text-xs text-amber-400 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1"></i>

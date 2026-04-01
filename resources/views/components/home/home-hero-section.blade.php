@@ -1,9 +1,11 @@
 <section id="hero"
   class="relative h-screen flex items-center text-white px-4 sm:px-6 md:px-8 lg:px-12 xl:px-[8%] hero-overlay">
   <!-- Background Image dengan overlay -->
-  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-    style="background-image: url('images/default/herobg.png'); background-position: 60% center;">
-  </div>
+  <picture>
+    <source srcset="/images/default/herobg.webp" type="image/webp">
+    <img src="/images/default/herobg.png" class="absolute inset-0 w-full h-full object-cover" fetchpriority="high"
+      alt="Hero Background">
+  </picture>
 
   <!-- Konten -->
   <div

@@ -175,7 +175,7 @@
               </div>
             </div>
 
-            <!-- Navigation Buttons - menggunakan class yang sesuai dengan JS -->
+            <!-- Navigation Buttons -->
             <div
               class="swiper-nav-prev absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-[#965015]/70 hover:bg-[#965015] rounded-full flex items-center justify-center cursor-pointer transition-all duration-300">
               <i class="fa-solid fa-chevron-left text-white text-sm"></i>
