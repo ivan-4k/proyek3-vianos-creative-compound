@@ -11,7 +11,7 @@ Route::get('/', function () {
   return view('welcome');
 });
 
-// === GOOGLE OAUTH ===
+// === GOOGLE AUTH ===
 Route::get('/auth/google', [GoogleController::class, 'redirect'])->name('google.redirect');
 Route::get('/auth/google/callback', [GoogleController::class, 'callback'])->name('google.callback');
 
@@ -37,7 +37,13 @@ Route::middleware('auth')->group(function () {
   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/about', function () {
+  return view('about');
+})->name('about');
 
+Route::get('/menu', function () {
+  return view('menu');
+})->name('menu');
 
 
 require __DIR__ . '/auth.php';

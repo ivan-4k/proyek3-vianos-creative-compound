@@ -40,8 +40,8 @@
               href="{{ url('/menu') }}">Menu</a>
           </li>
           <li>
-            <a class="block py-2 lg:py-0 hover:text-[#BC430D] transition {{ request()->is('tentang') ? 'active text-[#BC430D] font-semibold' : '' }}"
-              href="{{ url('/') }}#tentang">Tentang Kami</a>
+            <a class="block py-2 lg:py-0 hover:text-[#BC430D] transition {{ request()->is('about') ? 'active text-[#BC430D] font-semibold' : '' }}"
+              href="{{ url('/about') }}#tentang">Tentang Kami</a>
           </li>
 
           <!-- Search box -->
