@@ -1,0 +1,14 @@
+[x-cloak] {
+    display: none !important;
+}
+/* Custom styling untuk select */
+select {
+    cursor: pointer;
+    background-color: white;
+}
+
+select:focus {
+    outline: none;
+    border-color: #f59e0b;
+    box-shadow: 0 0 0 2px #fcd34d;
+}

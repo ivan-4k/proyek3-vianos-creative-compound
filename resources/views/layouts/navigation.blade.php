@@ -9,7 +9,7 @@
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-between py-3">
       <!-- Logo -->
-      <a class="flex items-center" href="{{ url('/home') }}#">
+      <a class="flex items-center" href="{{ url('#') }}">
         <img id="navbar-logo" src="{{ asset('images/default/logo.png') }}" alt="Logo" class="h-10 mr-2">
       </a>
 
@@ -37,7 +37,7 @@
           </li>
           <li>
             <a class="block py-2 lg:py-0 hover:text-[#BC430D] transition {{ request()->is('menu*') ? 'active text-[#BC430D] font-semibold' : '' }}"
-              href="{{ url('/menu') }}">Menu</a>
+              href="{{ url('/menu') }}#">Menu</a>
           </li>
           <li>
             <a class="block py-2 lg:py-0 hover:text-[#BC430D] transition {{ request()->is('about') ? 'active text-[#BC430D] font-semibold' : '' }}"

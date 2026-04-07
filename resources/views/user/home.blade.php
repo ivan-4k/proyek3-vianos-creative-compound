@@ -5,23 +5,27 @@
 @section('content')
 
   {{-- Hero Section --}}
-  <x-section.hero-section />
+  <x-home.home-hero-section />
 
   {{-- Menu Unggulan Section --}}
-  <x-section.signature-menu />
+  <x-home.signature-menu />
 
   {{-- Spot Menarik Section --}}
-  <x-section.gallery-section />
+  <x-home.gallery-section />
 
   {{-- slider product Section --}}
-  <x-section.product-slider />
+  <x-home.product-slider />
 
   {{-- Layanan Kami Section --}}
-  <x-section.services-section />
+  <x-home.services-section />
 
   {{-- Cerita Section --}}
-  <x-section.story-section />
+  <x-home.story-section />
 
-  {{-- Cerita Section --}}
-  <x-section.contact-section />
+  {{-- Kontak Section --}}
+  <x-home.contact-section />
 @endsection
+
+@push('scripts')
+  @vite('resources/js/pages/home.js')
+@endpush

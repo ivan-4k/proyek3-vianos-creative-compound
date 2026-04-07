@@ -84,24 +84,7 @@
     </div>
   </section>
 
-  <!-- Style tambahan -->
-  <style>
-    /* Mengatasi background kuning saat autofill */
-    input:-webkit-autofill,
-    input:-webkit-autofill:hover,
-    input:-webkit-autofill:focus,
-    input:-webkit-autofill:active {
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: #F1F7FB;
-      transition: background-color 5000s ease-in-out 0s;
-      box-shadow: inset 0 0 20px 20px rgba(58, 42, 22, 0.5);
-      caret-color: #F1F7FB;
-    }
-
-    input:-webkit-autofill+label {
-      transform: translateY(-1rem) scale(0.75);
-      top: 1.25rem;
-      color: #f59e0b !important;
-    }
-  </style>
+  @push('scripts')
+    @vite('resources/js/pages/auth.js')
+  @endpush
 </x-guest-layout>

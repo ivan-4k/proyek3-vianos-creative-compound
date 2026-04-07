@@ -2,8 +2,11 @@
 <section
   class="py-12 sm:py-16 lg:py-20 bg-[#BC430D] relative overflow-hidden home-section-title sm:px-6 md:px-8 lg:px-12 xl:px-[8%] px-4">
   <div class="absolute inset-0 z-0 flex items-start justify-start pointer-events-none rotate-45 mt-20 overflow-hidden">
-    <img src="{{ asset('images/default/paper-plane.png') }}" alt="Paper Plane Background"
-      class="w-2/3 h-full object-cover object-left-top" loading="lazy" decoding="async" />
+    <picture>
+      <source srcset="{{ asset('images/default/paper-plane.webp') }}" type="image/webp">
+      <img src="{{ asset('images/default/paper-plane.png') }}" alt="" aria-hidden="true"
+        class="w-2/3 h-full object-cover object-left-top" loading="lazy" decoding="async" />
+    </picture>
   </div>
   {{-- Content --}}
   <div class="container mx-auto relative z-10">
@@ -24,7 +27,7 @@
         data-aos="fade-right">
         <div class="relative">
           <img class="w-full h-64 object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-110"
-            src="{{ asset('images/bg1.jpg') }}" alt="Cloud Seven" loading="lazy" decoding="async" />
+            src="{{ asset('images/default/bg1.webp') }}" alt="Cloud Seven" loading="lazy" decoding="async" />
 
           {{-- Heart Icon yang bisa diklik --}}
           <div class="absolute top-4 right-4 z-20" @click.stop="isFavorite = !isFavorite">
@@ -53,7 +56,7 @@
         data-aos="fade-up">
         <div class="relative">
           <img class="w-full h-64 object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-110"
-            src="{{ asset('images/bg1.jpg') }}" alt="Caramel Macchiato" loading="lazy" decoding="async" />
+            src="{{ asset('images/default/bg1.webp') }}" alt="Caramel Macchiato" loading="lazy" decoding="async" />
 
           {{-- Heart Icon yang bisa diklik --}}
           <div class="absolute top-4 right-4 z-20" @click.stop="isFavorite = !isFavorite">
@@ -82,7 +85,7 @@
         data-aos="fade-left">
         <div class="relative">
           <img class="w-full h-64 object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-110"
-            src="{{ asset('images/bg1.jpg') }}" alt="Tiramisu Cake" loading="lazy" decoding="async" />
+            src="{{ asset('images/default/bg1.webp') }}" alt="Tiramisu Cake" loading="lazy" decoding="async" />
 
           {{-- Heart Icon yang bisa diklik --}}
           <div class="absolute top-4 right-4 z-20" @click.stop="isFavorite = !isFavorite">

@@ -15,13 +15,15 @@
   <div class="container mx-auto">
 
     {{-- Mobile Version (grid 2 kolom) --}}
-    <div class="grid grid-cols-2 gap-4 lg:hidden">
+    <div class="grid grid-cols-2 gap-4 lg:hidden ps-gallery-mobile">
       {{-- Kolom Kiri Mobile --}}
       <div class="flex flex-col gap-4">
         <figure class="text-center group cursor-pointer" data-aos="fade-right">
           <a href="{{ asset('images/highlight/indoor.jpg') }}"
-            class="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-            <img src="{{ asset('images/highlight/indoor.jpg') }}" alt="Mini"
+            class="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+            data-pswp-width="1200" data-pswp-height="800"
+            data-caption="Indoor - Area nyaman dengan suasana sejuk dan modern">
+            <img src="{{ asset('images/highlight/indoor.jpg') }}" alt="Indoor Area"
               class="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105"
               loading="lazy" decoding="async">
           </a>
@@ -29,8 +31,10 @@
         </figure>
         <figure class="text-center group cursor-pointer" data-aos="fade-right">
           <a href="{{ asset('images/highlight/instagramable.jpg') }}"
-            class="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-            <img src="{{ asset('images/highlight/instagramable.jpg') }}" alt="Besar"
+            class="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+            data-pswp-width="1200" data-pswp-height="800"
+            data-caption="Instagramable - Spot foto menarik dengan pencahayaan sempurna">
+            <img src="{{ asset('images/highlight/instagramable.jpg') }}" alt="Instagramable Spot"
               class="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105"
               loading="lazy" decoding="async">
           </a>
@@ -42,8 +46,10 @@
       <div class="flex flex-col gap-4">
         <figure class="text-center group cursor-pointer" data-aos="fade-left">
           <a href="{{ asset('images/highlight/outdoor.jpg') }}"
-            class="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-            <img src="{{ asset('images/highlight/outdoor.jpg') }}" alt="Sedang"
+            class="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+            data-pswp-width="1200" data-pswp-height="800"
+            data-caption="Outdoor - Nikmati suasana alami dengan udara segar">
+            <img src="{{ asset('images/highlight/outdoor.jpg') }}" alt="Outdoor Area"
               class="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105"
               loading="lazy" decoding="async">
           </a>
@@ -51,8 +57,10 @@
         </figure>
         <figure class="text-center group cursor-pointer" data-aos="fade-left">
           <a href="{{ asset('images/highlight/area-kerja.jpg') }}"
-            class="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-            <img src="{{ asset('images/highlight/area-kerja.jpg') }}" alt="Ekstra Besar"
+            class="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+            data-pswp-width="1200" data-pswp-height="800"
+            data-caption="Area Kerja - Ruang produktif dengan fasilitas lengkap">
+            <img src="{{ asset('images/highlight/area-kerja.jpg') }}" alt="Working Area"
               class="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105"
               loading="lazy" decoding="async">
           </a>
@@ -64,8 +72,10 @@
       <div class="col-span-2 mt-4">
         <figure class="text-center group cursor-pointer w-full" data-aos="fade-up">
           <a href="{{ asset('images/highlight/suasana.jpg') }}"
-            class="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-            <img src="{{ asset('images/highlight/suasana.jpg') }}" alt="Koleksi"
+            class="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+            data-pswp-width="1600" data-pswp-height="1200"
+            data-caption="Suasana Utama Caffee - Tempat sempurna untuk bersantai bersama keluarga dan teman">
+            <img src="{{ asset('images/highlight/suasana.jpg') }}" alt="Main Atmosphere"
               class="w-full aspect-[4/5] object-cover transition-transform duration-300 group-hover:scale-105"
               loading="lazy" decoding="async">
           </a>
@@ -75,14 +85,16 @@
     </div>
 
     {{-- Desktop Version (grid 4 kolom dengan CSS Grid spesifik) --}}
-    <div class="hidden lg:block">
+    <div class="hidden lg:block ps-gallery-desktop">
       <div class="desktop-grid">
         {{-- div1: Mini --}}
         <div class="desktop-grid-item area-1">
           <figure class="text-center group cursor-pointer h-full" data-aos="fade-right">
             <a href="{{ asset('images/highlight/indoor.jpg') }}"
-              class="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-              <img src="{{ asset('images/highlight/indoor.jpg') }}" alt="Mini"
+              class="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 h-full"
+              data-pswp-width="1200" data-pswp-height="800"
+              data-caption="Indoor - Area nyaman dengan suasana sejuk dan modern">
+              <img src="{{ asset('images/highlight/indoor.jpg') }}" alt="Indoor Area"
                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 loading="lazy" decoding="async">
             </a>
@@ -94,8 +106,10 @@
         <div class="desktop-grid-item area-2">
           <figure class="text-center group cursor-pointer h-full" data-aos="fade-left">
             <a href="{{ asset('images/highlight/outdoor.jpg') }}"
-              class="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-              <img src="{{ asset('images/highlight/outdoor.jpg') }}" alt="Sedang"
+              class="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 h-full"
+              data-pswp-width="1200" data-pswp-height="800"
+              data-caption="Outdoor - Nikmati suasana alami dengan udara segar">
+              <img src="{{ asset('images/highlight/outdoor.jpg') }}" alt="Outdoor Area"
                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 loading="lazy" decoding="async">
             </a>
@@ -107,8 +121,10 @@
         <div class="desktop-grid-item area-3">
           <figure class="text-center group cursor-pointer h-full" data-aos="fade-right">
             <a href="{{ asset('images/highlight/instagramable.jpg') }}"
-              class="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-              <img src="{{ asset('images/highlight/instagramable.jpg') }}" alt="Besar"
+              class="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 h-full"
+              data-pswp-width="1200" data-pswp-height="800"
+              data-caption="Instagramable - Spot foto menarik dengan pencahayaan sempurna">
+              <img src="{{ asset('images/highlight/instagramable.jpg') }}" alt="Instagramable Spot"
                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 loading="lazy" decoding="async">
             </a>
@@ -120,8 +136,10 @@
         <div class="desktop-grid-item area-4">
           <figure class="text-center group cursor-pointer h-full" data-aos="fade-left">
             <a href="{{ asset('images/highlight/area-kerja.jpg') }}"
-              class="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-              <img src="{{ asset('images/highlight/area-kerja.jpg') }}" alt="Ekstra Besar"
+              class="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 h-full"
+              data-pswp-width="1200" data-pswp-height="800"
+              data-caption="Area Kerja - Ruang produktif dengan fasilitas lengkap">
+              <img src="{{ asset('images/highlight/area-kerja.jpg') }}" alt="Working Area"
                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 loading="lazy" decoding="async">
             </a>
@@ -133,8 +151,10 @@
         <div class="desktop-grid-item area-5">
           <figure class="text-center group cursor-pointer h-full" data-aos="fade-up">
             <a href="{{ asset('images/highlight/suasana.jpg') }}"
-              class="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-              <img src="{{ asset('images/highlight/suasana.jpg') }}" alt="Koleksi"
+              class="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 h-full"
+              data-pswp-width="1600" data-pswp-height="1200"
+              data-caption="Suasana Utama Caffee - Tempat sempurna untuk bersantai bersama keluarga dan teman">
+              <img src="{{ asset('images/highlight/suasana.jpg') }}" alt="Main Atmosphere"
                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 loading="lazy" decoding="async">
             </a>
@@ -145,68 +165,3 @@
     </div>
   </div>
 </section>
-
-{{-- Custom CSS untuk Desktop Grid --}}
-<style>
-  .desktop-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 20px;
-    min-height: 600px;
-  }
-
-  .area-1 {
-    grid-area: 1 / 1 / 2 / 2;
-  }
-
-  .area-2 {
-    grid-area: 1 / 2 / 2 / 3;
-  }
-
-  .area-3 {
-    grid-area: 2 / 1 / 3 / 2;
-  }
-
-  .area-4 {
-    grid-area: 2 / 2 / 3 / 3;
-  }
-
-  .area-5 {
-    grid-area: 1 / 3 / 3 / 5;
-  }
-
-
-  .desktop-grid-item {
-    width: 100%;
-    height: 100%;
-  }
-
-  .desktop-grid-item figure,
-  .desktop-grid-item a {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .desktop-grid-item img {
-    flex: 1;
-    min-height: 0;
-    width: 100%;
-    height: calc(100% - 40px);
-    object-fit: cover;
-  }
-
-  @media (max-width: 1023px) {
-    .desktop-grid {
-      display: none;
-    }
-  }
-</style>
-
-{{-- Tambahkan CSS untuk PhotoSwipe --}}
-<style>
-  .pswp__img {
-    border-radius: 8px;
-  }
-</style>

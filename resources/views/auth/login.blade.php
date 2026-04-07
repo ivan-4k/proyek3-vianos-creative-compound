@@ -49,7 +49,7 @@
                      peer transition-all duration-300 ease-in-out tracking-wide
                      autofill:bg-transparent autofill:text-amber-50
                      hover:border-amber-300/50"
-              placeholder=" " required autocomplete="off" minlength="8"/>
+              placeholder=" " required autocomplete="off" minlength="8" />
             <label for="password"
               class="absolute text-sm text-[#F1F7FB] duration-300 transform -translate-y-4 scale-75 top-5 left-4 origin-[0] 
                      peer-placeholder-shown:translate-y-1 peer-placeholder-shown:scale-100 peer-placeholder-shown:top-5
@@ -145,53 +145,7 @@
     </div>
   </section>
 
-  <!-- JavaScript untuk toggle password -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const togglePassword = document.getElementById('togglePassword');
-      const passwordInput = document.getElementById('password');
-
-      if (togglePassword && passwordInput) {
-        togglePassword.addEventListener('click', function() {
-          const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-          passwordInput.setAttribute('type', type);
-
-          // Toggle icon
-          const icon = this.querySelector('i');
-          icon.classList.toggle('fa-eye-slash');
-          icon.classList.toggle('fa-eye');
-        });
-      }
-
-      // Handle autofill background
-      const inputs = document.querySelectorAll('input');
-      inputs.forEach(input => {
-        input.addEventListener('animationstart', function(e) {
-          if (e.animationName.includes('autofill')) {
-            this.classList.add('autofill-active');
-          }
-        });
-      });
-    });
-  </script>
-
-  <style>
-    /* Mengatasi background kuning saat autofill */
-    input:-webkit-autofill,
-    input:-webkit-autofill:hover,
-    input:-webkit-autofill:focus,
-    input:-webkit-autofill:active {
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: #fffbeb;
-      transition: background-color 5000s ease-in-out 0s;
-      box-shadow: inset 0 0 20px 20px rgba(58, 42, 22, 0.5);
-      caret-color: #fffbeb;
-    }
-
-    input:-webkit-autofill+label {
-      transform: translateY(-1rem) scale(0.75);
-      top: 1.25rem;
-      color: #f59e0b !important;
-    }
-  </style>
+@push('scripts')
+  @vite('resources/js/pages/auth.js')
+@endpush
 </x-guest-layout>
