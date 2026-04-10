@@ -1,228 +1,155 @@
+@php
+  // Data Statistik
+  $stats = [
+      ['icon' => 'fa-mug-hot', 'number' => '50+', 'title' => 'Produk', 'desc' => 'Pilihan menu lengkap tersedia'],
+      ['icon' => 'fa-tags', 'number' => '10+', 'title' => 'Kategori', 'desc' => 'Espresso, Latte, Non-Coffee, dll'],
+      [
+          'icon' => 'fa-coffee',
+          'number' => '1K+',
+          'title' => 'Cangkir/Bulan',
+          'desc' => 'Disajikan & dinikmati setiap bulan',
+      ],
+      [
+          'icon' => 'fa-seedling',
+          'number' => '100%',
+          'title' => 'Biji Pilihan',
+          'desc' => 'Kualitas single origin & fair trade',
+      ],
+  ];
+
+  // Data Gallery
+  $galleries = [
+      [
+          'id' => '1',
+          'title' => 'Espresso',
+          'img' => '/images/default/herobg.webp',
+          'desc' => 'Espresso murni dengan aroma kuat dan aftertaste panjang. Cocok untuk penikmat kopi sejati.',
+      ],
+      [
+          'id' => '2',
+          'title' => 'Latte',
+          'img' => '/images/default/herobg.webp',
+          'desc' => 'Perpaduan sempurna espresso dan susu dengan tekstur creamy lembut dan foam cantik.',
+      ],
+      [
+          'id' => '3',
+          'title' => 'Non-Coffee',
+          'img' => '/images/default/herobg.webp',
+          'desc' => 'Alternatif segar tanpa kopi, menikmati minuman dengan rasa unik dan menyegarkan.',
+      ],
+      [
+          'id' => '4',
+          'title' => 'Biji Kopi Pilihan',
+          'img' => '/images/default/herobg.webp',
+          'desc' => '100% biji kopi pilihan single origin yang dipetik langsung dari perkebunan terbaik.',
+      ],
+  ];
+@endphp
+
 <section
-  class="py-12 sm:py-16 lg:py-20 relative overflow-hidden home-section-title sm:px-6 md:px-8 lg:px-12 xl:px-[8%] px-4 text-white font-secondary bg-gradient-to-br from-amber-50 via-white to-amber-50">
-  {{-- Header --}}
-  <div class="container mx-auto relative">
-    <!-- Header dengan Flowbite -->
-    <div class="text-center mb-3" data-aos="fade-up">
-      <h2 class="font-semibold mb-3 relative inline-block text-3xl md:text-4xl font-primary text-gray-900">
-        Dipercaya <span class="text-amber-700">Banyak Pelanggan</span>
+  class="py-16 lg:py-24 relative overflow-hidden bg-gradient-to-br from-amber-50/50 via-white to-orange-50/50 font-secondary sm:px-6 md:px-8 lg:px-12 xl:px-[8%] px-4 home-section-title">
+
+  <div class="max-w-7xl mx-auto relative z-10">
+
+    {{-- ================= HEADER ================= --}}
+    <div class="text-center mb-12 lg:mb-16" data-aos="fade-up">
+      <h2 class="font-bold mb-3 relative inline-block text-3xl md:text-4xl font-primary text-[#3E1E04]">
+        Dipercaya <span class="text-[#BC430D]">Banyak Pelanggan</span>
       </h2>
-      <p class="text-gray-600 font-secondary text-lg md:text-xl">
-        Dari jumlah menu hingga kepuasan pelanggan, semuanya kami jaga dengan konsisten.
+      <p class="font-secondary text-gray-500 max-w-xl mx-auto text-base md:text-lg leading-relaxed">
+        Dari keberagaman menu hingga kepuasan pelanggan, kami selalu menjaga standar dan konsistensi di setiap tegukan.
       </p>
     </div>
 
-    <!-- Stats dengan Flexbox -->
-    <div class="flex flex-wrap justify-center gap-6 md:gap-8">
-      <!-- Stat 1 -->
-      <div
-        class="flex-1 min-w-[200px] max-w-[280px] text-center p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100"
-        data-aos="fade-up" data-aos-delay="100" data-tooltip-target="tooltip-produk" data-tooltip-placement="bottom">
-        <i class="fas fa-mug-hot text-4xl text-amber-600 mb-3"></i>
-        <div class="text-4xl md:text-5xl font-black text-amber-700 mb-2">50+</div>
-        <div class="font-secondary text-lg font-semibold text-gray-800">Produk</div>
-        <p class="font-secondary text-sm text-gray-500 mt-1">Pilihan menu lengkap</p>
-      </div>
-      <!-- Tooltip -->
-      <div id="tooltip-produk" role="tooltip"
-        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-        Lebih dari 50 pilihan menu tersedia
-        <div class="tooltip-arrow" data-popper-arrow></div>
-      </div>
+    {{-- ================= STATS SECTION ================= --}}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-20 lg:mb-28">
+      @foreach ($stats as $index => $stat)
+        <div
+          class="group bg-white p-8 rounded-3xl border border-orange-100/50 transition-all duration-500 ease-out hover:shadow-2xl hover:shadow-[#BC430D]/10 hover:-translate-y-2 relative overflow-hidden text-center"
+          data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
 
-      <!-- Stat 2 -->
-      <div
-        class="flex-1 min-w-[200px] max-w-[280px] text-center p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100"
-        data-aos="fade-up" data-aos-delay="200" data-tooltip-target="tooltip-kategori" data-tooltip-placement="bottom">
-        <i class="fas fa-tags text-4xl text-amber-600 mb-3"></i>
-        <div class="text-4xl md:text-5xl font-black text-amber-700 mb-2">10+</div>
-        <div class="font-secondary text-lg font-semibold text-gray-800">Kategori</div>
-        <p class="font-secondary text-sm text-gray-500 mt-1">Espresso, Non-Coffee, & banyak lagi</p>
-      </div>
-      <!-- Tooltip -->
-      <div id="tooltip-kategori" role="tooltip"
-        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-        10+ kategori minuman untuk semua selera
-        <div class="tooltip-arrow" data-popper-arrow></div>
-      </div>
+          <div
+            class="absolute top-0 right-0 -mr-8 -mt-8 w-24 h-24 rounded-full bg-orange-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          </div>
 
-      <!-- Stat 3 -->
-      <div
-        class="flex-1 min-w-[200px] max-w-[280px] text-center p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100"
-        data-aos="fade-up" data-aos-delay="300" data-tooltip-target="tooltip-cangkir" data-tooltip-placement="bottom">
-        <i class="fas fa-coffee text-4xl text-amber-600 mb-3"></i>
-        <div class="text-4xl md:text-5xl font-black text-amber-700 mb-2">1.000+</div>
-        <div class="font-secondary text-lg font-semibold text-gray-800">Cangkir Disajikan</div>
-        <p class="font-secondary text-sm text-gray-500 mt-1">Setiap bulan</p>
-      </div>
-      <!-- Tooltip -->
-      <div id="tooltip-cangkir" role="tooltip"
-        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-        Lebih dari 1000 cangkir setiap bulan
-        <div class="tooltip-arrow" data-popper-arrow></div>
-      </div>
-
-      <!-- Stat 4 -->
-      <div
-        class="flex-1 min-w-[200px] max-w-[280px] text-center p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100"
-        data-aos="fade-up" data-aos-delay="400" data-tooltip-target="tooltip-biji" data-tooltip-placement="bottom">
-        <i class="fas fa-seedling text-4xl text-amber-600 mb-3"></i>
-        <div class="text-4xl md:text-5xl font-black text-amber-700 mb-2">100%</div>
-        <div class="font-secondary text-lg font-semibold text-gray-800">Biji Kopi Pilihan</div>
-        <p class="font-secondary text-sm text-gray-500 mt-1">Single origin & fair trade</p>
-      </div>
-      <!-- Tooltip -->
-      <div id="tooltip-biji" role="tooltip"
-        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-        100% biji kopi pilihan berkualitas
-        <div class="tooltip-arrow" data-popper-arrow></div>
-      </div>
+          <div class="relative z-10">
+            <div
+              class="w-16 h-16 mx-auto bg-orange-50 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-[#BC430D] transition-colors duration-500">
+              <i
+                class="fas {{ $stat['icon'] }} text-3xl text-[#BC430D] group-hover:text-white transition-colors duration-500"></i>
+            </div>
+            <div class="text-4xl md:text-5xl font-black text-[#3E1E04] mb-2 tracking-tight">{{ $stat['number'] }}</div>
+            <div class="font-primary text-lg font-bold text-gray-800 mb-1">{{ $stat['title'] }}</div>
+            <p class="font-secondary text-sm text-gray-500 leading-relaxed">{{ $stat['desc'] }}</p>
+          </div>
+        </div>
+      @endforeach
     </div>
 
-    <!-- Gallery Grid dengan Flowbite Lightbox (tetap menggunakan grid untuk gallery) -->
-    <div class="mt-16">
-      <h3 class="font-primary text-2xl font-bold text-center text-gray-800 mb-8" data-aos="fade-up">
-        Galeri <span class="text-amber-700">Kopi Kami</span>
+    {{-- ================= GALLERY SECTION ================= --}}
+    <div class="mt-10">
+      <h3 class="font-primary text-2xl md:text-3xl font-bold text-center text-[#3E1E04] mb-10" data-aos="fade-up">
+        Galeri <span class="text-[#BC430D]">Kopi Kami</span>
       </h3>
 
-      <div class="flex flex-wrap justify-center gap-4" data-aos="fade-up">
-        <!-- Gallery Item 1 - menggunakan Flowbite Modal -->
-        <div class="relative group cursor-pointer w-[calc(50%-8px)] md:w-[calc(25%-12px)] min-w-[160px] max-w-[280px]"
-          data-modal-target="gallery-modal-1" data-modal-toggle="gallery-modal-1" data-aos="fade-up"
-          data-aos-delay="100">
-          <img src="/images/default/herobg.webp" alt="Espresso"
-            class="rounded-lg w-full h-48 object-cover transition-transform group-hover:scale-105 duration-300">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
+
+        @foreach ($galleries as $index => $item)
           <div
-            class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 rounded-lg flex items-center justify-center">
-            <i class="fas fa-search-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity"></i>
-          </div>
-        </div>
+            class="relative group cursor-pointer rounded-2xl overflow-hidden aspect-square md:aspect-[4/5] shadow-sm hover:shadow-xl transition-all duration-500"
+            data-modal-target="gallery-modal-{{ $item['id'] }}" data-modal-toggle="gallery-modal-{{ $item['id'] }}"
+            data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
 
-        <!-- Gallery Item 2 -->
-        <div class="relative group cursor-pointer w-[calc(50%-8px)] md:w-[calc(25%-12px)] min-w-[160px] max-w-[280px]"
-          data-modal-target="gallery-modal-2" data-modal-toggle="gallery-modal-2" data-aos="fade-up"
-          data-aos-delay="200">
-          <img src="/images/default/herobg.webp" alt="Latte"
-            class="rounded-lg w-full h-48 object-cover transition-transform group-hover:scale-105 duration-300">
-          <div
-            class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 rounded-lg flex items-center justify-center">
-            <i class="fas fa-search-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity"></i>
-          </div>
-        </div>
+            <img src="{{ $item['img'] }}" alt="{{ $item['title'] }}"
+              class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110">
 
-        <!-- Gallery Item 3 -->
-        <div class="relative group cursor-pointer w-[calc(50%-8px)] md:w-[calc(25%-12px)] min-w-[160px] max-w-[280px]"
-          data-modal-target="gallery-modal-3" data-modal-toggle="gallery-modal-3" data-aos="fade-up"
-          data-aos-delay="300">
-          <img src="/images/default/herobg.webp" alt="Non-Coffee"
-            class="rounded-lg w-full h-48 object-cover transition-transform group-hover:scale-105 duration-300">
-          <div
-            class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 rounded-lg flex items-center justify-center">
-            <i class="fas fa-search-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity"></i>
-          </div>
-        </div>
+            <div
+              class="absolute inset-0 bg-[#3E1E04]/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center">
+              <div
+                class="w-12 h-12 rounded-full border border-white/50 flex items-center justify-center transform scale-50 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500 delay-100">
+                <i class="fas fa-expand text-white text-lg"></i>
+              </div>
+            </div>
 
-        <!-- Gallery Item 4 -->
-        <div class="relative group cursor-pointer w-[calc(50%-8px)] md:w-[calc(25%-12px)] min-w-[160px] max-w-[280px]"
-          data-modal-target="gallery-modal-4" data-modal-toggle="gallery-modal-4" data-aos="fade-up"
-          data-aos-delay="400">
-          <img src="/images/default/herobg.webp" alt="Coffee Beans"
-            class="rounded-lg w-full h-48 object-cover transition-transform group-hover:scale-105 duration-300">
-          <div
-            class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 rounded-lg flex items-center justify-center">
-            <i class="fas fa-search-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity"></i>
+            <div
+              class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/80 to-transparent translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+              <span class="text-white font-bold font-primary">{{ $item['title'] }}</span>
+            </div>
           </div>
-        </div>
+        @endforeach
+
       </div>
     </div>
 
-    <!-- Flowbite Modals untuk Gallery (tetap sama) -->
-    <!-- Modal 1 -->
-    <div id="gallery-modal-1" tabindex="-1"
-      class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-      <div class="relative p-4 w-full max-w-4xl max-h-full">
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-          <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Espresso</h3>
-            <button type="button"
-              class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-              data-modal-hide="gallery-modal-1">
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
-          <div class="p-4 md:p-5">
-            <img src="/images/default/herobg.webp" alt="Espresso" class="rounded-lg w-full">
-            <p class="mt-4 text-gray-600 dark:text-gray-300">Espresso murni dengan aroma yang kuat dan aftertaste yang
-              panjang. Cocok untuk penikmat kopi sejati.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal 2 -->
-    <div id="gallery-modal-2" tabindex="-1"
-      class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-      <div class="relative p-4 w-full max-w-4xl max-h-full">
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-          <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Latte</h3>
-            <button type="button"
-              class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-              data-modal-hide="gallery-modal-2">
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
-          <div class="p-4 md:p-5">
-            <img src="/images/default/herobg.webp" alt="Latte" class="rounded-lg w-full">
-            <p class="mt-4 text-gray-600 dark:text-gray-300">Perpaduan sempurna antara espresso dan susu dengan tekstur
-              creamy yang lembut dan foam yang cantik.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal 3 -->
-    <div id="gallery-modal-3" tabindex="-1"
-      class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-      <div class="relative p-4 w-full max-w-4xl max-h-full">
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-          <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Non-Coffee</h3>
-            <button type="button"
-              class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-              data-modal-hide="gallery-modal-3">
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
-          <div class="p-4 md:p-5">
-            <img src="/images/default/herobg.webp" alt="Non-Coffee" class="rounded-lg w-full">
-            <p class="mt-4 text-gray-600 dark:text-gray-300">Alternatif segar tanpa kopi, cocok untuk kamu yang ingin
-              menikmati minuman dengan rasa unik dan menyegarkan.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal 4 -->
-    <div id="gallery-modal-4" tabindex="-1"
-      class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-      <div class="relative p-4 w-full max-w-4xl max-h-full">
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-          <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Biji Kopi Pilihan</h3>
-            <button type="button"
-              class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-              data-modal-hide="gallery-modal-4">
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
-          <div class="p-4 md:p-5">
-            <img src="/images/default/herobg.webp" alt="Coffee Beans" class="rounded-lg w-full">
-            <p class="mt-4 text-gray-600 dark:text-gray-300">100% biji kopi pilihan single origin yang dipetik langsung
-              dari perkebunan terbaik di Indonesia.</p>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
+
+{{-- ================= FLOWBITE MODALS (Digenerate via Loop) ================= --}}
+@foreach ($galleries as $item)
+  <div id="gallery-modal-{{ $item['id'] }}" tabindex="-1" aria-hidden="true"
+    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-3xl max-h-full">
+
+      <div class="relative bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
+        <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-gray-50/50">
+          <h3 class="text-xl font-bold text-[#3E1E04] font-primary">{{ $item['title'] }}</h3>
+          <button type="button"
+            class="text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 flex justify-center items-center transition-colors"
+            data-modal-hide="gallery-modal-{{ $item['id'] }}">
+            <i class="fas fa-times text-lg"></i>
+          </button>
+        </div>
+
+        <div class="p-6">
+          <div class="rounded-xl overflow-hidden mb-5">
+            <img src="{{ $item['img'] }}" alt="{{ $item['title'] }}" class="w-full h-auto max-h-[60vh] object-cover">
+          </div>
+          <p class="text-gray-600 font-secondary leading-relaxed text-center max-w-xl mx-auto">
+            {{ $item['desc'] }}
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+@endforeach

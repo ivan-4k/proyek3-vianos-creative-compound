@@ -1,192 +1,149 @@
+@php
+  // Data Fitur Slider
+  $aboutFeatures = [
+      [
+          'icon' => 'fa-mug-hot',
+          'title' => 'Kopi Berkualitas',
+          'desc' => 'Biji kopi pilihan dari petani lokal dan internasional, dipanggang dengan sempurna.',
+      ],
+      [
+          'icon' => 'fa-utensils',
+          'title' => '35+ Menu Pilihan',
+          'desc' => 'Kopi spesialti, minuman segar, pastry, hingga hidangan utama.',
+      ],
+      [
+          'icon' => 'fa-wifi',
+          'title' => 'Wi-Fi Gratis',
+          'desc' => 'Koneksi internet cepat dan stabil di seluruh area kafe.',
+      ],
+      [
+          'icon' => 'fa-face-smile',
+          'title' => 'Layanan Ramah',
+          'desc' => 'Tim profesional yang siap melayani dengan senyuman dan keramahan.',
+      ],
+      [
+          'icon' => 'fa-tree',
+          'title' => 'Suasana Hangat',
+          'desc' => 'Ruang nyaman dengan desain interior yang menenangkan.',
+      ],
+  ];
+@endphp
+
 <section
-  class="py-12 sm:py-16 lg:py-20 relative overflow-hidden text-center home-section-title bg-[#965015] sm:px-6 md:px-8 lg:px-12 xl:px-[8%] px-4">
+  class="py-12 sm:py-16 lg:py-24 relative overflow-hidden text-center home-section-title bg-gradient-to-br from-[#965015] to-[#783E0E] sm:px-6 md:px-8 lg:px-12 xl:px-[8%] px-4">
 
   <div class="container mx-auto relative z-10">
 
-    <!-- Header Section -->
     <div class="text-center mb-10 sm:mb-12 md:mb-16" data-aos="fade-up">
       <div
-        class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white text-sm font-semibold px-4 py-1.5 rounded-full mb-4 shadow-sm border border-white/30 font-secondary">
-        <i class="fa-solid fa-heart text-amber-200 text-xs"></i>
+        class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md text-white text-sm font-bold px-4 py-1.5 rounded-full mb-4 shadow-sm border border-white/20 font-secondary tracking-wide">
+        <i class="fa-solid fa-heart text-amber-300 text-xs"></i>
         <span>Tentang Kami</span>
       </div>
-      <h2 class="font-semibold mb-3 text-3xl md:text-4xl font-primary text-white">
+      <h2 class="font-bold mb-4 text-3xl md:text-4xl font-primary text-white tracking-wide">
         Mengenal Kami Lebih Dekat
       </h2>
-      <p class="text-base sm:text-lg md:text-xl text-amber-100 font-secondary max-w-3xl mx-auto px-4 sm:px-0">
-        Tempat di mana setiap cangkir kopi menjadi cerita, dan setiap kunjungan menjadi kenangan
+      <p
+        class="text-base sm:text-lg md:text-xl text-amber-100/90 font-secondary max-w-3xl mx-auto px-4 sm:px-0 leading-relaxed">
+        Tempat di mana setiap cangkir kopi menjadi cerita, dan setiap kunjungan menjadi kenangan.
       </p>
     </div>
-    <!-- Main Content Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 
-      <!-- Left Column: Text Content -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center text-left">
+
       <div data-aos="fade-right" data-aos-duration="800">
         <div class="space-y-6">
-          <!-- Deskripsi Utama -->
-          <p class="text-amber-50 leading-relaxed text-base sm:text-lg font-secondary">
-            Kami hadir sebagai <span class="text-amber-200 font-semibold font-primary">ruang nyaman</span> bagi setiap
-            pengunjung
-            yang ingin menikmati kopi berkualitas, hidangan beragam, dan suasana hangat. Dengan lebih dari <span
-              class="text-amber-200 font-semibold font-primary">35 pilihan menu</span>, kami berkomitmen menghadirkan
-            cita rasa
-            terbaik yang diracik dari bahan pilihan.
+          <p class="text-amber-50/90 leading-relaxed text-base sm:text-lg font-secondary text-justify sm:text-left">
+            Kami hadir sebagai <span class="text-amber-300 font-bold font-primary">ruang nyaman</span> bagi setiap
+            pengunjung yang ingin menikmati kopi berkualitas, hidangan beragam, dan suasana hangat. Dengan lebih dari
+            <span class="text-amber-300 font-bold font-primary">35 pilihan menu</span>, kami berkomitmen menghadirkan
+            cita rasa terbaik yang diracik dari bahan pilihan.
           </p>
 
-          <p class="text-amber-50 leading-relaxed text-base sm:text-lg font-secondary">
+          <p class="text-amber-50/90 leading-relaxed text-base sm:text-lg font-secondary text-justify sm:text-left">
             Selain itu, kami menyediakan fasilitas modern seperti <span
-              class="text-amber-200 font-semibold font-primary">Wi-Fi
-              gratis</span> agar setiap kunjungan tidak hanya menyenangkan, tetapi juga produktif. Filosofi kami
+              class="text-amber-300 font-bold font-primary">Wi-Fi gratis</span> agar setiap kunjungan tidak hanya
+            menyenangkan, tetapi juga produktif. Filosofi kami
             sederhana: menyajikan pengalaman kafe yang lengkap—mulai dari secangkir kopi yang sempurna, hidangan yang
             memanjakan selera, hingga layanan yang ramah dan profesional.
           </p>
 
-          <!-- Feature Highlights -->
           <div class="flex flex-wrap gap-3 pt-4 justify-center sm:justify-start">
             <div
-              class="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/30 font-secondary">
-              <i class="fa-solid fa-check-circle text-amber-200 text-sm"></i>
-              <span class="text-sm text-white">35+ Menu Pilihan</span>
+              class="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl border border-white/20 font-secondary shadow-sm hover:bg-white/20 transition-colors cursor-default">
+              <i class="fa-solid fa-check-circle text-amber-300 text-sm"></i>
+              <span class="text-sm font-medium text-white">35+ Menu Pilihan</span>
             </div>
             <div
-              class="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/30 font-secondary">
-              <i class="fa-solid fa-wifi text-amber-200 text-sm"></i>
-              <span class="text-sm text-white">Wi-Fi Gratis</span>
+              class="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl border border-white/20 font-secondary shadow-sm hover:bg-white/20 transition-colors cursor-default">
+              <i class="fa-solid fa-wifi text-amber-300 text-sm"></i>
+              <span class="text-sm font-medium text-white">Wi-Fi Gratis</span>
             </div>
             <div
-              class="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/30 font-secondary">
-              <i class="fa-solid fa-mug-hot text-amber-200 text-sm"></i>
-              <span class="text-sm text-white">Kopi Berkualitas</span>
+              class="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl border border-white/20 font-secondary shadow-sm hover:bg-white/20 transition-colors cursor-default">
+              <i class="fa-solid fa-mug-hot text-amber-300 text-sm"></i>
+              <span class="text-sm font-medium text-white">Kopi Berkualitas</span>
             </div>
             <div
-              class="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/30 font-secondary">
-              <i class="fa-solid fa-face-smile text-amber-200 text-sm"></i>
-              <span class="text-sm text-white">Layanan Ramah</span>
+              class="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl border border-white/20 font-secondary shadow-sm hover:bg-white/20 transition-colors cursor-default">
+              <i class="fa-solid fa-face-smile text-amber-300 text-sm"></i>
+              <span class="text-sm font-medium text-white">Layanan Ramah</span>
             </div>
           </div>
 
-          <!-- Button -->
-          <div class="pt-4">
+          <div class="pt-6 text-center sm:text-left">
             <button
-              class="inline-flex items-center gap-2 bg-white hover:bg-amber-50 text-[#965015] font-medium px-6 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg group font-secondary">
+              class="inline-flex items-center gap-3 bg-white hover:bg-amber-100 text-[#965015] font-bold px-8 py-3.5 rounded-full transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 group font-secondary">
               <span>Cerita Lengkap Kami</span>
-              <i
-                class="fa-solid fa-arrow-right text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
+              <div class="w-6 h-6 rounded-full bg-[#965015]/10 flex items-center justify-center">
+                <i
+                  class="fa-solid fa-arrow-right text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
+              </div>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Right Column: Visual Elements-->
       <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
-        <div class="relative">
-          <!-- Swiper Container - menggunakan class mySwiper yang sudah ada -->
-          <div class="swiper mySwiper rounded-2xl overflow-hidden shadow-xl">
+        <div class="relative px-2">
+
+          <div class="swiper mySwiper rounded-3xl overflow-hidden shadow-2xl border border-white/10 group/swiper">
             <div class="swiper-wrapper">
 
-              <!-- Slide 1: Kopi Berkualitas -->
-              <div class="swiper-slide">
-                <div
-                  class="relative rounded-2xl overflow-hidden bg-white/10 backdrop-blur-sm border border-white/30 h-full">
-                  <div class="aspect-[4/3] relative">
-                    <div class="absolute inset-0 bg-gradient-to-br from-[#965015]/30 to-transparent"></div>
-                    <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                      <div class="w-24 h-24 bg-white rounded-2xl shadow-lg flex items-center justify-center mb-4">
-                        <i class="fa-solid fa-mug-hot text-5xl text-[#965015]"></i>
-                      </div>
-                      <h4 class="text-xl font-bold text-white font-primary mb-2">Kopi Berkualitas</h4>
-                      <p class="text-sm text-amber-100 font-secondary">Biji kopi pilihan dari petani lokal dan
-                        internasional, dipanggang dengan sempurna</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              @foreach ($aboutFeatures as $feature)
+                <div class="swiper-slide">
+                  <div
+                    class="relative bg-white/5 backdrop-blur-xl h-full group-hover/swiper:bg-white/10 transition-colors duration-500">
+                    <div class="aspect-[4/3] relative">
+                      <div class="absolute inset-0 bg-gradient-to-t from-[#3E1E04]/60 to-transparent"></div>
 
-              <!-- Slide 2: Menu Lengkap -->
-              <div class="swiper-slide">
-                <div
-                  class="relative rounded-2xl overflow-hidden bg-white/10 backdrop-blur-sm border border-white/30 h-full">
-                  <div class="aspect-[4/3] relative">
-                    <div class="absolute inset-0 bg-gradient-to-br from-[#965015]/30 to-transparent"></div>
-                    <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                      <div class="w-24 h-24 bg-white rounded-2xl shadow-lg flex items-center justify-center mb-4">
-                        <i class="fa-solid fa-utensils text-5xl text-[#965015]"></i>
+                      <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
+                        <div
+                          class="w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-3xl shadow-2xl flex items-center justify-center mb-6 transform -rotate-3 hover:rotate-0 transition-transform duration-300">
+                          <i class="fa-solid {{ $feature['icon'] }} text-4xl sm:text-5xl text-[#965015]"></i>
+                        </div>
+                        <h4 class="text-xl sm:text-2xl font-bold text-white font-primary mb-3">{{ $feature['title'] }}
+                        </h4>
+                        <p class="text-sm sm:text-base text-amber-50/90 font-secondary max-w-xs leading-relaxed">
+                          {{ $feature['desc'] }}
+                        </p>
                       </div>
-                      <h4 class="text-xl font-bold text-white font-primary mb-2">35+ Menu Pilihan</h4>
-                      <p class="text-sm text-amber-100 font-secondary">Kopi spesialti, minuman segar, pastry, hingga
-                        hidangan utama</p>
                     </div>
                   </div>
                 </div>
-              </div>
+              @endforeach
 
-              <!-- Slide 3: Wi-Fi Gratis -->
-              <div class="swiper-slide">
-                <div
-                  class="relative rounded-2xl overflow-hidden bg-white/10 backdrop-blur-sm border border-white/30 h-full">
-                  <div class="aspect-[4/3] relative">
-                    <div class="absolute inset-0 bg-gradient-to-br from-[#965015]/30 to-transparent"></div>
-                    <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                      <div class="w-24 h-24 bg-white rounded-2xl shadow-lg flex items-center justify-center mb-4">
-                        <i class="fa-solid fa-wifi text-5xl text-[#965015]"></i>
-                      </div>
-                      <h4 class="text-xl font-bold text-white font-primary mb-2">Wi-Fi Gratis</h4>
-                      <p class="text-sm text-amber-100 font-secondary">Koneksi internet cepat dan stabil di seluruh area
-                        kafe</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Slide 4: Layanan Ramah -->
-              <div class="swiper-slide">
-                <div
-                  class="relative rounded-2xl overflow-hidden bg-white/10 backdrop-blur-sm border border-white/30 h-full">
-                  <div class="aspect-[4/3] relative">
-                    <div class="absolute inset-0 bg-gradient-to-br from-[#965015]/30 to-transparent"></div>
-                    <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                      <div class="w-24 h-24 bg-white rounded-2xl shadow-lg flex items-center justify-center mb-4">
-                        <i class="fa-solid fa-face-smile text-5xl text-[#965015]"></i>
-                      </div>
-                      <h4 class="text-xl font-bold text-white font-primary mb-2">Layanan Ramah</h4>
-                      <p class="text-sm text-amber-100 font-secondary">Tim profesional yang siap melayani dengan
-                        senyuman dan keramahan</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Slide 5: Suasana Hangat -->
-              <div class="swiper-slide">
-                <div
-                  class="relative rounded-2xl overflow-hidden bg-white/10 backdrop-blur-sm border border-white/30 h-full">
-                  <div class="aspect-[4/3] relative">
-                    <div class="absolute inset-0 bg-gradient-to-br from-[#965015]/30 to-transparent"></div>
-                    <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                      <div class="w-24 h-24 bg-white rounded-2xl shadow-lg flex items-center justify-center mb-4">
-                        <i class="fa-solid fa-tree text-5xl text-[#965015]"></i>
-                      </div>
-                      <h4 class="text-xl font-bold text-white font-primary mb-2">Suasana Hangat</h4>
-                      <p class="text-sm text-amber-100 font-secondary">Ruang nyaman dengan desain interior yang
-                        menenangkan</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
 
-            <!-- Navigation Buttons -->
             <div
-              class="swiper-nav-prev absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-[#965015]/70 hover:bg-[#965015] rounded-full flex items-center justify-center cursor-pointer transition-all duration-300">
-              <i class="fa-solid fa-chevron-left text-white text-sm"></i>
+              class="swiper-nav-prev absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/20 backdrop-blur-md hover:bg-white rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 text-white hover:text-[#965015] shadow-lg">
+              <i class="fa-solid fa-chevron-left text-sm"></i>
             </div>
             <div
-              class="swiper-nav-next absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-[#965015]/70 hover:bg-[#965015] rounded-full flex items-center justify-center cursor-pointer transition-all duration-300">
-              <i class="fa-solid fa-chevron-right text-white text-sm"></i>
+              class="swiper-nav-next absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/20 backdrop-blur-md hover:bg-white rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 text-white hover:text-[#965015] shadow-lg">
+              <i class="fa-solid fa-chevron-right text-sm"></i>
             </div>
 
-            <!-- Pagination -->
-            <div class="swiper-pagination !bottom-4"></div>
           </div>
         </div>
       </div>

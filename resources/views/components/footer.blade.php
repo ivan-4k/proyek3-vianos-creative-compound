@@ -1,148 +1,152 @@
-<!-- Footer Section -->
 <footer
-  class="bg-[#3E1E04] border-t border-amber-800/30 py-12 sm:py-16 lg:py-20 sm:px-6 md:px-8 lg:px-12 xl:px-[8%] px-4 relative overflow-hidden">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Flex Container untuk columns -->
-    <div class="flex flex-wrap">
+  class="bg-[#3E1E04] border-t-4 border-[#BC430D] py-16 sm:py-20 lg:py-24 sm:px-6 md:px-8 lg:px-12 xl:px-[8%] px-4 relative overflow-hidden">
 
-      <!-- Brand Column -->
-      <div class="w-full sm:w-1/2 lg:w-1/4 px-4 mb-8 lg:mb-0 text-center sm:text-left">
-        <img src="{{ asset('images/default/logo-light.png') }}" alt="Seven Coffee Company Logo" class="mx-auto sm:mx-0" loading="lazy" decoding="async"
-          width="150" height="50">
-        <p class="text-white/80 text-sm leading-relaxed font-secondary">
-          Seven Coffee Company Indramayu adalah coffee shop yang berlokasi di Jl. Veteran, menghadirkan kopi berkualitas
-          dengan suasana nyaman dan modern untuk bersantai.
+  <div class="absolute -top-40 -right-40 w-96 h-96 bg-white opacity-5 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="container mx-auto relative z-10">
+    <div class="flex flex-wrap lg:justify-between gap-y-12">
+
+      <div class="w-full lg:w-1/3 pr-0 lg:pr-12 text-center lg:text-left">
+        <img src="{{ asset('images/default/logo-light.png') }}" alt="Seven Coffee Company Logo"
+          class="mx-auto lg:mx-0 h-14 w-auto mb-6 object-contain" loading="lazy" decoding="async">
+        <p class="text-amber-50/70 text-sm leading-relaxed font-secondary mb-6 max-w-sm mx-auto lg:mx-0">
+          Seven Coffee Company Indramayu adalah ruang nyaman di Jl. Veteran, menghadirkan seduhan kopi berkualitas dan
+          hidangan terbaik untuk melengkapi hari Anda.
         </p>
-      </div>
 
-      <!-- Tautan & Bantuan Container (2 kolom di mobile) -->
-      <div class="w-full sm:w-1/2 lg:w-1/2 px-4 mb-8 lg:mb-0">
-        <div class="flex flex-wrap -mx-4">
-
-          <!-- Tautan Column -->
-          <div class="w-1/2 px-4 text-center sm:text-left">
-            <h3
-              class="text-lg font-semibold text-white mb-4 inline-block sm:inline-block font-primary relative cursor-pointer group-hover-effect">
-              Tautan
-              <span
-                class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-amber-400 rounded-full transition-all duration-300 ease-out group-hover:w-8"></span>
-            </h3>
-            <ul class="space-y-2 font-secondary">
-              <li>
-                <a href="{{ url('/home') }}#"
-                  class="text-white/70 hover:text-amber-300 transition-all duration-300 flex items-center justify-center sm:justify-start gap-2 group">
-                  <i
-                    class="fas fa-chevron-right text-xs text-amber-400 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1"></i>
-                  <span>Beranda</span>
-                </a>
-              </li>
-              <li>
-                <a href="{{ url('/menu') }}#"
-                  class="text-white/70 hover:text-amber-300 transition-all duration-300 flex items-center justify-center sm:justify-start gap-2 group">
-                  <i
-                    class="fas fa-chevron-right text-xs text-amber-400 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1"></i>
-                  <span>Menu</span>
-                </a>
-              </li>
-              <li>
-                <a href="#"
-                  class="text-white/70 hover:text-amber-300 transition-all duration-300 flex items-center justify-center sm:justify-start gap-2 group">
-                  <i
-                    class="fas fa-chevron-right text-xs text-amber-400 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1"></i>
-                  <span>Tentang Kami</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Bantuan Column -->
-          <div class="w-1/2 px-4 text-center sm:text-left">
-            <h3
-              class="text-lg font-semibold text-white mb-4 inline-block sm:inline-block font-primary relative cursor-pointer group-hover-effect">
-              Bantuan
-              <span
-                class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-amber-400 rounded-full transition-all duration-300 ease-out group-hover:w-8"></span>
-            </h3>
-            <ul class="space-y-2 font-secondary">
-              <li>
-                <a href="#"
-                  class="text-white/70 hover:text-amber-300 transition-all duration-300 flex items-center justify-center sm:justify-start gap-2 group">
-                  <i
-                    class="fas fa-chevron-right text-xs text-amber-400 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1"></i>
-                  <span>FAQ</span>
-                </a>
-              </li>
-              <li>
-                <a href="#"
-                  class="text-white/70 hover:text-amber-300 transition-all duration-300 flex items-center justify-center sm:justify-start gap-2 group">
-                  <i
-                    class="fas fa-chevron-right text-xs text-amber-400 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1"></i>
-                  <span>Blog</span>
-                </a>
-              </li>
-              <li>
-                <a href="#"
-                  class="text-white/70 hover:text-amber-300 transition-all duration-300 flex items-center justify-center sm:justify-start gap-2 group">
-                  <i
-                    class="fas fa-chevron-right text-xs text-amber-400 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1"></i>
-                  <span>Chat dengan Kami</span>
-                </a>
-              </li>
-              <li>
-                <a href="#"
-                  class="text-white/70 hover:text-amber-300 transition-all duration-300 flex items-center justify-center sm:justify-start gap-2 group">
-                  <i
-                    class="fas fa-chevron-right text-xs text-amber-400 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1"></i>
-                  <span>Cara Memesan</span>
-                </a>
-              </li>
-            </ul>
-          </div>
+        <div class="flex items-center justify-center lg:justify-start gap-4">
+          <a href="#"
+            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-amber-50 hover:bg-[#BC430D] hover:text-white transition-all duration-300 hover:-translate-y-1 shadow-sm">
+            <i class="fab fa-instagram text-lg"></i>
+          </a>
+          <a href="#"
+            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-amber-50 hover:bg-[#BC430D] hover:text-white transition-all duration-300 hover:-translate-y-1 shadow-sm">
+            <i class="fab fa-tiktok text-lg"></i>
+          </a>
+          <a href="#"
+            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-amber-50 hover:bg-[#BC430D] hover:text-white transition-all duration-300 hover:-translate-y-1 shadow-sm">
+            <i class="fab fa-whatsapp text-lg"></i>
+          </a>
         </div>
       </div>
 
-      <!-- Hubungi Kami Column -->
-      <div class="w-full sm:w-1/2 lg:w-1/4 px-4 text-center sm:text-left">
-        <h3
-          class="text-lg font-semibold text-white mb-4 inline-block sm:inline-block font-primary relative cursor-pointer group-hover-effect">
-          Hubungi Kami
+      <div class="w-1/2 sm:w-1/3 lg:w-1/5 px-2 sm:px-4 text-left">
+        <h3 class="text-lg font-bold text-white mb-6 inline-block font-primary relative group cursor-default">
+          Tautan Cepat
           <span
-            class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-amber-400 rounded-full transition-all duration-300 ease-out group-hover:w-8"></span>
+            class="absolute -bottom-1.5 left-0 w-4 h-0.5 bg-[#BC430D] rounded-full transition-all duration-300 ease-out group-hover:w-full"></span>
         </h3>
-        <ul class="space-y-3 font-secondary">
-          <li class="flex items-center justify-center sm:justify-start gap-3 text-white/80 text-sm">
-            <i class="fas fa-map-marker-alt text-amber-400 text-lg"></i>
-            <span class="text-left">Jl. Veteran No.88, Lemahabang, Kec. Indramayu, Kabupaten Indramayu, Jawa Barat
-              45212</span>
+        <ul class="space-y-4 font-secondary">
+          <li>
+            <a href="{{ url('/home') }}"
+              class="text-amber-50/70 hover:text-white transition-all duration-300 flex items-center gap-2 group">
+              <i
+                class="fas fa-chevron-right text-[10px] text-[#BC430D] opacity-0 -ml-3 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300"></i>
+              <span class="group-hover:translate-x-1 transition-transform duration-300">Beranda</span>
+            </a>
           </li>
-          <li class="flex items-center justify-center sm:justify-start gap-3 text-white/80 text-sm">
-            <i class="fas fa-phone-alt text-amber-400 text-lg"></i>
+          <li>
+            <a href="{{ url('/menu') }}"
+              class="text-amber-50/70 hover:text-white transition-all duration-300 flex items-center gap-2 group">
+              <i
+                class="fas fa-chevron-right text-[10px] text-[#BC430D] opacity-0 -ml-3 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300"></i>
+              <span class="group-hover:translate-x-1 transition-transform duration-300">Menu Kami</span>
+            </a>
+          </li>
+          <li>
+            <a href="#about"
+              class="text-amber-50/70 hover:text-white transition-all duration-300 flex items-center gap-2 group">
+              <i
+                class="fas fa-chevron-right text-[10px] text-[#BC430D] opacity-0 -ml-3 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300"></i>
+              <span class="group-hover:translate-x-1 transition-transform duration-300">Tentang Kami</span>
+            </a>
+          </li>
+          <li>
+            <a href="#contact"
+              class="text-amber-50/70 hover:text-white transition-all duration-300 flex items-center gap-2 group">
+              <i
+                class="fas fa-chevron-right text-[10px] text-[#BC430D] opacity-0 -ml-3 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300"></i>
+              <span class="group-hover:translate-x-1 transition-transform duration-300">Kontak</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="w-1/2 sm:w-1/3 lg:w-1/5 px-2 sm:px-4 text-left">
+        <h3 class="text-lg font-bold text-white mb-6 inline-block font-primary relative group cursor-default">
+          Bantuan
+          <span
+            class="absolute -bottom-1.5 left-0 w-4 h-0.5 bg-[#BC430D] rounded-full transition-all duration-300 ease-out group-hover:w-full"></span>
+        </h3>
+        <ul class="space-y-4 font-secondary">
+          <li>
+            <a href="#"
+              class="text-amber-50/70 hover:text-white transition-all duration-300 flex items-center gap-2 group">
+              <i
+                class="fas fa-chevron-right text-[10px] text-[#BC430D] opacity-0 -ml-3 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300"></i>
+              <span class="group-hover:translate-x-1 transition-transform duration-300">FAQ</span>
+            </a>
+          </li>
+          <li>
+            <a href="#"
+              class="text-amber-50/70 hover:text-white transition-all duration-300 flex items-center gap-2 group">
+              <i
+                class="fas fa-chevron-right text-[10px] text-[#BC430D] opacity-0 -ml-3 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300"></i>
+              <span class="group-hover:translate-x-1 transition-transform duration-300">Cara Memesan</span>
+            </a>
+          </li>
+          <li>
+            <a href="#"
+              class="text-amber-50/70 hover:text-white transition-all duration-300 flex items-center gap-2 group">
+              <i
+                class="fas fa-chevron-right text-[10px] text-[#BC430D] opacity-0 -ml-3 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300"></i>
+              <span class="group-hover:translate-x-1 transition-transform duration-300">Kebijakan Privasi</span>
+            </a>
+          </li>
+          <li>
+            <a href="#"
+              class="text-amber-50/70 hover:text-white transition-all duration-300 flex items-center gap-2 group">
+              <i
+                class="fas fa-chevron-right text-[10px] text-[#BC430D] opacity-0 -ml-3 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300"></i>
+              <span class="group-hover:translate-x-1 transition-transform duration-300">Syarat & Ketentuan</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="w-full sm:w-1/3 lg:w-1/4 px-2 sm:px-4 text-center sm:text-left mt-6 sm:mt-0">
+        <h3 class="text-lg font-bold text-white mb-6 inline-block font-primary relative group cursor-default">
+          Kunjungi Kami
+          <span
+            class="absolute -bottom-1.5 left-1/2 sm:left-0 transform -translate-x-1/2 sm:translate-x-0 w-4 h-0.5 bg-[#BC430D] rounded-full transition-all duration-300 ease-out group-hover:w-full"></span>
+        </h3>
+        <ul class="space-y-4 font-secondary">
+          <li class="flex items-start justify-center sm:justify-start gap-3 text-amber-50/80 text-sm leading-relaxed">
+            <i class="fas fa-map-marker-alt text-[#BC430D] text-base mt-1"></i>
+            <span class="text-center sm:text-left">Jl. Veteran No.88, Lemahabang, Kec. Indramayu, Kabupaten Indramayu,
+              Jawa Barat 45212</span>
+          </li>
+          <li class="flex items-center justify-center sm:justify-start gap-3 text-amber-50/80 text-sm">
+            <i class="fas fa-phone-alt text-[#BC430D] text-base"></i>
             <span>+62 812-3456-7890</span>
           </li>
-          <li class="flex items-center justify-center sm:justify-start gap-3 text-white/80 text-sm">
-            <i class="fas fa-envelope text-amber-400 text-lg"></i>
+          <li class="flex items-center justify-center sm:justify-start gap-3 text-amber-50/80 text-sm">
+            <i class="fas fa-envelope text-[#BC430D] text-base"></i>
             <span>support@sevencoffee.com</span>
           </li>
         </ul>
       </div>
+
     </div>
 
-    <!-- Bottom Bar -->
     <div
-      class="border-t border-amber-800/50 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-white/60">
-      <div class="flex gap-6">
-        <a href="#" class="hover:text-amber-300 transition-colors duration-300">Privacy Policy</a>
-        <a href="#" class="hover:text-amber-300 transition-colors duration-300">Cookie Policy</a>
-        <a href="#" class="hover:text-amber-300 transition-colors duration-300">Terms of Use</a>
-      </div>
-      <p class="text-center sm:text-left">© 2026 Seven Coffee Company Indramayu. All rights reserved.</p>
+      class="border-t border-white/10 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-secondary text-amber-50/50">
+      <p class="text-center md:text-left tracking-wide">
+        &copy;
+        <script>
+          document.write(new Date().getFullYear())
+        </script> Seven Coffee Company. All rights reserved.
+      </p>
     </div>
   </div>
 </footer>
-
-<style>
-  /* Optional: Jika ingin menambahkan efek hover yang lebih smooth */
-  .group-hover-effect:hover span {
-    width: 2rem !important;
-  }
-</style>
