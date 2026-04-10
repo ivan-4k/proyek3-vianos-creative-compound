@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Web\User\HomeController;
+use App\Http\Controllers\Web\User\AboutController;
 use App\Http\Controllers\Web\User\AddressController;
 use App\Http\Controllers\Web\User\CartController;
 use App\Http\Controllers\Web\User\FavoriteController;
@@ -22,7 +23,7 @@ Route::get('/', function () {
   return view('welcome');
 });
 
-// === GOOGLE OAUTH ===
+// === GOOGLE AUTH ===
 Route::get('/auth/google', [GoogleController::class, 'redirect'])->name('google.redirect');
 Route::get('/auth/google/callback', [GoogleController::class, 'callback'])->name('google.callback');
 
@@ -51,12 +52,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
   Route::get('/user/system', [SystemNotificationController::class, 'index'])->name('user.system');
 });
 
+
 // === ROUTE GUEST ===
 // Home
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 // Menu
 Route::get('/menu', [MenuController::class, 'index']);
-
+// About
+Route::get('/about', [AboutController::class, 'index'])->name('about');
 
 
 require __DIR__ . '/auth.php';

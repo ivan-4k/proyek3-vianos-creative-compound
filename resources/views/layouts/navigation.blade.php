@@ -62,13 +62,14 @@
           </li>
           <li>
             <a class="relative py-2 group transition-colors" :class="getTextClass()"
-              href="{{ url('/') }}#tentang">
+              href="{{ url('/about') }}">
               <span
-                class="{{ request()->is('tentang') ? 'font-bold text-[#BC430D]' : 'group-hover:text-[#BC430D]' }}">Tentang
+                class="{{ request()->is('about') ? 'font-bold text-[#BC430D]' : 'group-hover:text-[#BC430D]' }}">Tentang
                 Kami</span>
               <span
-                class="absolute bottom-0 left-0 w-full h-0.5 bg-[#BC430D] transform origin-left transition-transform duration-300 {{ request()->is('tentang') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100' }}"></span>
+                class="absolute bottom-0 left-0 w-full h-0.5 bg-[#BC430D] transform origin-left transition-transform duration-300 {{ request()->is('about') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100' }}"></span>
             </a>
+          </li>
           </li>
         </ul>
       </div>
