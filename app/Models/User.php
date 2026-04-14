@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\CustomVerifyEmail;
@@ -12,11 +14,13 @@ use App\Notifications\CustomVerifyEmail;
 class User extends Authenticatable implements MustVerifyEmailContract
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
+    protected $table = 'users';
     protected $primaryKey = 'id_users';
     public $incrementing = true;
     protected $keyType = 'int';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -27,12 +31,14 @@ class User extends Authenticatable implements MustVerifyEmailContract
         'email',
         'password',
         'google_id',
-        'email_verified_at',
-        'role',
-        'address',
         'phone',
+        'gender',
+        'address',
         'avatar',
-        'gender'
+        'role',
+        'is_active',
+        'email_verified_at',
+        'last_login_at',
     ];
 
     /**
@@ -54,11 +60,43 @@ class User extends Authenticatable implements MustVerifyEmailContract
     {
         return [
             'email_verified_at' => 'datetime',
+            'last_login_at' => 'datetime',
             'password' => 'hashed',
+            'is_active' => 'boolean',
         ];
     }
 
-    
+    // Relations
+    public function carts(): HasMany
+    {
+        return $this->hasMany(Cart::class, 'id_users', 'id_users');
+    }
+
+    public function favorites(): HasMany
+    {
+        return $this->hasMany(Favorite::class, 'id_users', 'id_users');
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class, 'id_users', 'id_users');
+    }
+
+    public function notifications(): HasMany
+    {
+        return $this->hasMany(Notification::class, 'id_users', 'id_users');
+    }
+
+    public function whatsappLogs(): HasMany
+    {
+        return $this->hasMany(WhatsappLog::class, 'id_users', 'id_users');
+    }
+
+    public function activityLogs(): HasMany
+    {
+        return $this->hasMany(ActivityLog::class, 'id_users', 'id_users');
+    }
+
     public function sendEmailVerificationNotification(): void
     {
         $this->notify(new CustomVerifyEmail());
@@ -73,6 +111,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
         $this->notify(new \App\Notifications\CustomResetPassword($resetUrl, $this));
     }
+
     public function hasVerifiedEmail(): bool
     {
         return !is_null($this->email_verified_at);

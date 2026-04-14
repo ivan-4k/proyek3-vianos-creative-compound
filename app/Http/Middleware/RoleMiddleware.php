@@ -18,22 +18,19 @@ class RoleMiddleware
 
         $user = Auth::user();
 
-        // Convert ke lowercase
         $userRole = strtolower(trim($user->role));
         $requiredRole = strtolower(trim($role));
 
         // Handle multiple roles (separated by |)
         $allowedRoles = explode('|', $requiredRole);
 
-        // Check role user
         if (!in_array($userRole, $allowedRoles)) {
-            // Redirect berdasarkan role user
             if ($userRole === 'admin') {
                 return redirect()->route('admin.dashboard');
             } elseif ($userRole === 'owner') {
                 return redirect()->route('owner.dashboard');
             } elseif ($userRole === 'user') {
-                return redirect('/');
+                return redirect('/home');
             } else {
                 return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman tersebut.');
             }

@@ -17,6 +17,9 @@ use App\Http\Controllers\Web\User\PromoNotificationController;
 use App\Http\Controllers\Web\User\SystemNotificationController;
 use App\Http\Controllers\Web\User\MenuController;
 
+use App\Http\Controllers\Web\Admin\AdminDashboardController;
+use App\Http\Controllers\Web\Owner\OwnerDashboardController;
+
 // === ROUTE COMPANY PROFILE ===
 // Route::get('/', [ProductController::class, 'index'])->name('home');
 Route::get('/', function () {
@@ -28,7 +31,7 @@ Route::get('/auth/google', [GoogleController::class, 'redirect'])->name('google.
 Route::get('/auth/google/callback', [GoogleController::class, 'callback'])->name('google.callback');
 
 // === ROUTE USER ===
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'role:user'])->group(function () {
   // PROFILE ROUTES
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -52,6 +55,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
   Route::get('/user/system', [SystemNotificationController::class, 'index'])->name('user.system');
 });
 
+// === ROUTE ADMIN ===
+Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
+  Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+});
+
+// === ROUTE OWNER ===
+Route::middleware(['auth', 'verified', 'role:owner'])->group(function () {
+    Route::get('/owner/dashboard', [OwnerDashboardController::class, 'index'])->name('owner.dashboard');
+});
 
 // === ROUTE GUEST ===
 // Home
