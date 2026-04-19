@@ -18,144 +18,65 @@
       <div class="w-full lg:w-1/2 relative mb-4 lg:mb-0" data-aos="fade-right">
         <div class="swiper mySwiper overflow-hidden relative w-full">
           <div class="swiper-wrapper">
-            {{-- Slide 1: Cappuccino --}}
-            <div class="swiper-slide">
-              <div
-                class="bg-white/95 backdrop-blur-sm border border-white/20 rounded-2xl p-6 sm:p-8 lg:p-5 h-auto min-h-[380px] sm:min-h-[420px] md:min-h-[480px] lg:min-h-[490px] flex flex-col justify-between shadow-xl">
-                <div class="space-y-4 sm:space-y-5 lg:space-y-6 h-full flex flex-col">
-                  <!-- Gambar -->
-                  <div
-                    class="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 bg-[#FFE1C6] rounded-full mx-auto overflow-hidden border-4 border-[#BC430D]/30">
-                    <img src="{{ asset('images/default/herobg.png') }}" alt="Cappuccino" class="w-full h-full object-cover"
-                      loading="lazy" decoding="async">
-                  </div>
+            {{-- Loop Produk Slider Dinamis --}}
+            @forelse ($products as $product)
+              <div class="swiper-slide">
+                <div
+                  class="bg-white/95 backdrop-blur-sm border border-white/20 rounded-2xl p-6 sm:p-8 lg:p-5 h-auto min-h-[380px] sm:min-h-[420px] md:min-h-[480px] lg:min-h-[490px] flex flex-col justify-between shadow-xl">
+                  <div class="space-y-4 sm:space-y-5 lg:space-y-6 h-full flex flex-col">
+                    <!-- Gambar -->
+                    <div
+                      class="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 bg-[#FFE1C6] rounded-full mx-auto overflow-hidden border-4 border-[#BC430D]/30">
+                      <img
+                        src="{{ $product->main_image ? asset('storage/' . $product->main_image) : asset('images/default/herobg.png') }}"
+                        alt="{{ $product->name }}" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                    </div>
 
-                  <!-- Judul dan Harga -->
-                  <div class="text-center border-b border-[#965015]/20 pb-4 sm:pb-5 lg:pb-6">
-                    <h4 class="text-2xl sm:text-2xl lg:text-3xl font-bold text-[#4A2C1A] font-primary mb-2 sm:mb-3">
-                      Cappuccino
-                    </h4>
-                    <span
-                      class="text-xl sm:text-2xl lg:text-3xl font-bold text-[#BC430D] bg-[#BC430D]/10 px-4 sm:px-6 lg:px-8 py-1 sm:py-2 lg:py-2 rounded-full inline-block">
-                      Rp 30.000
-                    </span>
-                  </div>
+                    <!-- Judul dan Harga -->
+                    <div class="text-center border-b border-[#965015]/20 pb-4 sm:pb-5 lg:pb-6">
+                      <h4 class="text-2xl sm:text-2xl lg:text-3xl font-bold text-[#4A2C1A] font-primary mb-2 sm:mb-3">
+                        {{ $product->name }}
+                      </h4>
+                      <span
+                        class="text-xl sm:text-2xl lg:text-3xl font-bold text-[#BC430D] bg-[#BC430D]/10 px-4 sm:px-6 lg:px-8 py-1 sm:py-2 lg:py-2 rounded-full inline-block">
+                        Rp {{ number_format($product->price, 0, ',', '.') }}
+                      </span>
+                    </div>
 
-                  <!-- Deskripsi -->
-                  <p
-                    class="text-sm sm:text-base lg:text-base text-[#4A2C1A]/80 leading-relaxed font-secondary text-center line-clamp-3 lg:px-0 flex-grow">
-                    Espresso berkelas berpadu dengan susu creamy dan busa halus,
-                    menciptakan cappuccino yang jadi favorit banyak orang.
-                  </p>
+                    <!-- Deskripsi -->
+                    <p
+                      class="text-sm sm:text-base lg:text-base text-[#4A2C1A]/80 leading-relaxed font-secondary text-center line-clamp-3 lg:px-0 flex-grow">
+                      {{ $product->description ?? 'Produk berkualitas tinggi dengan rasa yang luar biasa.' }}
+                    </p>
 
-                  <!-- Tombol -->
-                  <div class="pt-4 sm:pt-1 text-center mt-auto">
-                    <button type="button"
-                      class="text-white bg-[#BC430D] hover:bg-[#8B2E0A] focus:ring-4 focus:ring-[#FFE1C6]/50 font-medium rounded-lg text-sm sm:text-base lg:text-base px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-3 text-center inline-flex items-center gap-2 sm:gap-3 transition-all duration-300 shadow-lg hover:shadow-xl group w-full sm:w-auto justify-center">
-                      Pesan Sekarang
-                      <i
-                        class="fa-solid fa-arrow-right transition-transform duration-300 group-hover:translate-x-2 text-xs sm:text-sm"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {{-- Slide 2: Latte --}}
-            <div class="swiper-slide">
-              <div
-                class="bg-white/95 backdrop-blur-sm border border-white/20 rounded-2xl p-6 sm:p-8 lg:p-5 h-auto min-h-[380px] sm:min-h-[420px] md:min-h-[480px] lg:min-h-[490px] flex flex-col justify-between shadow-xl">
-                <div class="space-y-4 sm:space-y-5 lg:space-y-6 h-full flex flex-col">
-                  <!-- Gambar -->
-                  <div
-                    class="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 bg-[#FFE1C6] rounded-full mx-auto overflow-hidden border-4 border-[#BC430D]/30">
-                    <img src="{{ asset('images/default/herobg.png') }}" alt="Latte" class="w-full h-full object-cover"
-                      loading="lazy" decoding="async">
-                  </div>
-
-                  <!-- Judul dan Harga -->
-                  <div class="text-center border-b border-[#965015]/20 pb-4 sm:pb-5 lg:pb-6">
-                    <h4 class="text-2xl sm:text-2xl lg:text-3xl font-bold text-[#4A2C1A] font-primary mb-2 sm:mb-3">
-                      Latte
-                    </h4>
-                    <span
-                      class="text-xl sm:text-2xl lg:text-3xl font-bold text-[#BC430D] bg-[#BC430D]/10 px-4 sm:px-6 lg:px-8 py-1 sm:py-2 lg:py-2 rounded-full inline-block">
-                      Rp 32.000
-                    </span>
-                  </div>
-
-                  <!-- Deskripsi -->
-                  <p
-                    class="text-sm sm:text-base lg:text-base text-[#4A2C1A]/80 leading-relaxed font-secondary text-center line-clamp-3 lg:px-0 flex-grow">
-                    Perpaduan sempurna antara espresso dan susu steamed dengan foam tipis,
-                    menghasilkan rasa yang creamy dan lembut di setiap tegukan.
-                  </p>
-
-                  <!-- Tombol -->
-                  <div class="pt-4 sm:pt-1 text-center mt-auto">
-                    <button type="button"
-                      class="text-white bg-[#BC430D] hover:bg-[#8B2E0A] focus:ring-4 focus:ring-[#FFE1C6]/50 font-medium rounded-lg text-sm sm:text-base lg:text-base px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-3 text-center inline-flex items-center gap-2 sm:gap-3 transition-all duration-300 shadow-lg hover:shadow-xl group w-full sm:w-auto justify-center">
-                      Pesan Sekarang
-                      <i
-                        class="fa-solid fa-arrow-right transition-transform duration-300 group-hover:translate-x-2 text-xs sm:text-sm"></i>
-                    </button>
+                    <!-- Tombol -->
+                    <div class="pt-4 sm:pt-1 text-center mt-auto">
+                      <button type="button"
+                        class="text-white bg-[#BC430D] hover:bg-[#8B2E0A] focus:ring-4 focus:ring-[#FFE1C6]/50 font-medium rounded-lg text-sm sm:text-base lg:text-base px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-3 text-center inline-flex items-center gap-2 sm:gap-3 transition-all duration-300 shadow-lg hover:shadow-xl group w-full sm:w-auto justify-center">
+                        Pesan Sekarang
+                        <i
+                          class="fa-solid fa-arrow-right transition-transform duration-300 group-hover:translate-x-2 text-xs sm:text-sm"></i>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-
-            {{-- Slide 3: Espresso --}}
-            <div class="swiper-slide">
-              <div
-                class="bg-white/95 backdrop-blur-sm border border-white/20 rounded-2xl p-6 sm:p-8 lg:p-5 h-auto min-h-[380px] sm:min-h-[420px] md:min-h-[480px] lg:min-h-[490px] flex flex-col justify-between shadow-xl">
-                <div class="space-y-4 sm:space-y-5 lg:space-y-6 h-full flex flex-col">
-                  <!-- Gambar -->
-                  <div
-                    class="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 bg-[#FFE1C6] rounded-full mx-auto overflow-hidden border-4 border-[#BC430D]/30">
-                    <img src="{{ asset('images/default/herobg.png') }}" alt="Espresso" class="w-full h-full object-cover"
-                      loading="lazy" decoding="async">
-                  </div>
-
-                  <!-- Judul dan Harga -->
-                  <div class="text-center border-b border-[#965015]/20 pb-4 sm:pb-5 lg:pb-6">
-                    <h4 class="text-2xl sm:text-2xl lg:text-3xl font-bold text-[#4A2C1A] font-primary mb-2 sm:mb-3">
-                      Espresso
-                    </h4>
-                    <span
-                      class="text-xl sm:text-2xl lg:text-3xl font-bold text-[#BC430D] bg-[#BC430D]/10 px-4 sm:px-6 lg:px-8 py-1 sm:py-2 lg:py-2 rounded-full inline-block">
-                      Rp 25.000
-                    </span>
-                  </div>
-
-                  <!-- Deskripsi -->
-                  <p
-                    class="text-sm sm:text-base lg:text-base text-[#4A2C1A]/80 leading-relaxed font-secondary text-center line-clamp-3 lg:px-0 flex-grow">
-                    Ekstraksi sempurna dari biji kopi pilihan menghasilkan espresso
-                    dengan crema tebal dan rasa yang kuat namun seimbang.
-                  </p>
-
-                  <!-- Tombol -->
-                  <div class="pt-4 sm:pt-1 text-center mt-auto">
-                    <button type="button"
-                      class="text-white bg-[#BC430D] hover:bg-[#8B2E0A] focus:ring-4 focus:ring-[#FFE1C6]/50 font-medium rounded-lg text-sm sm:text-base lg:text-base px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-3 text-center inline-flex items-center gap-2 sm:gap-3 transition-all duration-300 shadow-lg hover:shadow-xl group w-full sm:w-auto justify-center">
-                      Pesan Sekarang
-                      <i
-                        class="fa-solid fa-arrow-right transition-transform duration-300 group-hover:translate-x-2 text-xs sm:text-sm"></i>
-                    </button>
-                  </div>
+            @empty
+              <div class="swiper-slide">
+                <div class="bg-white/95 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center py-12">
+                  <p class="text-[#4A2C1A]">Produk populer tidak tersedia saat ini.</p>
                 </div>
               </div>
-            </div>
+            @endforelse
           </div>
 
           {{-- Pagination/Indicators --}}
           <div class="swiper-pagination !relative !bottom-0 mt-4 sm:mt-6"></div>
 
-          {{-- Navigation Buttons dengan Font Awesome --}}
-          <button class="swiper-nav-btn swiper-nav-prev">
+          <button class="swiper-nav-btn swiper-nav-prev" aria-label="Slide sebelumnya" type="button">
             <i class="fa-solid fa-chevron-left"></i>
           </button>
-          <button class="swiper-nav-btn swiper-nav-next">
+          <button class="swiper-nav-btn swiper-nav-next" aria-label="Slide berikutnya" type="button">
             <i class="fa-solid fa-chevron-right"></i>
           </button>
         </div>

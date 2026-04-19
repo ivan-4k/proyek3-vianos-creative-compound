@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('stock')->default(0);
             $table->string('main_image')->nullable();
             $table->boolean('is_available')->default(true);
+            $table->boolean('is_signature')->default(false);
             $table->timestamps();
             $table->softDeletes();
 

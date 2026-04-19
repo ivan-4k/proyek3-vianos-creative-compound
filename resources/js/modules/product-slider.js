@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
         pagination: {
             el: ".swiper-pagination",
             clickable: true,
+            type: "bullets",
         },
 
         navigation: {
@@ -44,24 +45,31 @@ document.addEventListener("DOMContentLoaded", function () {
             slideChange: function () {
                 updatePaginationStyle(this);
             },
+            paginationUpdate: function () {
+                updatePaginationStyle(this);
+            },
         },
     });
 
     function updatePaginationStyle(swiper) {
         if (!swiper) return;
 
-        document
-            .querySelectorAll(".swiper-pagination-bullet")
-            .forEach((bullet, index) => {
-                if (index === swiper.realIndex) {
-                    bullet.style.backgroundColor = "#BC430D";
-                    bullet.style.width = "2rem";
-                    bullet.style.borderRadius = "1rem";
-                } else {
-                    bullet.style.backgroundColor = "#9CA3AF";
-                    bullet.style.width = "0.75rem";
-                    bullet.style.borderRadius = "9999px";
-                }
-            });
+        const bullets = document.querySelectorAll(".swiper-pagination-bullet");
+        const activeIndex = swiper.realIndex;
+        const totalSlides = swiper.slides.length / (swiper.loopedSlides || 1);
+
+        bullets.forEach((bullet, index) => {
+            if (index === activeIndex) {
+                bullet.classList.add("swiper-pagination-bullet-active");
+                bullet.style.backgroundColor = "#BC430D";
+                bullet.style.width = "2rem";
+                bullet.style.borderRadius = "1rem";
+            } else {
+                bullet.classList.remove("swiper-pagination-bullet-active");
+                bullet.style.backgroundColor = "#9CA3AF";
+                bullet.style.width = "0.75rem";
+                bullet.style.borderRadius = "9999px";
+            }
+        });
     }
 });

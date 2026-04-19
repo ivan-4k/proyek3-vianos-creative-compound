@@ -23,17 +23,24 @@
     </p>
 
     <!-- Search Bar -->
-    <div class="relative max-w-md mx-auto" data-aos="fade-down" data-aos-delay="300">
-      <input type="text" placeholder="Search for..."
+    <form x-data="{ heroQuery: '' }"
+      @submit.prevent="
+              $dispatch('hero-search', heroQuery); 
+              document.getElementById('all-menu-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          "
+      class="relative max-w-md mx-auto" data-aos="fade-down" data-aos-delay="300">
+
+      <input type="text" x-model="heroQuery" placeholder="Cari kopi favoritmu..."
         class="font-secondary w-full bg-white/20 backdrop-blur-sm rounded-full py-3 px-5 pr-12 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-[#BC430D] focus:bg-white/30 transition-all border border-white/30">
-      <button
+
+      <button type="submit"
         class="absolute right-2 top-1/2 -translate-y-1/2 bg-[#BC430D] hover:bg-[#9e370b] transition rounded-full w-8 h-8 flex items-center justify-center">
         <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
         </svg>
       </button>
-    </div>
+    </form>
   </div>
   <!-- AKHIR KONTEN HERO -->
 

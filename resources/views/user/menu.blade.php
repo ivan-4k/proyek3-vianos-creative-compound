@@ -3,25 +3,28 @@
 @section('title', 'Menu')
 
 @section('content')
+  {{-- logika favorit --}}
+  <x-favorite-manager :userFavorites="$userFavorites ?? []">
 
-  {{-- Hero Section --}}
-  <x-menu.menu-hero-section />
+    {{-- Hero Section --}}
+    <x-menu.menu-hero-section />
 
-  {{-- Category Section --}}
-  <x-menu.category-section />
+    {{-- Category Section --}}
+    <x-menu.category-section :categories="$categories" />
 
-  {{-- Statistics Section --}}
-  <x-menu.statistics-section />
+    {{-- Statistics Section --}}
+    <x-menu.statistics-section :totalProducts="$totalProducts" :totalCategories="$totalCategories" :recentGallery="$recentGallery" />
 
-  {{-- featured Section --}}
-  <x-menu.featured-menu />
+    {{-- Featured Section --}}
+    <x-menu.featured-menu :featuredMenus="$featuredMenus" :userFavorites="$userFavorites" />
 
-  {{-- Popular menu Section --}}
-  <x-menu.popular-menu />
+    {{-- Popular menu Section --}}
+    <x-menu.popular-menu :popularMenus="$popularMenus" :userFavorites="$userFavorites" />
 
-  {{-- all menu Section --}}
-  <x-menu.all-menu />
+    {{-- All menu Section --}}
+    <x-menu.all-menu :allMenus="$allMenus" :categories="$categories" :userFavorites="$userFavorites" />
 
+  </x-favorite-manager>
 @endsection
 
 @push('scripts')

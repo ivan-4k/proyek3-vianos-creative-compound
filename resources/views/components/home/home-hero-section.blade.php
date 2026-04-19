@@ -28,7 +28,7 @@
     <div class="flex flex-wrap gap-4" data-aos="fade-up" style="animation-delay: 600ms">
       <!-- Button 1 -->
       <div class="flowbite-border-animation">
-        <a href="#paling-laris" data-tooltip-target="menu-tooltip"
+        <a href="#signature-menu-section" data-tooltip-target="menu-tooltip"
           class="text-white bg-[#BC430D] hover:bg-[#a3370b] focus:ring-4 focus:ring-[#BC430D]/50 font-medium rounded-lg text-base px-6 py-3.5 text-center inline-flex items-center shadow-lg transition-all duration-300 hover:scale-105">
           <i class="fa-solid fa-cart-shopping mr-2"></i>
           Jelajahi Menu
@@ -44,7 +44,7 @@
 
       <!-- Button 2 -->
       <div class="flowbite-border-animation">
-        <a href="#"
+        <a href="{{ route('about') }}"
           class="text-white bg-transparent hover:bg-[#BC430D] border-2 border-[#BC430D] focus:ring-4 focus:ring-[#BC430D]/50 font-medium rounded-lg text-base px-6 py-3.5 text-center inline-flex items-center shadow-lg transition-all duration-300 hover:scale-105">
           <i class="fa-solid fa-circle-info mr-2"></i>
           Cerita Kami

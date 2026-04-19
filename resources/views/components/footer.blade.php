@@ -54,7 +54,7 @@
             </a>
           </li>
           <li>
-            <a href="#about"
+            <a href="{{ url('/about') }}"
               class="text-amber-50/70 hover:text-white transition-all duration-300 flex items-center gap-2 group">
               <i
                 class="fas fa-chevron-right text-[10px] text-[#BC430D] opacity-0 -ml-3 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300"></i>
@@ -62,7 +62,7 @@
             </a>
           </li>
           <li>
-            <a href="#contact"
+            <a href="{{ url('/home') }}#contact"
               class="text-amber-50/70 hover:text-white transition-all duration-300 flex items-center gap-2 group">
               <i
                 class="fas fa-chevron-right text-[10px] text-[#BC430D] opacity-0 -ml-3 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300"></i>

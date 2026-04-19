@@ -28,6 +28,7 @@ class ProductFactory extends Factory
             'stock' => $this->faker->numberBetween(0, 50),
             'main_image' => $this->faker->imageUrl(640, 480, 'coffee'),
             'is_available' => $this->faker->boolean(85),
+            'is_signature' => $this->faker->boolean(20),
         ];
     }
 }

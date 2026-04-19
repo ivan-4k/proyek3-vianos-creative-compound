@@ -43,165 +43,136 @@
           </div>
 
           {{-- List Riwayat Pesanan --}}
-          @if (true)
-            <div class="space-y-4">
+          <div class="space-y-4">
+            @forelse ($orders as $order)
+              @php
+                // Mapping Warna dan Label untuk Order Status
+                $statusColors = [
+                    'pending_confirmation' => 'bg-yellow-50 text-yellow-700 border-yellow-200',
+                    'processing' => 'bg-blue-50 text-blue-700 border-blue-200',
+                    'ready_for_pickup' => 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                    'completed' => 'bg-green-50 text-green-700 border-green-200',
+                    'cancelled' => 'bg-red-50 text-red-700 border-red-200',
+                ];
+                $statusLabels = [
+                    'pending_confirmation' => 'Menunggu Konfirmasi',
+                    'processing' => 'Sedang Diproses',
+                    'ready_for_pickup' => 'Siap Diambil',
+                    'completed' => 'Selesai',
+                    'cancelled' => 'Dibatalkan',
+                ];
 
-              {{-- Card 1: Multi Item Detail --}}
+                // Mapping untuk Payment Status
+                $paymentColors = [
+                    'pending' => 'text-yellow-600',
+                    'paid' => 'text-green-600',
+                    'failed' => 'text-red-600',
+                    'refunded' => 'text-gray-600',
+                ];
+                $paymentLabels = [
+                    'pending' => 'Belum Dibayar',
+                    'paid' => 'Lunas',
+                    'failed' => 'Gagal',
+                    'refunded' => 'Dikembalikan',
+                ];
+
+                $currentStatusColor = $statusColors[$order->order_status] ?? 'bg-gray-50 text-gray-700 border-gray-200';
+                $currentStatusLabel = $statusLabels[$order->order_status] ?? 'Unknown';
+              @endphp
+
               <div
                 class="border border-[#3E1E04]/10 rounded-xl p-5 hover:border-[#BC430D]/30 transition-all duration-300 hover:shadow-md bg-white">
                 <div class="flex flex-col md:flex-row justify-between gap-4">
+
                   {{-- Kiri: Detail Pesanan --}}
-                  <div>
-                    <div class="flex items-center gap-2 text-sm text-gray-500 font-secondary mb-2">
-                      <i class="fa-regular fa-calendar"></i>
-                      <span>12 Februari 2026 • 14:32</span>
+                  <div class="flex-1">
+                    <div class="flex flex-wrap items-center gap-3 text-sm text-gray-500 font-secondary mb-3">
+                      {{-- Kode Pesanan --}}
+                      <span class="font-bold text-[#3E1E04]">#{{ $order->order_code }}</span>
+                      <span class="text-gray-300">|</span>
+                      {{-- Tanggal --}}
+                      <div class="flex items-center gap-1.5">
+                        <i class="fa-regular fa-calendar"></i>
+                        <span>{{ $order->created_at->format('d M Y • H:i') }}</span>
+                      </div>
                     </div>
 
-                    <span
-                      class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#E8F5E9] text-[#2E7D32] text-xs font-semibold font-secondary border border-[#A5D6A7]/50 mb-4">
-                      <i class="fa-brands fa-whatsapp text-sm"></i>
-                      Dikirim ke WhatsApp
-                    </span>
+                    {{-- Badge Status Dinamis --}}
+                    <div class="flex flex-wrap gap-2 mb-4">
+                      <span
+                        class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold font-secondary border {{ $currentStatusColor }}">
+                        {{ $currentStatusLabel }}
+                      </span>
+
+                      {{-- Status Pembayaran --}}
+                      <span
+                        class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold font-secondary border border-gray-100 bg-gray-50 {{ $paymentColors[$order->payment_status] ?? 'text-gray-600' }}">
+                        <i class="fa-solid fa-wallet mr-1.5"></i>
+                        {{ $paymentLabels[$order->payment_status] ?? 'Unknown' }}
+                      </span>
+                    </div>
 
                     <div class="text-sm font-secondary space-y-1.5">
                       <div class="font-medium text-[#3E1E04] mb-2 flex items-center gap-2">
-                        ☕ <span>2 Item</span>
+                        ☕ <span>{{ $order->items->count() }} Macam Menu</span>
                       </div>
-                      <div class="flex items-center gap-2 text-gray-600">
-                        🍦 <span>Iced Latte</span>
-                      </div>
-                      <div class="flex items-center gap-2 text-gray-600">
-                        🥐 <span>Croissant</span>
-                      </div>
+
+                      {{-- Tampilkan Item --}}
+                      @foreach ($order->items->take(2) as $item)
+                        <div class="flex items-center gap-2 text-gray-600">
+                          <span class="font-medium">{{ $item->quantity }}x</span>
+                          <span>{{ $item->product->name ?? ($item->product_name_snapshot ?? 'Produk tidak tersedia') }}</span>
+                        </div>
+                      @endforeach
+
+                      {{-- Tampilkan pesan jika ada lebih dari 2 item --}}
+                      @if ($order->items->count() > 2)
+                        <div class="flex items-center gap-2 text-gray-400 text-xs mt-1">
+                          <span>+{{ $order->items->count() - 2 }} menu lainnya...</span>
+                        </div>
+                      @endif
                     </div>
                   </div>
 
                   {{-- Kanan: Harga & Aksi --}}
                   <div
-                    class="flex flex-col justify-end items-start md:items-end mt-2 md:mt-0 pt-4 md:pt-0 border-t md:border-0 border-gray-100">
-                    <div class="text-lg font-bold text-[#3E1E04] font-primary mb-3">Rp 45.000</div>
-                    <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+                    class="flex flex-col justify-end items-start md:items-end mt-2 md:mt-0 pt-4 md:pt-0 border-t md:border-0 border-gray-100 min-w-[200px]">
+                    <div class="text-sm text-gray-500 font-secondary mb-1">Total Belanja</div>
+                    <div class="text-lg font-bold text-[#3E1E04] font-primary mb-4">
+                      Rp {{ number_format($order->total, 0, ',', '.') }}
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2 w-full md:w-auto mt-auto">
                       <button
-                        class="flex-1 md:flex-none bg-[#4A3219] hover:bg-[#BC430D] text-white px-5 py-2 rounded-lg text-sm font-semibold transition-colors font-secondary text-center shadow-sm">
+                        class="flex-1 md:flex-none bg-[#4A3219] hover:bg-[#BC430D] text-white px-5 py-2 rounded-lg text-sm font-semibold transition-colors duration-300 font-secondary text-center shadow-sm">
                         Pesan Lagi
                       </button>
                       <button
                         class="flex-1 md:flex-none bg-gray-100 hover:bg-gray-200 text-gray-700 px-5 py-2 rounded-lg text-sm font-medium transition-colors font-secondary text-center">
-                        Lihat Detail
+                        Detail
                       </button>
                     </div>
                   </div>
+
                 </div>
               </div>
-
-              {{-- Card 2: Single Item --}}
-              <div
-                class="border border-[#3E1E04]/10 rounded-xl p-5 hover:border-[#BC430D]/30 transition-all duration-300 hover:shadow-md bg-white">
-                <div class="flex flex-col md:flex-row justify-between gap-4">
-                  {{-- Kiri: Detail Pesanan --}}
-                  <div>
-                    <div class="flex items-center gap-2 text-sm text-gray-500 font-secondary mb-2">
-                      <i class="fa-regular fa-calendar"></i>
-                      <span>10 Februari 2026 • 09:15</span>
-                    </div>
-
-                    <span
-                      class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#E8F5E9] text-[#2E7D32] text-xs font-semibold font-secondary border border-[#A5D6A7]/50 mb-4">
-                      <i class="fa-brands fa-whatsapp text-sm"></i>
-                      Dikirim ke WhatsApp
-                    </span>
-
-                    <div class="text-sm font-secondary space-y-1.5">
-                      <div class="font-medium text-[#3E1E04] mb-2 flex items-center gap-2">
-                        ☕ <span>1 Item</span>
-                      </div>
-                      <div class="flex items-center gap-2 text-gray-600">
-                        ☕ <span>Cappuccino</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {{-- Kanan: Harga & Aksi --}}
-                  <div
-                    class="flex flex-col justify-end items-start md:items-end mt-2 md:mt-0 pt-4 md:pt-0 border-t md:border-0 border-gray-100">
-                    <div class="text-lg font-bold text-[#3E1E04] font-primary mb-3">Rp 24.000</div>
-                    <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
-                      <button
-                        class="flex-1 md:flex-none bg-[#4A3219] hover:bg-[#BC430D] text-white px-5 py-2 rounded-lg text-sm font-semibold transition-colors font-secondary text-center shadow-sm">
-                        Pesan Lagi
-                      </button>
-                      <button
-                        class="flex-1 md:flex-none bg-gray-100 hover:bg-gray-200 text-gray-700 px-5 py-2 rounded-lg text-sm font-medium transition-colors font-secondary text-center">
-                        Lihat Detail
-                      </button>
-                    </div>
-                  </div>
+            @empty
+              <div class="text-center py-16 px-4">
+                <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fa-solid fa-receipt text-4xl text-gray-400"></i>
                 </div>
+                <h3 class="text-lg font-bold text-[#3E1E04] font-primary mb-2">Belum Ada Pesanan</h3>
+                <p class="text-sm text-gray-500 font-secondary max-w-sm mx-auto mb-6">
+                  Riwayat pesananmu masih kosong. Yuk, pesan kopi dan camilan favoritmu sekarang!
+                </p>
+                <a href="{{ route('menu.index') }}"
+                  class="inline-flex items-center gap-2 bg-[#BC430D] hover:bg-[#3E1E04] text-white px-6 py-2.5 rounded-lg transition-colors duration-300 font-secondary font-medium shadow-sm">
+                  <i class="fa-solid fa-cart-plus"></i>
+                  Mulai Pesan
+                </a>
               </div>
-
-              {{-- Card 3: Multi Item Summarized --}}
-              <div
-                class="border border-[#3E1E04]/10 rounded-xl p-5 hover:border-[#BC430D]/30 transition-all duration-300 hover:shadow-md bg-white">
-                <div class="flex flex-col md:flex-row justify-between gap-4">
-                  {{-- Kiri: Detail Pesanan --}}
-                  <div>
-                    <div class="flex items-center gap-2 text-sm text-gray-500 font-secondary mb-2">
-                      <i class="fa-regular fa-calendar"></i>
-                      <span>08 Februari 2026 • 07:45</span>
-                    </div>
-
-                    <span
-                      class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#E8F5E9] text-[#2E7D32] text-xs font-semibold font-secondary border border-[#A5D6A7]/50 mb-4">
-                      <i class="fa-brands fa-whatsapp text-sm"></i>
-                      Dikirim ke WhatsApp
-                    </span>
-
-                    <div class="text-sm font-secondary space-y-1.5">
-                      <div class="flex items-center gap-2 text-gray-800 font-medium">
-                        ☕ <span>Americano, Cheese Croissant, +1 lainnya</span>
-                      </div>
-                      <div class="flex items-center gap-2 text-gray-500 text-xs">
-                        🍵 <span>Dipesan untuk makan di tempat</span> {{-- Contoh variasi teks --}}
-                      </div>
-                    </div>
-                  </div>
-
-                  {{-- Kanan: Harga & Aksi --}}
-                  <div
-                    class="flex flex-col justify-end items-start md:items-end mt-2 md:mt-0 pt-4 md:pt-0 border-t md:border-0 border-gray-100">
-                    <div class="text-lg font-bold text-[#3E1E04] font-primary mb-3">Rp 59.000</div>
-                    <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
-                      <button
-                        class="flex-1 md:flex-none bg-[#4A3219] hover:bg-[#BC430D] text-white px-5 py-2 rounded-lg text-sm font-semibold transition-colors font-secondary text-center shadow-sm">
-                        Pesan Lagi
-                      </button>
-                      <button
-                        class="flex-1 md:flex-none bg-gray-100 hover:bg-gray-200 text-gray-700 px-5 py-2 rounded-lg text-sm font-medium transition-colors font-secondary text-center">
-                        Lihat Detail
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          @else
-            {{-- Empty State (Jika riwayat pesanan kosong) --}}
-            <div class="text-center py-16 px-4">
-              <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fa-solid fa-receipt text-4xl text-gray-400"></i>
-              </div>
-              <h3 class="text-lg font-bold text-[#3E1E04] font-primary mb-2">Belum Ada Pesanan</h3>
-              <p class="text-sm text-gray-500 font-secondary max-w-sm mx-auto mb-6">
-                Riwayat pesananmu masih kosong. Yuk, pesan kopi dan camilan favoritmu sekarang!
-              </p>
-              <a href="{{ route('menu.index') }}"
-                class="inline-flex items-center gap-2 bg-[#BC430D] hover:bg-[#3E1E04] text-white px-6 py-2.5 rounded-lg transition-colors font-secondary font-medium shadow-sm">
-                <i class="fa-solid fa-cart-plus"></i>
-                Mulai Pesan
-              </a>
-            </div>
-          @endif
+            @endforelse
+          </div>
 
         </div>
       </div>

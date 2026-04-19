@@ -3,27 +3,31 @@
 @section('title', 'Beranda')
 
 @section('content')
+  {{-- logika favorit --}}
+  <x-favorite-manager :userFavorites="$userFavorites ?? []">
+    
+    {{-- Hero Section --}}
+    <x-home.home-hero-section />
 
-  {{-- Hero Section --}}
-  <x-home.home-hero-section />
+    {{-- Menu Unggulan Section --}}
+    <x-home.signature-menu :menus="$signatureMenus" :userFavorites="$userFavorites" />
 
-  {{-- Menu Unggulan Section --}}
-  <x-home.signature-menu />
+    {{-- Spot Menarik Section --}}
+    <x-home.gallery-section />
 
-  {{-- Spot Menarik Section --}}
-  <x-home.gallery-section />
+    {{-- slider product Section --}}
+    <x-home.product-slider :products="$bestSellerProducts" />
 
-  {{-- slider product Section --}}
-  <x-home.product-slider />
+    {{-- Layanan Kami Section --}}
+    <x-home.services-section />
 
-  {{-- Layanan Kami Section --}}
-  <x-home.services-section />
+    {{-- Cerita Section --}}
+    <x-home.story-section :totalMenus="$totalMenus" />
 
-  {{-- Cerita Section --}}
-  <x-home.story-section />
+    {{-- Kontak Section --}}
+    <x-home.contact-section />
 
-  {{-- Kontak Section --}}
-  <x-home.contact-section />
+  </x-favorite-manager>
 @endsection
 
 @push('scripts')

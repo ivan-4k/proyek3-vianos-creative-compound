@@ -31,6 +31,7 @@ class Product extends Model
         'stock',
         'main_image',
         'is_available',
+        'is_signature',
     ];
 
     /**

@@ -37,6 +37,8 @@ Route::middleware(['auth', 'verified', 'role:user'])->group(function () {
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+  Route::post('/user/favorite/toggle', [FavoriteController::class, 'toggle'])->name('user.favorite.toggle');
+
   // Address
   Route::get('/user/address', [AddressController::class, 'index'])->name('user.address');
   Route::put('/address', [AddressController::class, 'update'])->name('address.update');
@@ -57,7 +59,7 @@ Route::middleware(['auth', 'verified', 'role:user'])->group(function () {
 
 // === ROUTE ADMIN ===
 Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
-  Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+  Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 });
 
 // === ROUTE OWNER ===
@@ -69,7 +71,7 @@ Route::middleware(['auth', 'verified', 'role:owner'])->group(function () {
 // Home
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 // Menu
-Route::get('/menu', [MenuController::class, 'index']);
+Route::get('/menu', [MenuController::class, 'index'])->name('menu.index');
 // About
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
