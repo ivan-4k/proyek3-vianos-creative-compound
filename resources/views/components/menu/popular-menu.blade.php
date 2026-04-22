@@ -104,59 +104,196 @@
 {{-- MODAL DETAIL PRODUK --}}
 @foreach ($popularMenus as $menu)
   <div id="popular-modal-{{ $menu->id_produk }}" tabindex="-1" aria-hidden="true"
-    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative p-4 w-full max-w-2xl max-h-full">
-      <div class="relative bg-white rounded-2xl shadow-xl border border-gray-100">
+    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[110] justify-center items-end md:items-center w-full h-full bg-gray-900/70 backdrop-blur-sm transition-opacity">
 
-        <div class="flex items-center justify-between p-5 border-b border-gray-100">
+    <div
+      class="relative w-full max-w-4xl h-[95vh] md:h-auto md:max-h-[90vh] md:p-4 flex items-end md:items-center justify-center transition-transform">
+      <div
+        class="relative bg-white rounded-t-3xl md:rounded-2xl shadow-2xl border border-[#3E1E04]/10 w-full h-full md:h-auto md:max-h-full overflow-hidden flex flex-col">
+
+        {{-- HEADER --}}
+        <div
+          class="sticky top-0 bg-white/95 backdrop-blur-md z-20 flex items-center justify-between p-4 md:px-6 border-b border-[#3E1E04]/10">
           <div class="flex items-center gap-3">
-            <span class="bg-[#BC430D] text-white text-xs font-bold px-2 py-1 rounded-md">{{ $loop->iteration }}</span>
-            <h3 class="font-primary text-xl font-bold text-[#3E1E04]">{{ $menu->name }}</h3>
+            <span
+              class="bg-[#BC430D] text-white text-sm font-black px-2.5 py-1 rounded-lg shadow-sm flex items-center gap-1">
+              <i class="fa-solid fa-medal text-amber-300 text-xs"></i> #{{ $loop->iteration }}
+            </span>
+            <h3 class="font-primary text-lg md:text-xl font-bold text-[#3E1E04] line-clamp-1">{{ $menu->name }}</h3>
           </div>
           <button type="button"
-            class="text-gray-400 bg-transparent hover:bg-gray-100 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+            class="text-gray-400 bg-gray-50 hover:bg-red-50 hover:text-red-500 rounded-full text-sm w-9 h-9 flex items-center justify-center transition-all shrink-0"
             data-modal-hide="popular-modal-{{ $menu->id_produk }}">
             <i class="fas fa-times text-lg"></i>
           </button>
         </div>
 
-        <div class="p-5">
-          <div class="flex flex-col md:flex-row gap-6">
-            <div class="md:w-1/2">
-              <div class="aspect-[4/3] rounded-xl overflow-hidden">
-                <img
-                  src="{{ $menu->main_image ? asset('storage/' . $menu->main_image) : asset('images/default/herobg.png') }}"
-                  alt="{{ $menu->name }}" class="w-full h-full object-cover" loading="lazy">
-              </div>
-            </div>
+        {{-- CONTENT: 1 Kolom Mobile, 2 Kolom Desktop --}}
+        <div class="flex-1 overflow-y-auto flex flex-col md:flex-row">
 
-            <div class="md:w-1/2 flex flex-col">
-              <p class="font-secondary text-gray-500 text-sm mb-4 leading-relaxed">
-                {{ $menu->description ?? 'Produk populer dengan kualitas terbaik.' }}
-              </p>
+          {{-- Kiri: Gambar Produk --}}
+          <div
+            class="w-full md:w-1/2 md:border-r border-[#3E1E04]/5 bg-[#FBF8F5] p-4 md:p-6 flex flex-col justify-center">
+            <div class="relative aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden bg-gray-100 shadow-inner">
+              <img
+                src="{{ $menu->main_image ? asset('storage/' . $menu->main_image) : asset('images/default/herobg.png') }}"
+                alt="{{ $menu->name }}"
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" loading="lazy">
 
-              <div class="space-y-2 mb-6">
-                <div class="flex items-center gap-2 text-sm font-secondary">
-                  <i class="fas fa-fire text-orange-500 w-5"></i>
-                  <span class="text-gray-700 font-medium">Hot Item - Paling Banyak Dipesan</span>
-                </div>
-                <div class="flex items-center gap-2 text-sm font-secondary">
-                  <i class="fas fa-temperature-half text-[#BC430D] w-5"></i>
-                  <span class="text-gray-700">Tersedia: Panas & Dingin</span>
-                </div>
-              </div>
-
-              <div class="mt-auto pt-4 border-t border-gray-100">
-                <div class="font-primary text-2xl font-bold text-[#3E1E04] mb-4">Rp
-                  {{ number_format($menu->price, 0, ',', '.') }}</div>
-                <button
-                  class="w-full bg-[#3C6B3E] hover:bg-[#2A4D2B] text-white font-medium py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors shadow-sm font-secondary">
-                  <i class="fa-brands fa-whatsapp text-lg"></i> Pesan Sekarang
-                </button>
+              {{-- Overlay Hot Item di dalam gambar khusus Desktop --}}
+              <div
+                class="hidden md:block absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-lg shadow-sm">
+                <span class="text-xs font-bold text-[#BC430D] flex items-center gap-1.5">
+                  <i class="fa-solid fa-fire text-orange-500"></i> Paling Diminati
+                </span>
               </div>
             </div>
           </div>
+
+          {{-- Kanan: Informasi Produk --}}
+          <div class="w-full md:w-1/2 p-5 md:p-6 flex flex-col gap-6">
+
+            {{-- Badge Mobile --}}
+            <div class="md:hidden flex flex-wrap gap-2 mb-[-10px]">
+              <span
+                class="bg-orange-50 text-[#BC430D] border border-orange-100 text-xs font-bold px-2.5 py-1 rounded-md flex items-center gap-1.5">
+                <i class="fa-solid fa-fire text-orange-500"></i> Hot Item
+              </span>
+            </div>
+
+            {{-- Deskripsi --}}
+            <div>
+              <h4 class="font-primary text-sm uppercase tracking-wider font-bold text-gray-400 mb-2">Deskripsi</h4>
+              <p class="font-secondary text-gray-600 text-sm md:text-base leading-relaxed">
+                {{ $menu->description ?? 'Produk populer dengan kualitas terbaik dan rasa yang tak terlupakan.' }}
+              </p>
+            </div>
+
+            {{-- Spesifikasi --}}
+            <div class="space-y-3 bg-[#FBF8F5] border border-[#3E1E04]/5 p-4 rounded-xl">
+              <div class="flex items-center gap-3 text-sm font-secondary">
+                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm shrink-0">
+                  <i class="fas fa-fire text-orange-500"></i>
+                </div>
+                <span class="text-[#3E1E04] font-medium flex-1">Hot Item <span
+                    class="font-normal text-gray-500 block text-xs">Paling Banyak Dipesan Minggu Ini</span></span>
+              </div>
+
+              <div class="flex items-center gap-3 text-sm font-secondary">
+                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm shrink-0">
+                  <i class="fas fa-temperature-half text-[#BC430D]"></i>
+                </div>
+                <span class="text-[#3E1E04] font-medium flex-1">Sajian <span
+                    class="font-normal text-gray-500 block text-xs">Tersedia Panas & Dingin</span></span>
+              </div>
+            </div>
+
+          </div>
         </div>
+
+        {{-- FOOTER --}}
+        <div
+          class="sticky bottom-0 bg-white border-t border-gray-100 p-4 md:px-6 md:py-5 z-20 shadow-[0_-10px_20px_-10px_rgba(0,0,0,0.05)]">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+
+            <div class="flex items-center justify-between md:justify-start md:gap-4">
+              <span class="text-sm text-gray-500 font-secondary md:hidden">Harga Spesial</span>
+              <div class="flex flex-col">
+                <span
+                  class="text-xs text-gray-400 font-secondary hidden md:block uppercase font-bold tracking-wider mb-1">Harga
+                  Spesial</span>
+                <div class="font-primary text-2xl font-bold text-amber-600">Rp
+                  {{ number_format($menu->price, 0, ',', '.') }}</div>
+              </div>
+            </div>
+
+            <div class="flex gap-3 md:w-auto">
+              <button
+                class="px-5 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-xl flex items-center justify-center gap-2 transition-colors font-secondary"
+                data-modal-hide="popular-modal-{{ $menu->id_produk }}">
+                Kembali
+              </button>
+
+              <button type="button" x-data="{ isAdding: false, added: false }"
+                @click.prevent="
+      @auth
+if(isAdding || {{ !$menu->is_available ? 'true' : 'false' }}) return;
+          
+          isAdding = true;
+          
+          fetch('{{ route('cart.add') }}', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                  'Accept': 'application/json'
+              },
+              body: JSON.stringify({ 
+                  id_produk: {{ $menu->id_produk }}, 
+                  quantity: 1 
+              })
+          })
+          .then(response => response.json())
+          .then(data => {
+              isAdding = false;
+              if(data.success) {
+                  added = true;
+                  // Trigger event agar Navbar otomatis update angkanya
+                  window.dispatchEvent(new CustomEvent('cart-updated', { detail: { count: data.cart_count } }));
+                  
+                  // Kembalikan tombol ke kondisi semula setelah 2 detik
+                  setTimeout(() => { added = false; }, 2000);
+              }
+          })
+          .catch(error => {
+              isAdding = false;
+              alert('Terjadi kesalahan pada server.');
+              console.error('Error:', error);
+          });
+      @else
+          // Arahkan ke halaman login jika user belum masuk
+          window.location.href = '{{ route('login') }}'; @endauth
+        "
+                class="flex-1
+                md:w-64 text-white font-bold py-3 px-6 rounded-xl flex items-center justify-center gap-2 transition-all
+                shadow-md font-secondary {{ !$menu->is_available ? 'bg-gray-400 opacity-50 cursor-not-allowed' : '' }}"
+                :class="{
+                    'bg-[#BC430D] hover:bg-[#9e380b] shadow-[#BC430D]/20 hover:-translate-y-0.5': !isAdding && !added &&
+                        {{ $menu->is_available ? 'true' : 'false' }},
+                    'bg-[#9e380b] opacity-75 cursor-wait': isAdding,
+                    'bg-green-600': added
+                }"
+                {{ !$menu->is_available ? 'disabled' : '' }}>
+
+                {{-- State Default --}}
+                <template x-if="!isAdding && !added">
+                  <div class="flex items-center gap-2">
+                    <i class="fas fa-shopping-cart text-lg"></i>
+                    <span>{{ $menu->is_available ? 'Tambah Keranjang' : 'Stok Habis' }}</span>
+                  </div>
+                </template>
+
+                {{-- State Loading --}}
+                <template x-if="isAdding">
+                  <div class="flex items-center gap-2">
+                    <i class="fas fa-spinner fa-spin text-lg"></i>
+                    <span>Memproses...</span>
+                  </div>
+                </template>
+
+                {{-- State Sukses --}}
+                <template x-if="added">
+                  <div class="flex items-center gap-2">
+                    <i class="fas fa-check text-lg"></i>
+                    <span>Berhasil!</span>
+                  </div>
+                </template>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

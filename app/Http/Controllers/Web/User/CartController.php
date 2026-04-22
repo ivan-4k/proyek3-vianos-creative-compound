@@ -6,34 +6,208 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Order;
+use App\Models\OrderItem;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
-    public function index()
-    {
-        $userId = Auth::id();
+  public function index()
+  {
+    $userId = Auth::id();
 
-        $carts = Cart::with('product')
-            ->where('id_users', $userId)
-            ->get()
-            ->map(function ($cart) {
-                if (!$cart->product) {
-                    $cart->product = (object) [
-                        'name' => 'Produk tidak ditemukan',
-                        'price' => 0,
-                        'image' => 'default.jpg',
-                    ];
-                }
-                $cart->subtotal = $cart->product->price * $cart->quantity;
-                return $cart;
-            });
+    $carts = Cart::with('product')
+      ->where('id_users', $userId)
+      ->get()
+      ->map(function ($cart) {
+        if (!$cart->product) {
+          $cart->product = (object) [
+            'name' => 'Produk tidak ditemukan',
+            'price' => 0,
+            'image' => 'default.jpg',
+          ];
+        }
+        $cart->subtotal = $cart->product->price * $cart->quantity;
+        return $cart;
+      });
 
-        $total = $carts->sum('subtotal');
+    $total = $carts->sum('subtotal');
 
-        return view('user.cart', [
-            'theme' => 'light',
-            'carts' => $carts,
-            'total' => $total,
-        ]);
+    return view('user.cart', [
+      'theme' => 'light',
+      'carts' => $carts,
+      'total' => $total,
+    ]);
+  }
+
+  // Tambahkan method ini di dalam CartController
+  public function add(Request $request)
+  {
+    // Validasi input dari AJAX
+    $request->validate([
+      'id_produk' => 'required|exists:products,id_produk',
+      'quantity'  => 'integer|min:1'
+    ]);
+
+    $userId = Auth::id();
+    $productId = $request->id_produk;
+    $quantity = $request->input('quantity', 1); // Default 1
+
+    // Cek apakah produk ini sudah ada di keranjang user
+    $cartItem = Cart::where('id_users', $userId)
+      ->where('id_produk', $productId)
+      ->first();
+
+    if ($cartItem) {
+      $cartItem->quantity += $quantity;
+      $cartItem->save();
+    } else {
+      Cart::create([
+        'id_users'  => $userId,
+        'id_produk' => $productId,
+        'quantity'  => $quantity,
+      ]);
     }
+
+    $cartCount = Cart::where('id_users', $userId)->count();
+
+    return response()->json([
+      'success' => true,
+      'message' => 'Produk berhasil ditambahkan ke keranjang.',
+      'cart_count' => $cartCount
+    ]);
+  }
+
+  /**
+   * Update Kuantitas Item di Keranjang (AJAX)
+   */
+  public function updateQuantity(Request $request, $id)
+  {
+    $request->validate([
+      'quantity' => 'required|integer|min:1'
+    ]);
+
+    // Cari item berdasarkan ID keranjang dan pastikan milik user yang login
+    $cartItem = Cart::where('id_keranjang', $id)
+      ->where('id_users', Auth::id())
+      ->first();
+
+    if (!$cartItem) {
+      return response()->json(['success' => false, 'message' => 'Item tidak ditemukan'], 404);
+    }
+
+    $cartItem->quantity = $request->quantity;
+    $cartItem->save();
+
+    return response()->json([
+      'success' => true,
+      'message' => 'Kuantitas berhasil diperbarui'
+    ]);
+  }
+
+  /**
+   * Update Catatan Item di Keranjang (AJAX)
+   */
+  public function updateNote(Request $request, $id)
+  {
+    // Validasi opsional, jika notes boleh kosong (nullable)
+    $request->validate([
+      'notes' => 'nullable|string|max:255'
+    ]);
+
+    $cartItem = Cart::where('id_keranjang', $id)
+      ->where('id_users', Auth::id())
+      ->first();
+
+    if (!$cartItem) {
+      return response()->json(['success' => false, 'message' => 'Item tidak ditemukan'], 404);
+    }
+
+    $cartItem->notes = $request->notes;
+    $cartItem->save();
+
+    return response()->json([
+      'success' => true,
+      'message' => 'Catatan berhasil disimpan'
+    ]);
+  }
+
+  /**
+   * Hapus Item dari Keranjang (AJAX)
+   */
+  public function destroy($id)
+  {
+    $cartItem = Cart::where('id_keranjang', $id)
+      ->where('id_users', Auth::id())
+      ->first();
+
+    if (!$cartItem) {
+      return response()->json(['success' => false, 'message' => 'Item tidak ditemukan'], 404);
+    }
+
+    $cartItem->delete();
+
+    return response()->json([
+      'success' => true,
+      'message' => 'Item berhasil dihapus'
+    ]);
+  }
+
+  public function checkout(Request $request)
+  {
+    $cartIds = $request->cart_ids;
+    $userId = Auth::id();
+
+    $cartItems = Cart::whereIn('id_keranjang', $cartIds)
+      ->where('id_users', $userId)
+      ->with('product')
+      ->get();
+
+    if ($cartItems->isEmpty()) {
+      return response()->json(['success' => false, 'message' => 'Pilih menu dulu!'], 400);
+    }
+
+    DB::beginTransaction();
+    try {
+      $totalHarga = 0;
+      foreach ($cartItems as $item) {
+        $totalHarga += ($item->product->price * $item->quantity);
+      }
+
+      $order = Order::create([
+        'id_users' => $userId,
+        'order_code' => 'SC-' . strtoupper(Str::random(6)),
+        'subtotal' => $totalHarga,
+        'total' => $totalHarga,
+        'payment_status' => 'pending',
+        'order_status' => 'pending_confirmation',
+      ]);
+
+      foreach ($cartItems as $item) {
+        OrderItem::create([
+          'id_pesanan' => $order->id_pesanan,
+          'id_produk' => $item->id_produk,
+          'product_name_snapshot' => $item->product->name,
+          'unit_price' => $item->product->price,
+          'quantity' => $item->quantity,
+          'subtotal' => $item->product->price * $item->quantity,
+          'notes' => $item->notes,
+        ]);
+      }
+
+      Cart::whereIn('id_keranjang', $cartIds)->delete();
+
+      DB::commit();
+
+      return response()->json([
+        'success' => true,
+        'order_code' => $order->order_code,
+        'cart_count' => Cart::where('id_users', $userId)->count()
+      ]);
+    } catch (\Exception $e) {
+      DB::rollback();
+      return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+    }
+  }
 }

@@ -1,7 +1,15 @@
-{{-- Sidebar Container dengan x-data di parent --}}
-<div x-data="{ mobileSidebarOpen: false }" class="w-full lg:w-80 flex-shrink-0">
+{{-- Sidebar Container dengan x-data yang diperluas --}}
+@php
+  $initialCartCount = auth()->check() ? auth()->user()->carts()->count() : 0;
+@endphp
 
-  {{-- Mobile Menu Toggle Button (Hanya tampil di HP/Tablet) --}}
+<div x-data="{
+    mobileSidebarOpen: false,
+    cartCount: {{ $initialCartCount }}
+}" @cart-updated.window="cartCount = $event.detail.count"
+  class="w-full lg:w-80 flex-shrink-0">
+
+  {{-- Mobile Menu Toggle Button --}}
   <div class="lg:hidden mb-3 mt-5">
     <button @click="mobileSidebarOpen = !mobileSidebarOpen" type="button"
       class="flex items-center gap-2 px-5 py-3 bg-white border border-[#3E1E04]/10 rounded-xl shadow-sm hover:bg-[#FBF8F5] transition-all w-full justify-between focus:ring-2 focus:ring-[#BC430D]/20">
@@ -16,7 +24,7 @@
     </button>
   </div>
 
-  {{-- UNIFIED SIDEBAR (Satu kode untuk Mobile & Desktop) --}}
+  {{-- UNIFIED SIDEBAR --}}
   <div x-show="mobileSidebarOpen" x-transition:enter="transition ease-out duration-300"
     x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
     x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0"
@@ -24,6 +32,7 @@
 
     <div class="bg-white rounded-2xl shadow-lg border border-[#3E1E04]/10 p-5 lg:sticky lg:top-6">
 
+      {{-- Profile Section --}}
       <div class="text-center mb-6 pb-6 border-b border-[#3E1E04]/10">
         <div class="relative inline-block">
           @php
@@ -46,6 +55,7 @@
 
       <div class="space-y-6 text-sm">
 
+        {{-- Akun Saya --}}
         <div>
           <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-3 px-3 font-secondary">Akun Saya
           </p>
@@ -65,17 +75,24 @@
           </ul>
         </div>
 
+        {{-- Belanja --}}
         <div>
           <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-3 px-3 font-secondary">Belanja</p>
           <ul class="space-y-1.5">
+            {{-- KERANJANG DINAMIS --}}
             <a href="{{ route('user.cart') }}"
               class="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-300 cursor-pointer group {{ request()->routeIs('user.cart') ? 'bg-gradient-to-r from-[#BC430D]/10 to-transparent text-[#3E1E04] font-bold border-l-4 border-[#BC430D]' : 'text-gray-500 hover:bg-[#FBF8F5] hover:text-[#3E1E04]' }}">
               <i
                 class="fa-solid fa-cart-shopping w-5 text-center transition-colors duration-300 {{ request()->routeIs('user.cart') ? 'text-[#BC430D]' : 'text-gray-400 group-hover:text-[#BC430D]' }}"></i>
               <span class="font-secondary transition-transform duration-300 group-hover:translate-x-1">Keranjang</span>
-              <span
-                class="ml-auto bg-[#BC430D] text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">3</span>
+
+              {{-- Badge Keranjang Dinamis --}}
+              <template x-if="cartCount > 0">
+                <span x-text="cartCount > 99 ? '99+' : cartCount"
+                  class="ml-auto bg-[#BC430D] text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm"></span>
+              </template>
             </a>
+
             <a href="{{ route('user.favorite') }}"
               class="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-300 cursor-pointer group {{ request()->routeIs('user.favorite') ? 'bg-gradient-to-r from-rose-500/10 to-transparent text-rose-700 font-bold border-l-4 border-rose-500' : 'text-gray-500 hover:bg-rose-50 hover:text-rose-600' }}">
               <i
@@ -91,6 +108,7 @@
           </ul>
         </div>
 
+        {{-- Smart For You --}}
         <div>
           <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-3 px-3 font-secondary">Smart For
             You</p>
@@ -114,6 +132,7 @@
           </ul>
         </div>
 
+        {{-- Notifikasi --}}
         <div>
           <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-3 px-3 font-secondary">Notifikasi
           </p>
@@ -137,6 +156,7 @@
 
       </div>
 
+      {{-- Logout Section --}}
       <div class="mt-8 pt-4 border-t border-[#3E1E04]/10">
         <form method="POST" action="{{ route('logout') }}">
           @csrf

@@ -1,0 +1,23 @@
+.eapps-widget-toolbar,
+[class^="eapps-widget-toolbar"] {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+div[class*="eapps-instagram-feed"] a[href*="elfsight.com"],
+a[href*="elfsight.com/instagram-feed-instashow"],
+a[href*="elfsight.com"],
+[class^="eapps-link"],
+.eapps-link {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    z-index: -9999 !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}

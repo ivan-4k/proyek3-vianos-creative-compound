@@ -45,6 +45,12 @@ Route::middleware(['auth', 'verified', 'role:user'])->group(function () {
 
   // Belanja
   Route::get('/user/cart', [CartController::class, 'index'])->name('user.cart');
+  Route::post('/user/cart/add', [CartController::class, 'add'])->name('cart.add');
+  Route::post('/user/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+  Route::patch('/api/cart/{id}/update', [CartController::class, 'updateQuantity']);
+  Route::patch('/api/cart/{id}/note', [CartController::class, 'updateNote']);
+  Route::delete('/api/cart/{id}', [CartController::class, 'destroy']);
+
   Route::get('/user/favorite', [FavoriteController::class, 'index'])->name('user.favorite');
   Route::get('/user/history', [OrderHistoryController::class, 'index'])->name('user.history');
 
@@ -64,7 +70,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
 
 // === ROUTE OWNER ===
 Route::middleware(['auth', 'verified', 'role:owner'])->group(function () {
-    Route::get('/owner/dashboard', [OwnerDashboardController::class, 'index'])->name('owner.dashboard');
+  Route::get('/owner/dashboard', [OwnerDashboardController::class, 'index'])->name('owner.dashboard');
 });
 
 // === ROUTE GUEST ===

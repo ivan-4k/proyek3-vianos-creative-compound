@@ -16,14 +16,15 @@ class CafeSettingFactory extends Factory
      */
     public function definition(): array
     {
-        $openingTime = $this->faker->time('H:i', '06:00');
-        $closingTime = $this->faker->time('H:i', '22:00');
-
         return [
-            'opening_time' => $openingTime,
-            'closing_time' => $closingTime,
-            'is_open' => $this->faker->boolean(85),
-            'is_order_open' => $this->faker->boolean(90),
+            'weekday_opening_time' => '09:00:00',
+            'weekday_closing_time' => '02:00:00',
+
+            'weekend_opening_time' => '08:00:00',
+            'weekend_closing_time' => '02:00:00',
+
+            'is_open' => $this->faker->boolean(90),
+            'is_order_open' => $this->faker->boolean(85),
         ];
     }
 }
