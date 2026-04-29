@@ -175,9 +175,13 @@ class CartController extends Controller
         $totalHarga += ($item->product->price * $item->quantity);
       }
 
+      $todayOrderCount = Order::whereDate('created_at', today())->count();
+      $newQueueNumber = 'A-' . str_pad($todayOrderCount + 1, 3, '0', STR_PAD_LEFT);
+
       $order = Order::create([
         'id_users' => $userId,
         'order_code' => 'SC-' . strtoupper(Str::random(6)),
+        'queue_number' => $newQueueNumber,
         'subtotal' => $totalHarga,
         'total' => $totalHarga,
         'payment_status' => 'pending',
@@ -185,6 +189,13 @@ class CartController extends Controller
       ]);
 
       foreach ($cartItems as $item) {
+        if ($item->product->stock < $item->quantity) {
+          throw new \Exception("Stok {$item->product->name} tidak mencukupi.");
+        }
+
+        // Kurangi stok produk secara otomatis di database
+        $item->product->decrement('stock', $item->quantity);
+
         OrderItem::create([
           'id_pesanan' => $order->id_pesanan,
           'id_produk' => $item->id_produk,

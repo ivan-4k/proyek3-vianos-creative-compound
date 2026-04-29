@@ -12,7 +12,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_pesanan')->autoIncrement()->primary();
             $table->unsignedBigInteger('id_users');
             $table->string('order_code')->unique();
-            $table->integer('queue_number')->nullable();
+            $table->string('queue_number')->nullable();
             $table->decimal('subtotal', 12, 2);
             $table->decimal('total', 12, 2);
 

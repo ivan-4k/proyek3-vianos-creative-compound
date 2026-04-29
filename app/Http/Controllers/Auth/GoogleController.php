@@ -42,6 +42,10 @@ class GoogleController extends Controller
 
       Auth::login($user, true);
       request()->session()->regenerate();
+      $userRole = strtolower(trim($user->role));
+      if (in_array($userRole, ['admin', 'owner'])) {
+        return redirect()->route('admin.dashboard');
+      }
 
       return redirect()->route('home');
     } catch (\Exception $e) {

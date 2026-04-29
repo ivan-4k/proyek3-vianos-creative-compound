@@ -42,8 +42,35 @@ class Order extends Model
         return [
             'subtotal' => 'decimal:2',
             'total' => 'decimal:2',
-            'queue_number' => 'integer',
         ];
+    }
+
+    public function getTotalItemsAttribute()
+    {
+        return $this->items->sum('quantity');
+    }
+
+    public function getOrderStatusBadgeAttribute()
+    {
+        return match ($this->order_status) {
+            'pending_confirmation' => 'bg-amber-100 text-amber-700',
+            'processing' => 'bg-blue-100 text-blue-700',
+            'ready_for_pickup' => 'bg-purple-100 text-purple-700',
+            'completed' => 'bg-green-100 text-green-700',
+            'cancelled' => 'bg-red-100 text-red-700',
+            default => 'bg-gray-100 text-gray-700',
+        };
+    }
+
+    public function getPaymentStatusBadgeAttribute()
+    {
+        return match ($this->payment_status) {
+            'pending' => 'bg-amber-100 text-amber-700',
+            'paid' => 'bg-green-100 text-green-700',
+            'failed' => 'bg-red-100 text-red-700',
+            'refunded' => 'bg-gray-100 text-gray-700',
+            default => 'bg-gray-100 text-gray-700',
+        };
     }
 
     // Relations

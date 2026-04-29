@@ -1,4 +1,4 @@
-<x-guest-layout title="Verifikasi Email - {{ config('app.name') }}">
+<x-guest-layout title="Verifikasi Email - {{ Cache::get('store_name', config('app.name', 'Laravel')) }}">
 
   <!-- Kotak Verifikasi dengan efek blur -->
   <section class="flex-1 flex items-center justify-center w-full font-primary relative min-h-screen py-8">

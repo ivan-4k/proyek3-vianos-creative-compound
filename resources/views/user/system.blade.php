@@ -34,10 +34,14 @@
             </header>
 
             {{-- Tombol Aksi Global --}}
-            <button type="button"
-              class="text-sm font-medium text-gray-500 hover:text-blue-600 transition-colors font-secondary whitespace-nowrap flex items-center gap-2 bg-gray-50 hover:bg-blue-50 px-3 py-1.5 rounded-lg border border-gray-200 hover:border-blue-200 w-fit">
-              <i class="fa-solid fa-check-double"></i> Tandai semua dibaca
-            </button>
+            <form method="POST" action="{{ route('user.notifications.readAll') }}">
+              @csrf
+              @method('PATCH')
+              <button type="submit"
+                class="text-sm font-medium text-gray-500 hover:text-blue-600 transition-colors font-secondary whitespace-nowrap flex items-center gap-2 bg-gray-50 hover:bg-blue-50 px-3 py-1.5 rounded-lg border border-gray-200 hover:border-blue-200 w-fit">
+                <i class="fa-solid fa-check-double"></i> Tandai semua dibaca
+              </button>
+            </form>
           </div>
 
           {{-- Konten Notifikasi Sistem --}}
@@ -88,16 +92,29 @@
                     </div>
 
                     {{-- Action Buttons --}}
-                    @if (!$notification->is_read)
-                      <div
-                        class="flex items-center gap-1 flex-shrink-0 bg-white sm:bg-transparent rounded-lg p-1 sm:p-0 shadow-sm border border-gray-100 sm:border-none sm:shadow-none absolute top-4 right-4 sm:static">
-                        <button type="button"
-                          class="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:text-blue-600 hover:bg-blue-100 transition-colors"
-                          title="Tandai sudah dibaca">
-                          <i class="fa-solid fa-check"></i>
+                    <div class="flex items-center gap-1 flex-shrink-0 absolute top-4 right-4 sm:static">
+                      @if (!$notification->is_read)
+                        <form method="POST" action="{{ route('user.notifications.read', $notification) }}">
+                          @csrf
+                          @method('PATCH')
+                          <button type="submit"
+                            class="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:text-blue-600 hover:bg-blue-100 transition-colors"
+                            title="Tandai sudah dibaca">
+                            <i class="fa-solid fa-check"></i>
+                          </button>
+                        </form>
+                      @endif
+
+                      <form method="POST" action="{{ route('user.notifications.destroy', $notification) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"
+                          class="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors"
+                          title="Hapus notifikasi" onclick="return confirm('Hapus notifikasi ini?');">
+                          <i class="fa-regular fa-trash-can"></i>
                         </button>
-                      </div>
-                    @endif
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>

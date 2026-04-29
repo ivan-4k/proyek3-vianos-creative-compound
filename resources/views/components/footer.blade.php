@@ -7,26 +7,37 @@
     <div class="flex flex-wrap lg:justify-between gap-y-12">
 
       <div class="w-full lg:w-1/3 pr-0 lg:pr-12 text-center lg:text-left">
-        <img src="{{ asset('images/default/logo-light.png') }}" alt="Seven Coffee Company Logo"
+        <img src="{{ asset(Cache::get('logo', 'images/default/logo-light.png')) }}" alt="{{ Cache::get('store_name', 'Seven Coffee Company') }} Logo"
           class="mx-auto lg:mx-0 h-14 w-auto mb-6 object-contain" loading="lazy" decoding="async">
         <p class="text-amber-50/70 text-sm leading-relaxed font-secondary mb-6 max-w-sm mx-auto lg:mx-0">
-          Seven Coffee Company Indramayu adalah ruang nyaman di Jl. Veteran, menghadirkan seduhan kopi berkualitas dan
-          hidangan terbaik untuk melengkapi hari Anda.
+          {{ Cache::get('store_description', 'Seven Coffee Company Indramayu adalah ruang nyaman di Jl. Veteran, menghadirkan seduhan kopi berkualitas dan hidangan terbaik untuk melengkapi hari Anda.') }}
         </p>
 
         <div class="flex items-center justify-center lg:justify-start gap-4">
-          <a href="#"
-            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-amber-50 hover:bg-[#BC430D] hover:text-white transition-all duration-300 hover:-translate-y-1 shadow-sm">
-            <i class="fab fa-instagram text-lg"></i>
-          </a>
-          <a href="#"
-            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-amber-50 hover:bg-[#BC430D] hover:text-white transition-all duration-300 hover:-translate-y-1 shadow-sm">
-            <i class="fab fa-tiktok text-lg"></i>
-          </a>
-          <a href="#"
-            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-amber-50 hover:bg-[#BC430D] hover:text-white transition-all duration-300 hover:-translate-y-1 shadow-sm">
-            <i class="fab fa-whatsapp text-lg"></i>
-          </a>
+          @if(Cache::get('instagram'))
+            <a href="{{ Cache::get('instagram') }}" target="_blank"
+              class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-amber-50 hover:bg-[#BC430D] hover:text-white transition-all duration-300 hover:-translate-y-1 shadow-sm">
+              <i class="fab fa-instagram text-lg"></i>
+            </a>
+          @endif
+          @if(Cache::get('tiktok'))
+            <a href="{{ Cache::get('tiktok') }}" target="_blank"
+              class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-amber-50 hover:bg-[#BC430D] hover:text-white transition-all duration-300 hover:-translate-y-1 shadow-sm">
+              <i class="fab fa-tiktok text-lg"></i>
+            </a>
+          @endif
+          @if(Cache::get('facebook'))
+            <a href="{{ Cache::get('facebook') }}" target="_blank"
+              class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-amber-50 hover:bg-[#BC430D] hover:text-white transition-all duration-300 hover:-translate-y-1 shadow-sm">
+              <i class="fab fa-facebook-f text-lg"></i>
+            </a>
+          @endif
+          @if(Cache::get('whatsapp'))
+            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', Cache::get('whatsapp')) }}" target="_blank"
+              class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-amber-50 hover:bg-[#BC430D] hover:text-white transition-all duration-300 hover:-translate-y-1 shadow-sm">
+              <i class="fab fa-whatsapp text-lg"></i>
+            </a>
+          @endif
         </div>
       </div>
 
@@ -123,16 +134,15 @@
         <ul class="space-y-4 font-secondary">
           <li class="flex items-start justify-center sm:justify-start gap-3 text-amber-50/80 text-sm leading-relaxed">
             <i class="fas fa-map-marker-alt text-[#BC430D] text-base mt-1"></i>
-            <span class="text-center sm:text-left">Jl. Veteran No.88, Lemahabang, Kec. Indramayu, Kabupaten Indramayu,
-              Jawa Barat 45212</span>
+            <span class="text-center sm:text-left">{{ Cache::get('store_address', 'Jl. Veteran No.88, Lemahabang, Kec. Indramayu, Kabupaten Indramayu, Jawa Barat 45212') }}</span>
           </li>
           <li class="flex items-center justify-center sm:justify-start gap-3 text-amber-50/80 text-sm">
             <i class="fas fa-phone-alt text-[#BC430D] text-base"></i>
-            <span>+62 812-3456-7890</span>
+            <span>{{ Cache::get('store_phone', '+62 812-3456-7890') }}</span>
           </li>
           <li class="flex items-center justify-center sm:justify-start gap-3 text-amber-50/80 text-sm">
             <i class="fas fa-envelope text-[#BC430D] text-base"></i>
-            <span>support@sevencoffee.com</span>
+            <span>{{ Cache::get('store_email', 'support@sevencoffee.com') }}</span>
           </li>
         </ul>
       </div>
@@ -145,7 +155,7 @@
         &copy;
         <script>
           document.write(new Date().getFullYear())
-        </script> Seven Coffee Company. All rights reserved.
+        </script> {{ Cache::get('store_name', 'Seven Coffee Company') }}. All rights reserved.
       </p>
     </div>
   </div>

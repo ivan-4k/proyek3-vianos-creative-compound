@@ -1,4 +1,4 @@
-<x-guest-layout title="Login - {{ config('app.name', 'Laravel') }}">
+<x-guest-layout title="Login - {{ Cache::get('store_name', config('app.name', 'Laravel')) }}">
   <!-- Status Sesi -->
   <x-auth-session-status class="mb-4" :status="session('status')" />
 

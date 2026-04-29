@@ -64,7 +64,7 @@
         </div>
         <h3 class="font-primary text-xl font-bold text-[#2c1a0e] mb-3">Alamat</h3>
         <p class="font-secondary text-sm md:text-base text-[#6b4f3a] leading-relaxed group-hover:text-[#BC430D]">
-          Vianos Creative Compound, Jl. Veteran No.88, Lemahabang, Kec. Indramayu, Kabupaten Indramayu, Jawa Barat 45212
+          {{ Cache::get('store_address', 'Vianos Creative Compound, Jl. Veteran No.88, Lemahabang, Kec. Indramayu, Kabupaten Indramayu, Jawa Barat 45212') }}
         </p>
       </a>
 
@@ -113,7 +113,7 @@
         @endif
       </div>
 
-      <a href="https://wa.me/6281234567890" target="_blank"
+      <a href="{{ Cache::has('whatsapp') ? 'https://wa.me/' . preg_replace('/[^0-9]/', '', Cache::get('whatsapp')) : 'https://wa.me/6281234567890' }}" target="_blank"
         class="group bg-white rounded-[1.5rem] p-8 shadow-lg hover:shadow-xl transition-all border border-[#e8d5c4]/50"
         data-aos="fade-up" data-aos-delay="400">
         <div
@@ -121,8 +121,9 @@
           <i class="fa-brands fa-whatsapp"></i>
         </div>
         <h3 class="font-primary text-xl font-bold text-[#2c1a0e] mb-3">WhatsApp</h3>
-        <p class="font-secondary text-base text-[#6b4f3a] group-hover:text-[#25D366] transition-colors font-medium">+62
-          812-3456-7890</p>
+        <p class="font-secondary text-base text-[#6b4f3a] group-hover:text-[#25D366] transition-colors font-medium">
+          {{ Cache::get('whatsapp', '+62 812-3456-7890') }}
+        </p>
         <p class="text-xs text-gray-400 mt-2">Klik untuk chat reservasi atau pertanyaan.</p>
       </a>
     </div>

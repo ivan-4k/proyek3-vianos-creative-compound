@@ -44,7 +44,7 @@
             class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 lg:mb-8 border-b border-[#3E1E04]/10 pb-4">
             <header>
               <h2 class="text-2xl font-bold text-[#3E1E04] font-primary">Riwayat Pesanan</h2>
-              <p class="text-sm text-gray-500 mt-1 font-secondary">Daftar menu yang pernah kamu pesan di Seven Coffee.</p>
+              <p class="text-sm text-gray-500 mt-1 font-secondary">Daftar menu yang pernah kamu pesan di {{ Cache::get('store_name', 'Seven Coffee') }}.</p>
             </header>
 
             <div

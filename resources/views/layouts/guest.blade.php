@@ -10,12 +10,12 @@
   <meta name="theme-color" content="#BC430D">
 
   <!-- SEO Meta Tags -->
-  <meta name="description" content="@yield('meta_description', 'Seven Coffee - Nikmati pengalaman kopi terbaik dengan cita rasa autentik dari biji pilihan. Temukan berbagai varian kopi spesialti kami.')">
+  <meta name="description" content="@yield('meta_description', Cache::get('store_description', 'Seven Coffee - Nikmati pengalaman kopi terbaik dengan cita rasa autentik dari biji pilihan.'))">
 
-  <title>@yield('title', config('app.name', 'Seven Coffee'))</title>
+  <title>@yield('title', Cache::get('store_name', config('app.name', 'Seven Coffee')))</title>
 
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="/logo.ico">
+  <link rel="icon" type="image/x-icon" href="{{ asset(Cache::get('favicon', 'logo.ico')) }}">
 
   <!-- Preconnect Google Fonts Start-->
   <link rel="preconnect" href="https://fonts.googleapis.com">

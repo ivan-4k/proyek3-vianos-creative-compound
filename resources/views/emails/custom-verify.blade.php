@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Verifikasi Email - Seven Coffee</title>
+  <title>Verifikasi Email - {{ Cache::get('store_name', 'Seven Coffee') }}</title>
   <style>
     /* Reset styles untuk email client */
     body {
@@ -209,7 +209,7 @@
 
             <!-- Header Kopi -->
             <div class="header">
-              <h1>☕ SEVEN COFFEE</h1>
+              <h1>☕ {{ strtoupper(Cache::get('store_name', 'SEVEN COFFEE')) }}</h1>
               <div class="coffee-badge">
                 <span>✦ VERIFIKASI EMAIL ✦</span>
               </div>
@@ -225,7 +225,7 @@
 
               <!-- Main Message -->
               <div class="message">
-                <p style="margin: 0 0 15px 0;">Terima kasih telah mendaftar di <strong>Seven Coffee</strong>! Kami
+                <p style="margin: 0 0 15px 0;">Terima kasih telah mendaftar di <strong>{{ Cache::get('store_name', 'Seven Coffee') }}</strong>! Kami
                   sangat senang menyambut kamu di keluarga besar pecinta kopi kami.</p>
                 <p style="margin: 0;">Untuk menyelesaikan pendaftaran dan mengaktifkan akun kamu, silakan verifikasi
                   alamat email dengan mengklik tombol di bawah ini:</p>
@@ -241,8 +241,7 @@
 
             <!-- Footer -->
             <div class="footer">
-              <p>© {{ date('Y') }} Vianos Creative Compound, Jl. Veteran No.88, Lemahabang, Kec. Indramayu,
-                Kabupaten Indramayu, Jawa Barat 45212</p>
+              <p>© {{ date('Y') }} {{ Cache::get('store_name', 'Seven Coffee') }}, {{ Cache::get('store_address', 'Jl. Veteran No.88, Lemahabang, Kec. Indramayu, Kabupaten Indramayu, Jawa Barat 45212') }}</p>
             </div>
 
           </div>

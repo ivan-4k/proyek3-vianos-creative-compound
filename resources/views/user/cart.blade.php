@@ -379,7 +379,7 @@
 
             if (data.success) {
               // 2. Jika sukses tersimpan di riwayat, baru buat format teks WhatsApp
-              let text = `Halo Admin Seven Coffee!\n`;
+              let text = `Halo Admin {{ Cache::get('store_name', 'Seven Coffee') }}!\n`;
               text += `Saya ingin memesan dengan *Kode: ${data.order_code}*\n\n`;
 
               this.selectedItems.forEach((item, index) => {
@@ -390,7 +390,7 @@
               text += `\n*Total Estimasi:* Rp ${this.formatRupiah(this.calculateTotal())}\n`;
               text += `\nMohon dicek ya, terima kasih!`;
 
-              const noWa = "6281234567890";
+              const noWa = "{{ preg_replace('/[^0-9]/', '', Cache::get('whatsapp', '6281234567890')) }}";
               const waUrl = `https://wa.me/${noWa}?text=${encodeURIComponent(text)}`;
 
               // 3. Update Navbar & Redirect

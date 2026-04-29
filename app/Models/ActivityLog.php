@@ -48,6 +48,6 @@ class ActivityLog extends Model
     // Relations
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'id_users', 'id_users');
+        return $this->belongsTo(User::class, 'id_users', 'id_users')->withTrashed();
     }
 }

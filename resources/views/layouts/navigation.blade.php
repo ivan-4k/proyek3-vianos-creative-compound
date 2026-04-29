@@ -45,8 +45,8 @@
 
       {{-- LOGO --}}
       <a class="flex items-center gap-2 z-50 relative shrink-0" href="{{ url('/home') }}"
-        aria-label="Beranda Seven Coffee">
-        <img id="navbar-logo" src="{{ asset('images/default/logo.png') }}" alt="Logo Seven Coffee"
+        aria-label="Beranda {{ Cache::get('store_name', 'Seven Coffee') }}">
+        <img id="navbar-logo" src="{{ asset(Cache::get('logo', 'images/default/logo.png')) }}" alt="Logo {{ Cache::get('store_name', 'Seven Coffee') }}"
           class="h-9 md:h-10 transition-transform duration-300 hover:scale-105">
       </a>
 

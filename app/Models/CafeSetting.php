@@ -20,8 +20,10 @@ class CafeSetting extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'opening_time',
-        'closing_time',
+        'weekday_opening_time',
+        'weekday_closing_time',
+        'weekend_opening_time',
+        'weekend_closing_time',
         'is_open',
         'is_order_open',
     ];
@@ -34,8 +36,10 @@ class CafeSetting extends Model
     protected function casts(): array
     {
         return [
-            'opening_time' => 'string',
-            'closing_time' => 'string',
+            'weekday_opening_time' => 'string',
+            'weekday_closing_time' => 'string',
+            'weekend_opening_time' => 'string',
+            'weekend_closing_time' => 'string',
             'is_open' => 'boolean',
             'is_order_open' => 'boolean',
         ];

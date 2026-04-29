@@ -1,4 +1,4 @@
-<x-guest-layout title="Register - {{ config('app.name') }}">
+<x-guest-layout title="Register - {{ Cache::get('store_name', config('app.name')) }}">
   <!-- Kotak Register dengan efek blur -->
   <section class="flex items-center justify-center w-full font-primary relative min-h-screen mt-10">
     <div class="relative w-full max-w-md p-6 md:px-8 py-5 mt-10 m-5">

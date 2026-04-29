@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reset Password - Seven Coffee</title>
+  <title>Reset Password - {{ Cache::get('store_name', 'Seven Coffee') }}</title>
   <style>
     /* Reset styles untuk email client */
     body {
@@ -178,7 +178,7 @@
 
             <!-- Header Kopi -->
             <div class="header">
-              <h1>☕ SEVEN COFFEE</h1>
+              <h1>☕ {{ strtoupper(Cache::get('store_name', 'SEVEN COFFEE')) }}</h1>
               <div class="coffee-badge">
                 <span>✦ RESET PASSWORD ✦</span>
               </div>
@@ -196,8 +196,7 @@
 
               <!-- Main Message -->
               <div class="message">
-                <p style="margin: 0 0 15px 0;">Kami menerima permintaan reset password untuk akun <strong>Seven
-                    Coffee</strong> kamu.</p>
+                <p style="margin: 0 0 15px 0;">Kami menerima permintaan reset password untuk akun <strong>{{ Cache::get('store_name', 'Seven Coffee') }}</strong> kamu.</p>
                 <p style="margin: 0;">Jangan khawatir, kami bantu buat password baru. Klik tombol di bawah ini untuk
                   melanjutkan:</p>
               </div>
@@ -219,8 +218,7 @@
 
             <!-- Footer -->
             <div class="footer">
-              <p>© {{ date('Y') }} Vianos Creative Compound, Jl. Veteran No.88, Lemahabang, Kec. Indramayu,
-                Kabupaten Indramayu, Jawa Barat 45212</p>
+              <p>© {{ date('Y') }} {{ Cache::get('store_name', 'Seven Coffee') }}, {{ Cache::get('store_address', 'Jl. Veteran No.88, Lemahabang, Kec. Indramayu, Kabupaten Indramayu, Jawa Barat 45212') }}</p>
             </div>
 
           </div>

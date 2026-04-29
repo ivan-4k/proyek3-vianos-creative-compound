@@ -32,10 +32,14 @@
                 lainnya.</p>
             </header>
 
-            <button type="button"
-              class="text-sm font-medium text-[#BC430D] hover:text-[#3E1E04] transition-colors font-secondary whitespace-nowrap flex items-center gap-2 bg-[#BC430D]/5 px-3 py-1.5 rounded-lg hover:bg-[#3E1E04]/5 w-fit">
-              <i class="fa-solid fa-check-double"></i> Tandai semua dibaca
-            </button>
+            <form method="POST" action="{{ route('user.notifications.readAll') }}">
+              @csrf
+              @method('PATCH')
+              <button type="submit"
+                class="text-sm font-medium text-[#BC430D] hover:text-[#3E1E04] transition-colors font-secondary whitespace-nowrap flex items-center gap-2 bg-[#BC430D]/5 px-3 py-1.5 rounded-lg hover:bg-[#3E1E04]/5 w-fit">
+                <i class="fa-solid fa-check-double"></i> Tandai semua dibaca
+              </button>
+            </form>
           </div>
 
           {{-- List Notifikasi Promo --}}
@@ -86,17 +90,25 @@
                     <div
                       class="flex items-center gap-1 flex-shrink-0 {{ $promo->is_read ? '' : 'bg-white sm:bg-transparent' }} rounded-lg p-1 sm:p-0 shadow-sm border {{ $promo->is_read ? 'border-none shadow-none' : 'border-gray-100 sm:border-none sm:shadow-none' }} absolute top-4 right-4 sm:static">
                       @if (!$promo->is_read)
-                        <button type="button"
-                          class="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:text-[#3C6B3E] hover:bg-[#3C6B3E]/10 transition-colors"
-                          title="Tandai sudah dibaca">
-                          <i class="fa-solid fa-check"></i>
-                        </button>
+                        <form method="POST" action="{{ route('user.notifications.read', $promo) }}">
+                          @csrf
+                          @method('PATCH')
+                          <button type="submit"
+                            class="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:text-[#3C6B3E] hover:bg-[#3C6B3E]/10 transition-colors"
+                            title="Tandai sudah dibaca">
+                            <i class="fa-solid fa-check"></i>
+                          </button>
+                        </form>
                       @endif
-                      <button type="button"
-                        class="w-8 h-8 rounded-lg flex items-center justify-center text-gray-{{ $promo->is_read ? '300' : '400' }} hover:text-red-500 hover:bg-red-50 transition-colors"
-                        title="Hapus notifikasi">
-                        <i class="fa-regular fa-trash-can"></i>
-                      </button>
+                      <form method="POST" action="{{ route('user.notifications.destroy', $promo) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"
+                          class="w-8 h-8 rounded-lg flex items-center justify-center text-gray-{{ $promo->is_read ? '300' : '400' }} hover:text-red-500 hover:bg-red-50 transition-colors"
+                          title="Hapus notifikasi" onclick="return confirm('Hapus notifikasi ini?');">
+                          <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                      </form>
                     </div>
                   </div>
                 </div>

@@ -1,4 +1,4 @@
-<x-guest-layout title="Lupa Password - {{ config('app.name', 'Laravel') }}">
+<x-guest-layout title="Lupa Password - {{ Cache::get('store_name', config('app.name', 'Laravel')) }}">
   <!-- Kotak Lupa Password efek blur -->
   <section class="flex-1 flex items-center justify-center w-full font-primary relative max-h-screen py-8">
     <div class="relative w-full max-w-md p-6 md:p-8 mx-5">
