@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -208,6 +209,15 @@ class CartController extends Controller
       }
 
       Cart::whereIn('id_keranjang', $cartIds)->delete();
+
+      // Notifikasi Pesanan Berhasil Dibuat
+      Notification::create([
+        'id_users' => $userId,
+        'title' => 'Pesanan Berhasil Dibuat!',
+        'message' => "Pesanan kamu dengan nomor {$order->order_code} telah kami terima dan menunggu konfirmasi. Terima kasih!",
+        'type' => 'system',
+        'is_read' => false,
+      ]);
 
       DB::commit();
 

@@ -177,12 +177,12 @@
                     span.classList.add('bg-red-50', 'text-red-700', 'border-red-200', 'dark:bg-red-900/30', 'dark:text-red-400', 'dark:border-red-800');
                   }
                 } else {
-                  alert(data.message);
+                  showToast(data.message, 'error');
                 }
               })
               .catch(err => {
                 console.error(err);
-                alert('Gagal mengubah status');
+                showToast('Gagal mengubah status', 'error');
               });
           });
         });
@@ -204,12 +204,12 @@
                 .then(res => res.json())
                 .then(data => {
                   if (data.success) {
-                    alert(`Password baru untuk ${name}: ${data.new_password}\nCatat dan berikan ke user.`);
+                    showToast('Password baru untuk ' + name + ': ' + data.new_password + ' — Catat dan berikan ke user.', 'info', 10000);
                   } else {
-                    alert('Gagal reset password.');
+                    showToast('Gagal reset password.', 'error');
                   }
                 })
-                .catch(() => alert('Terjadi kesalahan.'));
+                .catch(() => showToast('Terjadi kesalahan.', 'error'));
             }
           });
         });

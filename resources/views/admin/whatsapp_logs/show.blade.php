@@ -30,20 +30,6 @@
       </form>
     </div>
 
-    {{-- Alert Notifications --}}
-    @if (session('success'))
-      <div
-        class="mb-6 p-4 text-sm text-green-700 rounded-xl bg-green-50 border border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-800">
-        {{ session('success') }}
-      </div>
-    @endif
-    @if (session('error'))
-      <div
-        class="mb-6 p-4 text-sm text-red-700 rounded-xl bg-red-50 border border-red-200 dark:bg-red-900/30 dark:text-red-300 dark:border-red-800">
-        {{ session('error') }}
-      </div>
-    @endif
-
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
       {{-- Bagian Kiri: Informasi Meta --}}

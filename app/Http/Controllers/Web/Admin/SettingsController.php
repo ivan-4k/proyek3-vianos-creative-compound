@@ -105,7 +105,7 @@ class SettingsController extends Controller
 
     // Gunakan updateOrCreate agar otomatis membuat data jika belum ada
     CafeSetting::updateOrCreate(
-      ['id' => 1],
+      ['id_setting' => 1],
       [
         'weekday_opening_time' => $validated['weekday_opening'],
         'weekday_closing_time' => $validated['weekday_closing'],

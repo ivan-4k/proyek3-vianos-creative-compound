@@ -92,7 +92,8 @@ class ReportController extends Controller
 
     $groupByUser = $allLogs->groupBy('id_users')->map(function ($userLogs) {
       return [
-        'user' => $userLogs->first()->user->name ?? 'Unknown',
+        'user_id' => $userLogs->first()->id_users,
+        'user' => $userLogs->first()->user->name ?? 'System/Guest',
         'total' => $userLogs->count()
       ];
     });

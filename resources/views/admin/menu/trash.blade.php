@@ -3,15 +3,7 @@
 @section('content')
   <x-admin.card title="Sampah Menu" subtitle="Menu yang telah dihapus sementara">
 
-    @if (session('error'))
-      <x-admin.alert type="error" :message="session('error')" />
-    @endif
-    @if (session('success'))
-      <x-admin.alert type="success" :message="session('success')" />
-    @endif
-    @if (session('warning'))
-      <x-admin.alert type="warning" :message="session('warning')" />
-    @endif
+    {{-- Alert ditangani oleh toast global di layouts/admin.blade.php --}}
 
     {{-- Header dengan tombol kembali --}}
     <div class="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -175,27 +167,6 @@
 
   @push('scripts')
     <script>
-      // 1. Toast notification
-      let toastTimeout = null;
-
-      function showToast(message, type = 'success') {
-        const existingToast = document.querySelector('.custom-toast');
-        if (existingToast) existingToast.remove();
-        if (toastTimeout) clearTimeout(toastTimeout);
-
-        const toast = document.createElement('div');
-        toast.className = `custom-toast fixed bottom-4 right-4 px-4 py-2 rounded-lg text-white z-50 transition-opacity duration-300 shadow-lg ${
-          type === 'success' ? 'bg-green-500' : 'bg-red-500'
-        }`;
-        toast.textContent = message;
-        document.body.appendChild(toast);
-
-        toastTimeout = setTimeout(() => {
-          toast.style.opacity = '0';
-          setTimeout(() => toast.remove(), 300);
-        }, 3000);
-      }
-
       $(document).ready(function() {
         // 2. Inisialisasi DataTables
         var table = $('#tabel-sampah-menu').DataTable({

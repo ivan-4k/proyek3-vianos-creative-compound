@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
+use App\Models\Notification;
 
 class PasswordController extends Controller
 {
@@ -26,8 +27,17 @@ class PasswordController extends Controller
             'password.confirmed' => 'Konfirmasi password tidak sesuai.',
         ]);
 
-        $request->user()->update([
+        $user = $request->user();
+        $user->update([
             'password' => Hash::make($validated['password']),
+        ]);
+
+        Notification::create([
+            'id_users' => $user->id_users,
+            'title' => 'Keamanan: Password Diperbarui',
+            'message' => 'Password akun kamu telah berhasil diubah. Jika ini bukan kamu, segera hubungi admin.',
+            'type' => 'system',
+            'is_read' => false,
         ]);
 
         return back()->with('status', 'password-updated');

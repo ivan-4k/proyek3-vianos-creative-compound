@@ -3,14 +3,6 @@
 @section('content')
   <x-admin.card title="Manajemen Pesanan" subtitle="Pantau dan kelola semua transaksi masuk secara real-time">
 
-    {{-- Alert --}}
-    @if (session('success'))
-      <x-admin.alert type="success" :message="session('success')" />
-    @endif
-    @if (session('error'))
-      <x-admin.alert type="error" :message="session('error')" />
-    @endif
-
     {{-- Search & Filter Section --}}
     <div class="mb-6 flex flex-col md:flex-row gap-4 items-end">
       {{-- Input Search Custom --}}

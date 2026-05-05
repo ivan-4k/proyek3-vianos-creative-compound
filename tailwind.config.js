@@ -14,8 +14,38 @@ export default {
 
     theme: {
         extend: {
+            colors: {
+                ink: 'rgb(var(--color-ink) / <alpha-value>)',
+                paper: 'rgb(var(--color-paper) / <alpha-value>)',
+                brand: 'rgb(var(--color-brand) / <alpha-value>)',
+                blood: 'rgb(var(--color-blood) / <alpha-value>)',
+                smoke: 'rgb(var(--color-smoke) / <alpha-value>)',
+                mist: 'rgb(var(--color-mist) / <alpha-value>)',
+            },
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+                display: ["'Unbounded'", "sans-serif"],
+                mono: ["'Space Mono'", "monospace"],
+                body: ["'DM Sans'", "sans-serif"],
+            },
+            animation: {
+                'spin-slow': 'spin-slow 20s linear infinite',
+                'ticker': 'ticker 20s linear infinite',
+                'slide-right': 'slide-right 2s ease infinite 1.5s',
+            },
+            keyframes: {
+                'spin-slow': {
+                    from: { transform: 'rotate(0deg)' },
+                    to: { transform: 'rotate(360deg)' },
+                },
+                'ticker': {
+                    from: { transform: 'translateX(0)' },
+                    to: { transform: 'translateX(-50%)' },
+                },
+                'slide-right': {
+                    '0%': { left: '-100%' },
+                    '100%': { left: '100%' },
+                },
             },
         },
     },

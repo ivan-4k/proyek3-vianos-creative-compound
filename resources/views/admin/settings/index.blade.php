@@ -3,19 +3,6 @@
 @section('content')
   <x-admin.card title="Pengaturan Kafe" subtitle="Konfigurasi identitas, operasional, dan tampilan sistem Anda">
 
-    {{-- Alert Messages --}}
-    @if (session('success'))
-      <div
-        class="mb-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-2xl flex items-center gap-3">
-        <div class="p-1 bg-green-500 rounded-full">
-          <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-          </svg>
-        </div>
-        <p class="text-sm font-semibold text-green-800 dark:text-green-300">{{ session('success') }}</p>
-      </div>
-    @endif
-
     {{-- Tab Navigation --}}
     <div class="mb-8 border-b border-gray-100 dark:border-gray-700 overflow-x-auto whitespace-nowrap">
       <nav class="flex gap-6">

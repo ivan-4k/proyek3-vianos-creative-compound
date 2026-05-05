@@ -211,7 +211,7 @@
                     </span>
                   </td>
                   <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400 max-w-xs truncate">
-                    {{ $log->details ?? '-' }}
+                    {{ $log->entity_id ? 'ID: ' . $log->entity_id : '-' }}
                   </td>
                   <td class="px-6 py-4 text-sm font-mono text-gray-500 dark:text-gray-400">
                     {{ $log->ip_address ?? '-' }}

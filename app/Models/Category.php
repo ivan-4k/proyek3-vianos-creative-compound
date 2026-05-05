@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, \App\Traits\ActivityLogger;
 
     protected $table = 'categories';
     protected $primaryKey = 'id_kategori';

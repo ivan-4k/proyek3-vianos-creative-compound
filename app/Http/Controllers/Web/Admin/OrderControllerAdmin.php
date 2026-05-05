@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Yajra\DataTables\Facades\DataTables;
@@ -117,6 +118,25 @@ class OrderControllerAdmin extends Controller
     $order->order_status = $request->order_status;
     $order->save();
 
+    // Map status untuk notifikasi
+    $statusText = match ($request->order_status) {
+      'processing' => 'sedang diproses oleh staf kami',
+      'ready_for_pickup' => 'sudah siap untuk diambil',
+      'completed' => 'telah selesai. Terima kasih atas pesananmu!',
+      'cancelled' => 'dibatalkan',
+      default => 'telah diperbarui'
+    };
+
+    if ($request->order_status !== 'pending_confirmation') {
+      Notification::create([
+        'id_users' => $order->id_users,
+        'title' => 'Update Status Pesanan',
+        'message' => "Pesanan kamu dengan nomor {$order->order_code} $statusText.",
+        'type' => 'system',
+        'is_read' => false,
+      ]);
+    }
+
     if ($request->expectsJson()) {
       return response()->json([
         'success' => true,
@@ -173,6 +193,15 @@ class OrderControllerAdmin extends Controller
       // 3. Ubah status pesanan menjadi cancelled
       $order->order_status = 'cancelled';
       $order->save();
+
+      // Notifikasi Pembatalan
+      Notification::create([
+        'id_users' => $order->id_users,
+        'title' => 'Pesanan Dibatalkan',
+        'message' => "Pesanan kamu dengan nomor {$order->order_code} telah dibatalkan oleh Admin.",
+        'type' => 'system',
+        'is_read' => false,
+      ]);
 
       DB::commit();
       return redirect()->route('admin.orders.index')

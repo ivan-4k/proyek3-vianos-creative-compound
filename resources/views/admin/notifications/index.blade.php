@@ -8,17 +8,6 @@
       <div class="xl:col-span-1 bg-white dark:bg-gray-900 rounded-3xl border border-gray-200 dark:border-gray-700 p-6">
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Kirim Notifikasi Baru</h3>
 
-        @if (session('success'))
-          <div class="mb-4 p-4 text-sm text-green-700 rounded-xl bg-green-50 dark:bg-green-900/30 dark:text-green-200">
-            {{ session('success') }}
-          </div>
-        @endif
-        @if (session('error'))
-          <div class="mb-4 p-4 text-sm text-red-700 rounded-xl bg-red-50 dark:bg-red-900/30 dark:text-red-200">
-            {{ session('error') }}
-          </div>
-        @endif
-
         <form method="POST" action="{{ route('admin.notifications.store') }}">
           @csrf
           <div class="space-y-4">

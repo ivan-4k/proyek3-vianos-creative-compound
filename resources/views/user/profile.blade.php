@@ -26,11 +26,6 @@
           @include('profile.partials.update-password-form')
         </div>
 
-        {{-- Delete Account --}}
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 sm:p-6">
-          @include('profile.partials.delete-user-form')
-        </div>
-
       </div>
 
     </div>

@@ -30,14 +30,6 @@
     </div>
     </div>
 
-    {{-- Alert --}}
-    @if (session('success'))
-      <x-admin.alert type="success" :message="session('success')" />
-    @endif
-    @if (session('error'))
-      <x-admin.alert type="error" :message="session('error')" />
-    @endif
-
     @if ($categories->count())
       <div class="relative overflow-x-auto border border-gray-100 dark:border-gray-700 rounded-xl">
         <table id="tabel-kategori" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -251,14 +243,14 @@
                     // Jika sukses, reload halaman agar tabel terupdate
                     window.location.reload();
                   } else {
-                    alert('Terjadi kesalahan saat menghapus data.');
+                    showToast('Terjadi kesalahan saat menghapus data.', 'error');
                     btnBulkDelete.innerHTML = originalText;
                     btnBulkDelete.disabled = false;
                   }
                 })
                 .catch(error => {
                   console.error('Error:', error);
-                  alert('Terjadi kesalahan pada jaringan.');
+                  showToast('Terjadi kesalahan pada jaringan.', 'error');
                   btnBulkDelete.innerHTML = originalText;
                   btnBulkDelete.disabled = false;
                 });

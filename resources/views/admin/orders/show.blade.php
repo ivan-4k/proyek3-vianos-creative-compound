@@ -282,22 +282,6 @@
       if (paymentSelect) paymentSelect.style.display = 'none';
     }
 
-    function showToast(message, type) {
-      // Create toast element
-      const toast = document.createElement('div');
-      toast.className = `fixed top-4 right-4 px-6 py-3 rounded-lg text-white text-sm font-medium z-50 ${
-            type === 'success' ? 'bg-green-500' : 'bg-red-500'
-        }`;
-      toast.textContent = message;
-
-      document.body.appendChild(toast);
-
-      // Remove toast after 3 seconds
-      setTimeout(() => {
-        toast.remove();
-      }, 3000);
-    }
-
     // Set initial original values
     if (orderStatusSelect) {
       orderStatusSelect.setAttribute('data-original-value', orderStatusSelect.value);

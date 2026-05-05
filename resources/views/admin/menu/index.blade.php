@@ -177,26 +177,6 @@
 
   @push('scripts')
     <script>
-      // Toast notification dengan anti-duplicate
-      let toastTimeout = null;
-
-      function showToast(message, type = 'success') {
-        const existingToast = document.querySelector('.custom-toast');
-        if (existingToast) existingToast.remove();
-        if (toastTimeout) clearTimeout(toastTimeout);
-
-        const toast = document.createElement('div');
-        toast.className = `custom-toast fixed bottom-4 right-4 px-4 py-2 rounded-lg text-white z-50 transition-opacity duration-300 shadow-lg ${
-          type === 'success' ? 'bg-green-500' : 'bg-red-500'
-        }`;
-        toast.textContent = message;
-        document.body.appendChild(toast);
-
-        toastTimeout = setTimeout(() => {
-          toast.style.opacity = '0';
-          setTimeout(() => toast.remove(), 300);
-        }, 3000);
-      }
 
       // Toggle Signature (Menu Unggulan)
       function toggleSignature(menuId, element) {

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+use App\Models\Notification;
 
 class ProfileController extends Controller
 {
@@ -62,6 +63,14 @@ class ProfileController extends Controller
         }
 
         $user->save();
+
+        Notification::create([
+            'id_users' => $user->id_users,
+            'title' => 'Profil Diperbarui',
+            'message' => 'Informasi profil kamu telah berhasil diperbarui.',
+            'type' => 'system',
+            'is_read' => false,
+        ]);
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CafeSetting extends Model
 {
-    use HasFactory;
+    use HasFactory, \App\Traits\ActivityLogger;
 
     protected $table = 'cafe_settings';
     protected $primaryKey = 'id_setting';

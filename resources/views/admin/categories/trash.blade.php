@@ -14,14 +14,6 @@
 
     </div>
 
-    {{-- Alert messages --}}
-    @if (session('error'))
-      <x-admin.alert type="error" :message="session('error')" />
-    @endif
-    @if (session('success'))
-      <x-admin.alert type="success" :message="session('success')" />
-    @endif
-
     @if ($categories->count())
       {{-- Bulk actions bar --}}
       <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
@@ -165,7 +157,7 @@
         bulkRestoreBtn.addEventListener('click', function() {
           const selectedIds = Array.from(document.querySelectorAll('.category-checkbox:checked')).map(cb => cb.value);
           if (selectedIds.length === 0) {
-            alert('Pilih kategori yang akan dipulihkan.');
+            showToast('Pilih kategori yang akan dipulihkan.', 'warning');
             return;
           }
           if (!confirm(`Pulihkan ${selectedIds.length} kategori?`)) return;
@@ -184,9 +176,9 @@
             .then(response => response.json())
             .then(data => {
               if (data.success) location.reload();
-              else alert('Gagal: ' + data.message);
+              else showToast('Gagal: ' + data.message, 'error');
             })
-            .catch(() => alert('Terjadi kesalahan.'));
+            .catch(() => showToast('Terjadi kesalahan.', 'error'));
         });
       }
 
@@ -196,7 +188,7 @@
         bulkForceDeleteBtn.addEventListener('click', function() {
           const selectedIds = Array.from(document.querySelectorAll('.category-checkbox:checked')).map(cb => cb.value);
           if (selectedIds.length === 0) {
-            alert('Pilih kategori yang akan dihapus permanen.');
+            showToast('Pilih kategori yang akan dihapus permanen.', 'warning');
             return;
           }
           if (!confirm(`Hapus permanen ${selectedIds.length} kategori? Tindakan ini tidak dapat dibatalkan.`)) return;
@@ -215,9 +207,9 @@
             .then(response => response.json())
             .then(data => {
               if (data.success) location.reload();
-              else alert('Gagal: ' + data.message);
+              else showToast('Gagal: ' + data.message, 'error');
             })
-            .catch(() => alert('Terjadi kesalahan.'));
+            .catch(() => showToast('Terjadi kesalahan.', 'error'));
         });
       }
 

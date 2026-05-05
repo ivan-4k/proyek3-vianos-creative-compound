@@ -14,7 +14,7 @@ use App\Notifications\CustomVerifyEmail;
 class User extends Authenticatable implements MustVerifyEmailContract
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, SoftDeletes;
+    use HasFactory, Notifiable, SoftDeletes, \App\Traits\ActivityLogger;
 
     protected $table = 'users';
     protected $primaryKey = 'id_users';

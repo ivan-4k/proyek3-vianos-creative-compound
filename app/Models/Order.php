@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
-    use HasFactory;
+    use HasFactory, \App\Traits\ActivityLogger;
 
     protected $table = 'orders';
     protected $primaryKey = 'id_pesanan';
