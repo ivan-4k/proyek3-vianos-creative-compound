@@ -52,6 +52,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="https://unpkg.com/split-type" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js" defer></script>
+
   @vite(['resources/css/landing.css', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/pages/landing.js'])
 </head>
 
@@ -86,12 +88,12 @@
 
     <!-- Teks Logo -->
     <div
-      class="pre-logo font-display font-black text-[clamp(14px,2.5vw,28px)] tracking-[.3em] uppercase text-paper opacity-0 relative z-10 transition-colors duration-300">
+      class="pre-logo font-display font-black text-[clamp(14px,2.5vw,28px)] tracking-[.3em] uppercase text-paper opacity-0 relative z-10 transition-colors duration-300 text-center">
       Vianos Creative Compound</div>
 
     <!-- Subteks -->
     <div
-      class="pre-sub font-mono text-[11px] tracking-[.3em] text-mist mt-3 opacity-0 relative z-10 transition-colors duration-300">
+      class="pre-sub font-mono text-[11px] tracking-[.3em] text-mist mt-3 opacity-0 relative z-10 transition-colors duration-300 text-center">
       Est. Indramayu — Creative Space
     </div>
   </div>
@@ -610,6 +612,32 @@
     </div>
   </footer>
 
+  <!-- Lenis Initialization Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Inisialisasi Lenis
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Easing bawaan yang mulus
+        direction: 'vertical',
+        gestureDirection: 'vertical',
+        smooth: true,
+        mouseMultiplier: 1,
+        smoothTouch: false,
+        touchMultiplier: 2,
+        infinite: false,
+      });
+
+      // Menghubungkan Lenis dengan GSAP ScrollTrigger
+      lenis.on('scroll', ScrollTrigger.update);
+
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+
+      gsap.ticker.lagSmoothing(0);
+    });
+  </script>
 </body>
 
 </html>

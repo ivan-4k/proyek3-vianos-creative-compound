@@ -27,6 +27,9 @@
     {{-- Kontak Section --}}
     <x-home.contact-section />
 
+    {{-- Chatbot AI --}}
+    <x-chatbot />
+
   </x-favorite-manager>
 @endsection
 

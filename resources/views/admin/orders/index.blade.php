@@ -3,6 +3,18 @@
 @section('content')
   <x-admin.card title="Manajemen Pesanan" subtitle="Pantau dan kelola semua transaksi masuk secara real-time">
 
+    {{-- Real-time Notification Banner --}}
+    <div id="new-order-alert"
+      class="hidden mb-4 flex items-center gap-3 px-4 py-3 bg-green-50 border border-green-200 text-green-800 rounded-xl dark:bg-green-900/30 dark:border-green-700 dark:text-green-300 cursor-pointer"
+      onclick="dismissNewOrderAlert()">
+      <span class="relative flex h-3 w-3">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+      </span>
+      <span id="new-order-alert-text" class="text-sm font-semibold">Pesanan baru masuk!</span>
+      <span class="ml-auto text-xs opacity-60">Klik untuk tutup</span>
+    </div>
+
     {{-- Search & Filter Section --}}
     <div class="mb-6 flex flex-col md:flex-row gap-4 items-end">
       {{-- Input Search Custom --}}
@@ -64,7 +76,7 @@
     <script>
       $(document).ready(function() {
         var table = $('#tabel-orders').DataTable({
-          "dom": '<"top">rt<"bottom"ilp><"clear">',
+          "dom": '<"flex justify-between items-center mb-4"l>rt<"flex justify-between items-center mt-4"ip><"clear">',
           processing: true,
           serverSide: true,
           ajax: {
@@ -119,6 +131,46 @@
             "emptyTable": "Belum ada transaksi masuk"
           }
         });
+
+        // ─── Auto-Polling ringan: cek pesanan baru setiap 30 detik ──────────
+        var latestOrderId = null;
+
+        // Tangkap ID terbaru setelah draw pertama via ajax.json()
+        table.one('draw', function() {
+          var json = table.ajax.json();
+          if (json && json.data && json.data.length > 0) {
+            latestOrderId = json.data[0].id_pesanan_raw;
+          }
+
+          // Mulai interval setelah ID awal berhasil ditangkap
+          setInterval(function() {
+            $.getJSON("{{ route('admin.orders.latestId') }}", function(res) {
+              var newestId = res.latest_id;
+              if (latestOrderId !== null && newestId > latestOrderId) {
+                var count = newestId - latestOrderId;
+                latestOrderId = newestId;
+                showNewOrderAlert(count);
+                table.ajax.reload(null, false); // reload tanpa reset halaman/scroll
+              } else if (latestOrderId === null) {
+                latestOrderId = newestId;
+              }
+            });
+          }, 30000); // setiap 30 detik
+        });
+
+        function showNewOrderAlert(count) {
+          var text = count > 1
+            ? count + ' pesanan baru masuk! Tabel diperbarui otomatis.'
+            : 'Ada 1 pesanan baru masuk! Tabel diperbarui otomatis.';
+          $('#new-order-alert-text').text(text);
+          $('#new-order-alert').removeClass('hidden').addClass('flex');
+          clearTimeout(window._orderAlertTimer);
+          window._orderAlertTimer = setTimeout(dismissNewOrderAlert, 8000);
+        }
+
+        window.dismissNewOrderAlert = function() {
+          $('#new-order-alert').addClass('hidden').removeClass('flex');
+        };
 
         // Event Pencarian Instan
         let searchTimeout;

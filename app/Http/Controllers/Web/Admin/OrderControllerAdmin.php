@@ -34,6 +34,9 @@ class OrderControllerAdmin extends Controller
     }
 
     return DataTables::eloquent($query)
+      ->addColumn('id_pesanan_raw', function ($order) {
+        return $order->id_pesanan; // integer murni untuk polling di frontend
+      })
       ->editColumn('id_pesanan', function ($order) {
         return '#' . $order->id_pesanan;
       })
@@ -93,8 +96,18 @@ class OrderControllerAdmin extends Controller
         $buttons .= '</div>';
         return $buttons;
       })
-      ->rawColumns(['order_code', 'pelanggan', 'order_status', 'created_at', 'aksi'])
+      ->rawColumns(['order_code', 'pelanggan', 'order_status', 'created_at', 'aksi', 'id_pesanan_raw'])
       ->make(true);
+  }
+
+  /**
+   * Endpoint ringan untuk polling — hanya kembalikan ID pesanan terbaru.
+   * Dipakai oleh auto-polling di halaman admin orders agar tidak membebani server.
+   */
+  public function latestId()
+  {
+    $latestId = Order::max('id_pesanan') ?? 0;
+    return response()->json(['latest_id' => $latestId]);
   }
 
   /**

@@ -30,6 +30,7 @@ use App\Http\Controllers\Web\Admin\ReportController;
 use App\Http\Controllers\Web\Admin\SettingsController;
 
 use App\Http\Controllers\Web\Owner\OwnerDashboardController;
+use App\Http\Controllers\Web\User\ChatbotController;
 
 // === ROUTE COMPANY PROFILE ===
 Route::get('/', function () {
@@ -41,7 +42,7 @@ Route::get('/auth/google', [GoogleController::class, 'redirect'])->name('google.
 Route::get('/auth/google/callback', [GoogleController::class, 'callback'])->name('google.callback');
 
 // === ROUTE USER ===
-Route::middleware(['auth', 'verified', 'role:user'])->group(function () {
+Route::middleware(['auth', 'verified', 'role:user|admin|owner'])->group(function () {
   // PROFILE ROUTES
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -82,6 +83,9 @@ Route::middleware(['auth', 'verified', 'role:admin|owner'])->prefix('admin')->na
   Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
   Route::get('/api/statistics', [AdminDashboardController::class, 'getStatistics'])->name('statistics');
 
+  // AI Analitik
+  Route::get('/ai', [\App\Http\Controllers\Web\Admin\AiAnalyticController::class, 'index'])->name('ai.index');
+
   // ==================== MENU MANAGEMENT  ====================
   Route::get('/menu/trash', [MenuControllerAdmin::class, 'trash'])->name('menu.trash');
   Route::post('/menu/restore/{id}', [MenuControllerAdmin::class, 'restore'])->name('menu.restore');
@@ -118,7 +122,9 @@ Route::middleware(['auth', 'verified', 'role:admin|owner'])->prefix('admin')->na
   Route::get('/orders/{order}/print', [OrderControllerAdmin::class, 'printReceipt'])->name('orders.print');
   Route::get('/orders/export/report', [OrderControllerAdmin::class, 'exportReport'])->name('orders.export');
   Route::get('orders/data', [OrderControllerAdmin::class, 'data'])->name('orders.data');
+  Route::get('orders/latest-id', [OrderControllerAdmin::class, 'latestId'])->name('orders.latestId'); // polling
   Route::resource('orders', OrderControllerAdmin::class)->only(['index', 'show', 'destroy']);
+
   // ==================== NOTIFICATION MANAGEMENT ====================
   Route::get('/notifications', [NotificationControllerAdmin::class, 'index'])->name('notifications.index');
   Route::get('/notifications/data', [NotificationControllerAdmin::class, 'data'])->name('notifications.data');
@@ -178,4 +184,6 @@ Route::get('/menu', [MenuController::class, 'index'])->name('menu.index');
 // About
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
+// Chatbot API
+Route::post('/chatbot/ask', [ChatbotController::class, 'ask'])->name('chatbot.ask');
 require __DIR__ . '/auth.php';

@@ -31,6 +31,27 @@
         </a>
       </li>
 
+      {{-- AI Analitik --}}
+      <li>
+        <a href="{{ route('admin.ai.index') }}"
+          class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg transition-all duration-200 group
+          {{ request()->routeIs('admin.ai.index')
+              ? 'bg-gradient-to-r from-cyan-50 to-cyan-100/50 dark:from-cyan-900/40 dark:to-cyan-800/30 text-cyan-700 dark:text-cyan-300 shadow-sm'
+              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/50' }}"
+          title="Analitik Cerdas AI">
+          <svg
+            class="w-5 h-5 flex-shrink-0 transition-colors duration-200
+            {{ request()->routeIs('admin.ai.index')
+                ? 'text-cyan-600 dark:text-cyan-400'
+                : 'text-gray-400 dark:text-gray-500 group-hover:text-gray-600 dark:group-hover:text-gray-400' }}"
+            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          <span class="text-sm font-semibold">AI Analitik</span>
+          <span class="ml-auto text-[10px] bg-cyan-100 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400 px-1.5 py-0.5 rounded border border-cyan-200 dark:border-cyan-800 uppercase font-black">Pro</span>
+        </a>
+      </li>
+
       {{-- SECTION: OPERASIONAL --}}
       <div class="my-5 border-t border-gray-200 dark:border-gray-700/50"></div>
       <div class="px-3 py-3 mb-3">
