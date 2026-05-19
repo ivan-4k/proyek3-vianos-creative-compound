@@ -140,6 +140,15 @@ Route::middleware(['auth', 'verified', 'role:admin|owner'])->prefix('admin')->na
   Route::resource('users', UserControllerAdmin::class)->except(['show']);
 
 
+  // ==================== CAFE TABLES MANAGEMENT ====================
+  Route::get('tables/data', [\App\Http\Controllers\Web\Admin\TableControllerAdmin::class, 'data'])->name('tables.data');
+  Route::put('tables/{table}/coordinates', [\App\Http\Controllers\Web\Admin\TableControllerAdmin::class, 'updateCoordinates'])->name('tables.updateCoordinates');
+  Route::resource('tables', \App\Http\Controllers\Web\Admin\TableControllerAdmin::class)->except(['show']);
+
+  // ==================== ATTENDANCE MANAGEMENT ====================
+  Route::get('attendances/data', [\App\Http\Controllers\Web\Admin\AttendanceControllerAdmin::class, 'data'])->name('attendances.data');
+  Route::resource('attendances', \App\Http\Controllers\Web\Admin\AttendanceControllerAdmin::class)->only(['index', 'destroy']);
+
   // ==================== ACTIVITY LOG ====================
   Route::delete('activity-logs/clear', [ActivityLogController::class, 'clearAll'])->name('activity-logs.clear');
   Route::get('activity-logs/data', [ActivityLogController::class, 'data'])->name('activity-logs.data');

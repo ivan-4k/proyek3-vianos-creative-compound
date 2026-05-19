@@ -168,10 +168,10 @@
         </a>
       </li>
 
-      {{-- SECTION: MANAJEMEN SISTEM --}}
+      {{-- SECTION: TIM & KEHADIRAN --}}
       <div class="my-5 border-t border-gray-200 dark:border-gray-700/50"></div>
       <div class="px-3 py-3 mb-3">
-        <p class="text-[11px] font-extrabold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Sistem & Tim</p>
+        <p class="text-[11px] font-extrabold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Tim & Kehadiran</p>
       </div>
 
       {{-- Manajemen Tim --}}
@@ -195,6 +195,28 @@
         </a>
       </li>
 
+      {{-- Laporan Absensi --}}
+      <li>
+        <a href="{{ route('admin.attendances.index') }}"
+          class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg transition-all duration-200 group
+          {{ request()->routeIs('admin.attendances.*')
+              ? 'bg-gradient-to-r from-indigo-50 to-indigo-100/50 dark:from-indigo-900/40 dark:to-indigo-800/30 text-indigo-700 dark:text-indigo-300 shadow-sm'
+              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/50' }}"
+          title="Laporan Absensi Staff">
+          <svg class="w-5 h-5 flex-shrink-0 transition-colors duration-200 {{ request()->routeIs('admin.attendances.*') ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-400 dark:text-gray-500 group-hover:text-gray-600 dark:group-hover:text-gray-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+          </svg>
+          <span class="text-sm font-semibold">Laporan Absensi</span>
+        </a>
+      </li>
+
+      {{-- SECTION: MANAJEMEN SISTEM --}}
+      <div class="my-5 border-t border-gray-200 dark:border-gray-700/50"></div>
+      <div class="px-3 py-3 mb-3">
+        <p class="text-[11px] font-extrabold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Manajemen Sistem</p>
+      </div>
+
+      {{-- Notifikasi User --}}
       <li>
         <a href="{{ route('admin.notifications.index') }}"
           class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg transition-all duration-200 group
@@ -212,6 +234,21 @@
             <path d="M7 18a3 3 0 006 0H7z" />
           </svg>
           <span class="text-sm font-semibold">Notifikasi User</span>
+        </a>
+      </li>
+
+      {{-- Manajemen Meja --}}
+      <li>
+        <a href="{{ route('admin.tables.index') }}"
+          class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg transition-all duration-200 group
+          {{ request()->routeIs('admin.tables.*')
+              ? 'bg-gradient-to-r from-blue-50 to-blue-100/50 dark:from-blue-900/40 dark:to-blue-800/30 text-blue-700 dark:text-blue-300 shadow-sm'
+              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/50' }}"
+          title="Manajemen Meja Kafe">
+          <svg class="w-5 h-5 flex-shrink-0 transition-colors duration-200 {{ request()->routeIs('admin.tables.*') ? 'text-blue-600 dark:text-blue-400' : 'text-gray-400 dark:text-gray-500 group-hover:text-gray-600 dark:group-hover:text-gray-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+          </svg>
+          <span class="text-sm font-semibold">Manajemen Meja</span>
         </a>
       </li>
 

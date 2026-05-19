@@ -116,7 +116,7 @@
 {{--  FLOWBITE MODALS  --}}
 @foreach ($recentGallery as $item)
   <div id="gallery-modal-{{ $item->id_produk }}" tabindex="-1" aria-hidden="true"
-    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[110] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-gray-900/60 backdrop-blur-sm transition-opacity">
     <div class="relative p-4 w-full max-w-3xl max-h-full">
 
       <div class="relative bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">

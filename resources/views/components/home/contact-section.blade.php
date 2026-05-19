@@ -80,7 +80,7 @@
               membalas.</p>
           </div>
 
-          <form action="#" method="POST" class="space-y-5 relative z-10">
+          <form action="#" class="space-y-5 relative z-10">
             @csrf
 
             <div class="flex flex-col sm:flex-row gap-5">

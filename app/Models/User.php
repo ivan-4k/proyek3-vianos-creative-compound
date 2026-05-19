@@ -9,12 +9,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 use App\Notifications\CustomVerifyEmail;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, SoftDeletes, \App\Traits\ActivityLogger;
+    use HasFactory, Notifiable, SoftDeletes, HasApiTokens, \App\Traits\ActivityLogger;
 
     protected $table = 'users';
     protected $primaryKey = 'id_users';
@@ -95,6 +96,16 @@ class User extends Authenticatable implements MustVerifyEmailContract
     public function activityLogs(): HasMany
     {
         return $this->hasMany(ActivityLog::class, 'id_users', 'id_users');
+    }
+
+    public function attendances(): HasMany
+    {
+        return $this->hasMany(Attendance::class, 'id_users', 'id_users');
+    }
+
+    public function staffDevices(): HasMany
+    {
+        return $this->hasMany(StaffDevice::class, 'id_users', 'id_users');
     }
 
     public function sendEmailVerificationNotification(): void

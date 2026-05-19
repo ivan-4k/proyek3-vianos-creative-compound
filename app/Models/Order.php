@@ -23,6 +23,8 @@ class Order extends Model
      */
     protected $fillable = [
         'id_users',
+        'table_id',
+        'customer_name',
         'order_code',
         'queue_number',
         'subtotal',
@@ -77,6 +79,11 @@ class Order extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'id_users', 'id_users');
+    }
+
+    public function table(): BelongsTo
+    {
+        return $this->belongsTo(\App\Models\CafeTable::class, 'table_id', 'id');
     }
 
     public function items(): HasMany
